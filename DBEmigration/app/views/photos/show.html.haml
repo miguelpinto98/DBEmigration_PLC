@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Path:
+  = @photo.path
+%p
+  %b Date:
+  = @photo.date
+%p
+  %b Fact:
+  = @photo.fact
+%p
+  %b Legend:
+  = @photo.legend
+
+= link_to 'Edit', edit_photo_path(@photo)
+\|
+= link_to 'Back', photos_path

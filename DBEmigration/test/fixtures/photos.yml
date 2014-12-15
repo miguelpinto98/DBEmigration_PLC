@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path: MyString
+  date: 2014-12-15
+  fact: MyString
+  legend: MyString
+
+two:
+  path: MyString
+  date: 2014-12-15
+  fact: MyString
+  legend: MyString
