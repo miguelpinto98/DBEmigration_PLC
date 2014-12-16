@@ -5,7 +5,7 @@ class CreatePhotosPeopleJoinTable < ActiveRecord::Migration
       t.integer :person_id
     end
 
-    add_index :photos_people, [:photos_people, :person_id]
+    add_index :photos_people, [:photo_id, :person_id]
   end
 
   def self.down

@@ -11,14 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216023833) do
+ActiveRecord::Schema.define(version: 20141216121946) do
 
   create_table "biographies", force: true do |t|
     t.text     "event"
     t.date     "date"
+    t.integer  "local_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "biographies_people", id: false, force: true do |t|
+    t.integer "biography_id"
+    t.integer "person_id"
+  end
+
+  add_index "biographies_people", ["biography_id", "person_id"], name: "index_biographies_people_on_biography_id_and_person_id"
 
   create_table "locals", force: true do |t|
     t.string   "description"
@@ -31,6 +39,8 @@ ActiveRecord::Schema.define(version: 20141216023833) do
     t.integer  "year"
     t.string   "municipio"
     t.date     "submitted"
+    t.integer  "profession_id"
+    t.integer  "local_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +50,9 @@ ActiveRecord::Schema.define(version: 20141216023833) do
     t.date     "nasc"
     t.string   "civil"
     t.string   "habil"
+    t.integer  "local_nasc"
+    t.integer  "local_work"
+    t.integer  "profession_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,11 +60,19 @@ ActiveRecord::Schema.define(version: 20141216023833) do
   create_table "photos", force: true do |t|
     t.string   "path"
     t.date     "date"
-    t.string   "fact"
-    t.string   "legend"
+    t.text     "fact"
+    t.string   "caption"
+    t.integer  "local_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "photos_people", id: false, force: true do |t|
+    t.integer "photo_id"
+    t.integer "person_id"
+  end
+
+  add_index "photos_people", ["photo_id", "person_id"], name: "index_photos_people_on_photo_id_and_person_id"
 
   create_table "professions", force: true do |t|
     t.string   "desc"
