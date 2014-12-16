@@ -7,6 +7,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :habil
 
       t.belongs_to :local
+      t.belongs_to :profession
 
       t.timestamps
     end

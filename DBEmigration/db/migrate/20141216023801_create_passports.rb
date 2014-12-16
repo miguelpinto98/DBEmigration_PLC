@@ -5,6 +5,8 @@ class CreatePassports < ActiveRecord::Migration
       t.integer :year
       t.string :municipio
       t.date :submitted
+      
+      t.belongs_to :profession
 
       t.timestamps
     end
