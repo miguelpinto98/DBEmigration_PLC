@@ -6,6 +6,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :civil
       t.string :habil
 
+      t.integer :gender_cd #cd é necessário por ser um enum
+
       t.integer :local_nasc
       t.integer :local_work
       t.belongs_to :profession

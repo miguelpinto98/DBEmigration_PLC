@@ -5,4 +5,7 @@ class Person < ActiveRecord::Base
 
   has_one :localNasc, :foreign_key => :local_nasc
   has_one :localWork, :foreign_key => :local_work
+
+  # género: masculino ou feminino
+  as_enum :gender, :female => 1, :male => 0
 end
