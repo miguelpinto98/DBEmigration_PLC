@@ -7,6 +7,7 @@ class CreatePassports < ActiveRecord::Migration
       t.date :submitted
       
       t.belongs_to :profession
+      t.belongs_to :local
 
       t.timestamps
     end
