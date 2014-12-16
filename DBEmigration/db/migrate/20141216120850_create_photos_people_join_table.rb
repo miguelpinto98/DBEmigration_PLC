@@ -1,7 +1,4 @@
 class CreatePhotosPeopleJoinTable < ActiveRecord::Migration
-  def change
-  end
-
   def self.up
     create_table :photos_people, :id => false do |t|
       t.integer :photo_id
