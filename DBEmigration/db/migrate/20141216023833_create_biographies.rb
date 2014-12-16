@@ -4,6 +4,8 @@ class CreateBiographies < ActiveRecord::Migration
       t.text :event
       t.date :date
 
+      t.belongs_to :local
+
       t.timestamps
     end
   end
