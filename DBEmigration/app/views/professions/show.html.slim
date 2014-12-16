@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Desc:
+  = @profession.desc
+
+= link_to 'Edit', edit_profession_path(@profession)
+'|
+= link_to 'Back', professions_path

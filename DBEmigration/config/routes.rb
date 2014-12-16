@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :biographies
+
+  resources :passports
+
+  resources :professions
+
+  resources :people
+
+  resources :locals
+
   resources :photos
 
   # The priority is based upon order of creation: first created -> highest priority.

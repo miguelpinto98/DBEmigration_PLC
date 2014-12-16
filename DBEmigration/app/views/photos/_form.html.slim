@@ -1,10 +1,10 @@
 = form_for @photo do |f|
   - if @photo.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@photo.errors.count, "error")} prohibited this photo from being saved:"
-      %ul
-        - @photo.errors.full_messages.each do |msg|
-          %li= msg
+      h2 = "#{pluralize(@photo.errors.count, "error")} prohibited this photo from being saved:"
+      ul
+        - @photo.errors.full_messages.each do |message|
+          li = message
 
   .field
     = f.label :path
@@ -18,5 +18,4 @@
   .field
     = f.label :legend
     = f.text_field :legend
-  .actions
-    = f.submit 'Save'
+  .actions = f.submit 'Save'

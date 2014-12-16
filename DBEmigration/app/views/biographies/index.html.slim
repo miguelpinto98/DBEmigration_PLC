@@ -1,0 +1,23 @@
+h1 Listing biographies
+
+table
+  thead
+    tr
+      th Event
+      th Date
+      th
+      th
+      th
+
+  tbody
+    - @biographies.each do |biography|
+      tr
+        td = biography.event
+        td = biography.date
+        td = link_to 'Show', biography
+        td = link_to 'Edit', edit_biography_path(biography)
+        td = link_to 'Destroy', biography, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Biography', new_biography_path

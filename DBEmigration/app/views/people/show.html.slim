@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @person.name
+p
+  strong Nasc:
+  = @person.nasc
+p
+  strong Civil:
+  = @person.civil
+p
+  strong Habil:
+  = @person.habil
+
+= link_to 'Edit', edit_person_path(@person)
+'|
+= link_to 'Back', people_path

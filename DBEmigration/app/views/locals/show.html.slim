@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Description:
+  = @local.description
+
+= link_to 'Edit', edit_local_path(@local)
+'|
+= link_to 'Back', locals_path

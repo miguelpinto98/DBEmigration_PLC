@@ -1,18 +1,18 @@
-%p#notice= notice
+p#notice = notice
 
-%p
-  %b Path:
+p
+  strong Path:
   = @photo.path
-%p
-  %b Date:
+p
+  strong Date:
   = @photo.date
-%p
-  %b Fact:
+p
+  strong Fact:
   = @photo.fact
-%p
-  %b Legend:
+p
+  strong Legend:
   = @photo.legend
 
 = link_to 'Edit', edit_photo_path(@photo)
-\|
+'|
 = link_to 'Back', photos_path

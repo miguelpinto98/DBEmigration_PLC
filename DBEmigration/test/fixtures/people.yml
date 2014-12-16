@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  nasc: 2014-12-16
+  civil: MyString
+  habil: MyString
+
+two:
+  name: MyString
+  nasc: 2014-12-16
+  civil: MyString
+  habil: MyString

@@ -11,13 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215172326) do
+ActiveRecord::Schema.define(version: 20141216023833) do
+
+  create_table "biographies", force: true do |t|
+    t.text     "event"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locals", force: true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "passports", force: true do |t|
+    t.string   "number"
+    t.integer  "year"
+    t.string   "municipio"
+    t.date     "submitted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", force: true do |t|
+    t.string   "name"
+    t.date     "nasc"
+    t.string   "civil"
+    t.string   "habil"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.string   "path"
     t.date     "date"
     t.string   "fact"
     t.string   "legend"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "professions", force: true do |t|
+    t.string   "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
