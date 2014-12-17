@@ -9,8 +9,6 @@ class Person < ActiveRecord::Base
   has_one :localNasc, :foreign_key => :local_nasc
   has_one :localWork, :foreign_key => :local_work
 
-  attr_accessor :gender_cd
-  attr_accessor :civil_cd
   # https://github.com/lwe/simple_enum
   as_enum :gender, :female => 1, :male => 0
   as_enum :civil, single: 0, married: 1, divorced: 3, widowed: 4
