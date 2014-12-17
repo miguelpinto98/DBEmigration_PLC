@@ -5,7 +5,7 @@ class CreateBiographiesPeopleJoinTable < ActiveRecord::Migration
       t.integer :person_id
     end
 
-    add_index :biographies_people, [:biography_id, :person_id]
+    add_index :biographies_people, [:biography_id, :person_id], :unique => true
   end
 
   def self.down
