@@ -1,6 +1,9 @@
 class Person < ActiveRecord::Base
   has_and_belongs_to_many :photos, :through => :photos_people
   has_and_belongs_to_many :biographies, :through => :biographies_people
+
+  has_many :passports
+  
   belongs_to :profession
 
   has_one :localNasc, :foreign_key => :local_nasc
@@ -8,4 +11,10 @@ class Person < ActiveRecord::Base
 
   # género: masculino ou feminino
   as_enum :gender, :female => 1, :male => 0
+  # estado civil: solteiro, casado, divorciado, viúvo
+  as_enum :civil, single: 0, married: 1, divorced: 3, widowed: 4
+
+  
+
+
 end
