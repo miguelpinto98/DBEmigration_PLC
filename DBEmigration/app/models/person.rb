@@ -2,17 +2,11 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :photos, :through => :people_photos
   has_and_belongs_to_many :biographies, :through => :biographies_people
 
-  has_and_belongs_to_many :husbands, :through => :marriages\
-                                   , :class_name => :person\
-                                   , :join_table => :marriages\
-                                   , :foreign_key => :husband_id\
-                                   , :association_foreign_key => :wife_id
+  has_many :is_husband_in_marriages, :foreign_key => :husband_id, :class_name => 'Marriage'
+  has_many :is_wife_in_marriages, :foreign_key => :wife_id, :class_name => 'Marriage'
 
-  has_and_belongs_to_many :wives, through: :marriages\
-                                , class_name: :person\
-                                , join_table: :marriages\
-                                , foreign_key: :wife_id\
-                                , association_foreign_key: :husband_id
+  has_many :husbands, through: :is_wife_in_marriages
+  has_many :wives, through: :is_husband_in_marriages
 
   has_many :passports
   

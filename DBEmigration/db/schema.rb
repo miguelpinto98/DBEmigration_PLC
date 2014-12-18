@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218193925) do
+ActiveRecord::Schema.define(version: 20141218220615) do
 
   create_table "biographies", force: true do |t|
     t.text     "event"
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20141218193925) do
   end
 
   create_table "marriages", force: true do |t|
-    t.integer "wife_id"
-    t.integer "husband_id"
+    t.integer  "wife_id"
+    t.integer  "husband_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "marriages", ["wife_id", "husband_id"], name: "index_marriages_on_wife_id_and_husband_id", unique: true
