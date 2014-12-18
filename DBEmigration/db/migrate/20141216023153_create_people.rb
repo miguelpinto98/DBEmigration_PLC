@@ -6,7 +6,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :habil
 
       #nestes o _cd é necessário por serem enumerations
-      t.integer :gender_cd
+      t.integer :gender_cd, default: 0
       t.integer :civil_cd
 
       t.integer :local_nasc

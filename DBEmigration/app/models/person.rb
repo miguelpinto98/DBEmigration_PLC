@@ -17,6 +17,6 @@ class Person < ActiveRecord::Base
 
   # https://github.com/lwe/simple_enum
   # Person.marrieds dá todos os casados
-  as_enum :gender, :female => 1, :male => 0
+  as_enum :gender, female: 2, male: 1, undefined: 0
   as_enum :civil, single: 0, married: 1, divorced: 3, widowed: 4
 end

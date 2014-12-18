@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20141218220615) do
     t.string   "name"
     t.date     "nasc"
     t.string   "habil"
-    t.integer  "gender_cd"
+    t.integer  "gender_cd",     default: 0
     t.integer  "civil_cd"
     t.integer  "local_nasc"
     t.integer  "local_work"
