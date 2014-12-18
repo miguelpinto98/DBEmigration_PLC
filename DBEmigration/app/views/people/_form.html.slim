@@ -13,9 +13,18 @@
     = f.label :nasc
     = f.date_select :nasc
   .field
-    = f.label :civil
-    = f.text_field :civil
-  .field
     = f.label :habil
     = f.text_field :habil
+  .field
+    = f.label :gender_cd
+    = f.number_field :gender_cd
+  .field
+    = f.label :civil_cd
+    = f.number_field :civil_cd
+  .field
+    = f.label :local_nasc
+    = f.number_field :local_nasc
+  .field
+    = f.label :local_work
+    = f.number_field :local_work
   .actions = f.submit 'Save'
