@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217004614) do
+ActiveRecord::Schema.define(version: 20141218193925) do
 
   create_table "biographies", force: true do |t|
     t.text     "event"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20141217004614) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "marriages", force: true do |t|
+    t.integer "wife_id"
+    t.integer "husband_id"
+  end
+
+  add_index "marriages", ["wife_id", "husband_id"], name: "index_marriages_on_wife_id_and_husband_id", unique: true
 
   create_table "passports", force: true do |t|
     t.string   "number"
