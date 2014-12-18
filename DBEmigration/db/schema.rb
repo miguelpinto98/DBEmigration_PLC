@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141217004614) do
   add_index "biographies_people", ["biography_id", "person_id"], name: "index_biographies_people_on_biography_id_and_person_id", unique: true
 
   create_table "locals", force: true do |t|
-    t.string   "description"
+    t.string   "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
