@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218220615) do
+ActiveRecord::Schema.define(version: 20141223134044) do
 
   create_table "biographies", force: true do |t|
     t.text     "event"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20141218220615) do
   end
 
   add_index "biographies_people", ["biography_id", "person_id"], name: "index_biographies_people_on_biography_id_and_person_id", unique: true
+
+  create_table "children", force: true do |t|
+    t.integer  "marriage_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "children", ["marriage_id", "person_id"], name: "index_children_on_marriage_id_and_person_id", unique: true
 
   create_table "locals", force: true do |t|
     t.string   "desc"
@@ -62,7 +71,7 @@ ActiveRecord::Schema.define(version: 20141218220615) do
     t.date     "nasc"
     t.string   "habil"
     t.integer  "gender_cd",     default: 0
-    t.integer  "civil_cd"
+    t.integer  "civil_cd",      default: 0
     t.integer  "local_nasc"
     t.integer  "local_work"
     t.integer  "profession_id"

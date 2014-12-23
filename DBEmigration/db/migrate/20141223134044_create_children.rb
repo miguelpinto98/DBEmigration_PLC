@@ -7,6 +7,6 @@ class CreateChildren < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :marriages, [:marriage_id, :person_id], :unique => true
+    add_index :children, [:marriage_id, :person_id], :unique => true
   end
 end
