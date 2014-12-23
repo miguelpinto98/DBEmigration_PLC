@@ -5,7 +5,7 @@ class Marriage < ActiveRecord::Base
   # children_entries de um marriage são os filhos (com classe Child)
   has_many :children_entries, class_name: 'Child'
   # children de um marriage são os filhos (com classe Person)
-  has_many :children, through: :children_entries, source: :people
+  has_many :children, through: :children_entries, source: :person
 
   # TODO: validar que apenas homens aparecem como husband e apenas mulheres como wife
 end
