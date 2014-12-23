@@ -30,7 +30,6 @@ class Person < ActiveRecord::Base
 
   # obter todos os filhos de uma pessoa
   def children
-    # self.is_husband_in_marriages.children + self.is_wife_in_marriages.children
-    # obter todos os marriages da pessoa, retornar a concatenação de todos os children de todos os marriages
+    Marriage.includes(:children).map{|m| m.children}.inject(:+)
   end
 end
