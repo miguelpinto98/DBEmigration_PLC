@@ -15,6 +15,14 @@ class Person < ActiveRecord::Base
   has_one :localNasc, :foreign_key => :local_nasc
   has_one :localWork, :foreign_key => :local_work
 
+  # child_entry de uma pessoa é o casamento que a originou (com classe Child)
+  has_one :child_entry, class_name: 'Child', inverse_of: :person
+  # marriage de uma pessoa é o casamento que a originou (com classe Marriage)
+  has_one :marriage, through: :child_entry
+  # as duas relações acima servem para conseguir as duas abaixo
+  has_one :father, through: :marriage, source: :husband
+  has_one :mother, through: :marriage, source: :wife
+
   # https://github.com/lwe/simple_enum
   # Person.marrieds dá todos os casados
   as_enum :gender, female: 2, male: 1, undefined: 0
