@@ -27,4 +27,10 @@ class Person < ActiveRecord::Base
   # Person.marrieds dá todos os casados
   as_enum :gender, female: 2, male: 1, undefined: 0
   as_enum :civil, single: 0, married: 1, divorced: 3, widowed: 4
+
+  # obter todos os filhos de uma pessoa
+  def children
+    # self.is_husband_in_marriages.children + self.is_wife_in_marriages.children
+    # obter todos os marriages da pessoa, retornar a concatenação de todos os children de todos os marriages
+  end
 end
