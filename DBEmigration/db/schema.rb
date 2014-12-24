@@ -11,26 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216023833) do
+ActiveRecord::Schema.define(version: 20141223134044) do
 
   create_table "biographies", force: true do |t|
     t.text     "event"
+    t.text     "original"
     t.date     "date"
+    t.integer  "local_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "locals", force: true do |t|
-    t.string   "description"
+  create_table "biographies_people", id: false, force: true do |t|
+    t.integer "biography_id"
+    t.integer "person_id"
+  end
+
+  add_index "biographies_people", ["biography_id", "person_id"], name: "index_biographies_people_on_biography_id_and_person_id", unique: true
+
+  create_table "children", force: true do |t|
+    t.integer  "marriage_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "children", ["marriage_id", "person_id"], name: "index_children_on_marriage_id_and_person_id", unique: true
+
+  create_table "locals", force: true do |t|
+    t.string   "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "marriages", force: true do |t|
+    t.integer  "wife_id"
+    t.integer  "husband_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "marriages", ["wife_id", "husband_id"], name: "index_marriages_on_wife_id_and_husband_id", unique: true
 
   create_table "passports", force: true do |t|
     t.string   "number"
+    t.string   "process"
     t.integer  "year"
     t.string   "municipio"
     t.date     "submitted"
+    t.integer  "profession_id"
+    t.integer  "local_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,17 +69,29 @@ ActiveRecord::Schema.define(version: 20141216023833) do
   create_table "people", force: true do |t|
     t.string   "name"
     t.date     "nasc"
-    t.string   "civil"
     t.string   "habil"
+    t.integer  "gender_cd",     default: 0
+    t.integer  "civil_cd",      default: 0
+    t.integer  "local_nasc"
+    t.integer  "local_work"
+    t.integer  "profession_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "people_photos", id: false, force: true do |t|
+    t.integer "photo_id"
+    t.integer "person_id"
+  end
+
+  add_index "people_photos", ["photo_id", "person_id"], name: "index_people_photos_on_photo_id_and_person_id", unique: true
+
   create_table "photos", force: true do |t|
     t.string   "path"
     t.date     "date"
-    t.string   "fact"
-    t.string   "legend"
+    t.text     "fact"
+    t.string   "caption"
+    t.integer  "local_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

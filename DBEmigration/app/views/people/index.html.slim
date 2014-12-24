@@ -5,8 +5,11 @@ table
     tr
       th Name
       th Nasc
-      th Civil
       th Habil
+      th Gender cd
+      th Civil cd
+      th Local nasc
+      th Local work
       th
       th
       th
@@ -16,8 +19,11 @@ table
       tr
         td = person.name
         td = person.nasc
-        td = person.civil
         td = person.habil
+        td = person.gender_cd
+        td = person.civil_cd
+        td = person.local_nasc
+        td = person.local_work
         td = link_to 'Show', person
         td = link_to 'Edit', edit_person_path(person)
         td = link_to 'Destroy', person, data: {:confirm => 'Are you sure?'}, :method => :delete

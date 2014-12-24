@@ -3,8 +3,15 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string :name
       t.date :nasc
-      t.string :civil
       t.string :habil
+
+      #nestes o _cd é necessário por serem enumerations
+      t.integer :gender_cd, default: 0
+      t.integer :civil_cd, default: 0
+
+      t.integer :local_nasc
+      t.integer :local_work
+      t.belongs_to :profession
 
       t.timestamps
     end
