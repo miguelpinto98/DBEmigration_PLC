@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Number:
+  = @passport.number
+p
+  strong Year:
+  = @passport.year
+p
+  strong Municipio:
+  = @passport.municipio
+p
+  strong Submitted:
+  = @passport.submitted
+
+= link_to 'Edit', edit_passport_path(@passport)
+'|
+= link_to 'Back', passports_path

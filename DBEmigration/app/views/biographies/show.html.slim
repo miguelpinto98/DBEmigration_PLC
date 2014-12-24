@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Event:
+  = @biography.event
+p
+  strong Date:
+  = @biography.date
+
+= link_to 'Edit', edit_biography_path(@biography)
+'|
+= link_to 'Back', biographies_path

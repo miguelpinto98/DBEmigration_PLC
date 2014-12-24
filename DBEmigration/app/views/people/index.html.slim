@@ -1,0 +1,33 @@
+h1 Listing people
+
+table
+  thead
+    tr
+      th Name
+      th Nasc
+      th Habil
+      th Gender cd
+      th Civil cd
+      th Local nasc
+      th Local work
+      th
+      th
+      th
+
+  tbody
+    - @people.each do |person|
+      tr
+        td = person.name
+        td = person.nasc
+        td = person.habil
+        td = person.gender_cd
+        td = person.civil_cd
+        td = person.local_nasc
+        td = person.local_work
+        td = link_to 'Show', person
+        td = link_to 'Edit', edit_person_path(person)
+        td = link_to 'Destroy', person, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Person', new_person_path

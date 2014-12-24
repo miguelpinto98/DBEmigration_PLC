@@ -1,0 +1,21 @@
+h1 Listing professions
+
+table
+  thead
+    tr
+      th Desc
+      th
+      th
+      th
+
+  tbody
+    - @professions.each do |profession|
+      tr
+        td = profession.desc
+        td = link_to 'Show', profession
+        td = link_to 'Edit', edit_profession_path(profession)
+        td = link_to 'Destroy', profession, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Profession', new_profession_path

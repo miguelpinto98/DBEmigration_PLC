@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @person.name
+p
+  strong Nasc:
+  = @person.nasc
+p
+  strong Habil:
+  = @person.habil
+p
+  strong Gender cd:
+  = @person.gender_cd
+p
+  strong Civil cd:
+  = @person.civil_cd
+p
+  strong Local nasc:
+  = @person.local_nasc
+p
+  strong Local work:
+  = @person.local_work
+
+= link_to 'Edit', edit_person_path(@person)
+'|
+= link_to 'Back', people_path

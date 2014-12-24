@@ -1,0 +1,27 @@
+h1 Listing passports
+
+table
+  thead
+    tr
+      th Number
+      th Year
+      th Municipio
+      th Submitted
+      th
+      th
+      th
+
+  tbody
+    - @passports.each do |passport|
+      tr
+        td = passport.number
+        td = passport.year
+        td = passport.municipio
+        td = passport.submitted
+        td = link_to 'Show', passport
+        td = link_to 'Edit', edit_passport_path(passport)
+        td = link_to 'Destroy', passport, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Passport', new_passport_path
