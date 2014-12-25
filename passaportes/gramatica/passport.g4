@@ -47,7 +47,7 @@ JSON-like DSL to define passports:
 
 grammar passport;
 
-passports: LIST_START passport  LIST_END;
+passports: LIST_START (passport SEPARATOR)* passport LIST_END;
 
 passport: GROUP_START process SEPARATOR person SEPARATOR destination GROUP_END;
 
@@ -57,11 +57,11 @@ passport: GROUP_START process SEPARATOR person SEPARATOR destination GROUP_END;
 
 process: PROCESS DEFINED_BY GROUP_START year SEPARATOR processNumber SEPARATOR cityCouncil GROUP_END;
 
-year: YEAR DEFINED_BY NUMBERS;
+year: YEAR DEFINED_BY numbers;
 
-processNumber: PROCESS_NUMBER DEFINED_BY ALPHANUM_DEF;
+processNumber: PROCESS_NUMBER DEFINED_BY process_number_def;
 
-cityCouncil: CITY_COUNCIL DEFINED_BY NAME_DEF;
+cityCouncil: CITY_COUNCIL DEFINED_BY city_council_def;
 
 
 /*******************************************************************************
@@ -85,35 +85,35 @@ person: PERSON DEFINED_BY
         GROUP_END;
 
 
-name: NAME DEFINED_BY NAME_DEF ;
+name: NAME DEFINED_BY complete_name_def ;
 
-identCard: IDENT_CARD DEFINED_BY ALPHANUM_DEF ;
+identCard: IDENT_CARD DEFINED_BY ident_card_def ;
 
-residence: RESIDENCE DEFINED_BY TEXT_DEF ;
+residence: RESIDENCE DEFINED_BY local_def ;
 
-birthDate: BIRTH_DATE DEFINED_BY DATE_DEF ;
+birthDate: BIRTH_DATE DEFINED_BY date_def ;
 
-birthLocal: BIRTH_LOCAL DEFINED_BY TEXT_DEF ;
+birthLocal: BIRTH_LOCAL DEFINED_BY local_def ;
 
 parents: PARENTS DEFINED_BY GROUP_START (parentFather SEPARATOR)? parentMother? GROUP_END;
 
-parentFather: PARENT_FATHER DEFINED_BY NAME_DEF;
+parentFather: PARENT_FATHER DEFINED_BY complete_name_def;
 
-parentMother: PARENT_MOTHER DEFINED_BY NAME_DEF;
+parentMother: PARENT_MOTHER DEFINED_BY complete_name_def;
 
 civilState: CIVIL_STATE DEFINED_BY CIVIL_STATE_DEF ;
 
-spouse: SPOUSE DEFINED_BY NAME_DEF ;
+spouse: SPOUSE DEFINED_BY complete_name_def ;
 
 children: CHILDREN DEFINED_BY LIST_START (child SEPARATOR)* child LIST_END ;
 
-child: NAME_DEF;
+child: complete_name_def;
 
-profession: PROFESSION DEFINED_BY TEXT_DEF ;
+profession: PROFESSION DEFINED_BY profession_def ;
 
-professionLocal: PROFESSION_LOCAL DEFINED_BY TEXT_DEF ;
+professionLocal: PROFESSION_LOCAL DEFINED_BY local_def ;
 
-qualifications: QUALIFICATIONS DEFINED_BY TEXT_DEF ;
+qualifications: QUALIFICATIONS DEFINED_BY qualifications_def ;
 
 
 
@@ -129,9 +129,9 @@ destination: DESTINATION DEFINED_BY
                 professionLocal?
             GROUP_END;
 
-countryAndCity: COUNTRY_AND_CITY DEFINED_BY SYMBOLS_DEF;
+countryAndCity: COUNTRY_AND_CITY DEFINED_BY local_def;
 
-departure: DEPARTURE DEFINED_BY DATE_DEF;
+departure: DEPARTURE DEFINED_BY date_def;
 
 
 
@@ -141,35 +141,35 @@ departure: DEPARTURE DEFINED_BY DATE_DEF;
 ***************/
 
 // process
-PROCESS : SW 'processo' EW;
-YEAR : SW 'ano' EW;
-PROCESS_NUMBER : SW 'numero' EW;
-CITY_COUNCIL : SW 'camara' EW;
+PROCESS : ASP 'processo' ASP;
+YEAR : ASP 'ano' ASP;
+PROCESS_NUMBER : ASP 'numero' ASP;
+CITY_COUNCIL : ASP 'camara' ASP;
 
 // person
-PERSON : SW 'requerente' EW;
-NAME: SW 'nome' EW ;
-IDENT_CARD: SW ('bi'|'BI') EW ;
-RESIDENCE: SW 'residencia' EW ;
-BIRTH_DATE: SW 'data nasc' EW ;
-BIRTH_LOCAL: SW 'local nasc' EW ;
-PARENTS: SW 'pais' EW ;
-CIVIL_STATE: SW 'estado civil' EW ;
-SPOUSE: SW 'c' [ôo] 'njugue' EW ;
-CHILDREN: SW 'filh' [oa] 's' EW ;
-PROFESSION: SW 'profiss' [aã] 'o' EW ; /*também usado em destination*/
-PROFESSION_LOCAL: SW 'local trabalho' EW ; /*também usado em destination*/
-QUALIFICATIONS: SW 'habilita' [cç] [oõ] 'es' EW ;
+PERSON : ASP 'requerente' ASP;
+NAME: ASP 'nome' ASP ;
+IDENT_CARD: ASP ('bi'|'BI') ASP ;
+RESIDENCE: ASP 'residencia' ASP ;
+BIRTH_DATE: ASP 'data nasc' ASP ;
+BIRTH_LOCAL: ASP 'local nasc' ASP ;
+PARENTS: ASP 'pais' ASP ;
+CIVIL_STATE: ASP 'estado civil' ASP ;
+SPOUSE: ASP 'c' [ôo] 'njugue' ASP ;
+CHILDREN: ASP 'filh' [oa] 's' ASP ;
+PROFESSION: ASP 'profiss' [aã] 'o' ASP ; /*também usado em destination*/
+PROFESSION_LOCAL: ASP 'local trabalho' ASP ; /*também usado em destination*/
+QUALIFICATIONS: ASP 'habilita' [cç] [oõ] 'es' ASP ;
 
-PARENT_FATHER: SW 'pai' EW ;
-PARENT_MOTHER: SW 'm' [ãa] 'e' EW ;
-CHILD: SW 'filh'[oa] EW ;
+PARENT_FATHER: ASP 'pai' ASP ;
+PARENT_MOTHER: ASP 'm' [ãa] 'e' ASP ;
+CHILD: ASP 'filh'[oa] ASP ;
 
 
 // destination
-DESTINATION : SW 'destino' EW;
-COUNTRY_AND_CITY: SW 'pa'[ií]'s e cidade' EW;
-DEPARTURE: SW 'data partida' EW;
+DESTINATION : ASP 'destino' ASP;
+COUNTRY_AND_CITY: ASP 'pa'[ií]'s e cidade' ASP;
+DEPARTURE: ASP 'data partida' ASP;
 
 /*******************************************************************************
 ** SEPARATORS
@@ -179,36 +179,42 @@ GROUP_START: '{';
 GROUP_END  : '}';
 LIST_START : '[';
 LIST_END   : ']';
-SW         : '"'; /* start word */
-EW         : '"'; /* end word */
+ASP        : '"';
 SEPARATOR  : ',';
+HYPHEN     : '-';
+
+/*******************************************************************************
+** VALUES
+***************/
+ident_card_def : ASP (LETTERS | numbers)+ ASP;
+process_number_def: ASP (LETTERS | numbers)+ ASP;
+city_council_def  : ASP (SPECIALCHAR | LETTERS | SPACE)+ ASP;
+complete_name_def : ASP (SPECIALCHAR | LETTERS | SPACE)+ ASP;
+
+profession_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+
+qualifications_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+
+local_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+
+date_def: ASP NUM NUM NUM NUM HYPHEN NUM? NUM HYPHEN NUM? NUM ASP; /* dates in ISO 8601 format */
+
+numbers: NUM+;
+
+CIVIL_STATE_DEF: ASP ('solteiro'|'casado'|'divorciado'|'vi'[uú]'vo') ASP;
 
 /*******************************************************************************
 ** CLASSES
 ***************/
 SPECIALCHAR : [À-ÖØ-öø-ÿ]+;
-SYMBOLS : [\-\.,ºª]+;
-LETTERS : [a-zA-Z]+;
-NUMBERS : [0-9]+;
-
-/*******************************************************************************
-** VALUES
-***************/
-
-CIVIL_STATE_DEF: SW ('solteiro'|'casado'|'divorciado'|'vi'[uú]'vo') EW;
-
-DATE_DEF: SW [0-9][0-9][0-9][0-9] '-' [0-9]?[0-9] '-' [0-9]?[0-9] EW; /* dates in ISO 8601 format */
-    
-NAME_DEF : SW ( LETTERS |' ')+ EW;
-
-ALPHANUM_DEF: SW (LETTERS | NUMBERS)+ EW;
-
-TEXT_DEF : SW (NUMBERS|SPECIALCHAR|SYMBOLS|LETTERS|' ')+ EW;
-
+SYMBOLS: [\-\.\º\ª];
+LETTERS: [a-zA-Z]+;
+NUM    : [0-9];
 
 /*******************************************************************************
 ** EXTRAS & WS
 ***************/
-WS    : ( ' ' | '\t' | '\f' | ( '\r'? '\n' ) )+ -> skip;
+WS    : ( ' ' | '\t' | '\f' | ( '\r'? '\n' ) )+ -> channel(HIDDEN);
 SL_COMMENT : '//' .*? ( ( '\r' '\n'? ) | '\n' ) -> skip;
 ML_COMMENT : '/*' .*? '*/' -> skip;
+SPACE : ' ';

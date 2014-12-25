@@ -3,7 +3,7 @@
         "processo": {
             "ano" : 1234 ,
             "numero" : "zAB1a3",
-            "camara" : "asdf"
+            "camara" : "as df"
         },
         "requerente": {
             "nome" : "Alberto Miranda",
