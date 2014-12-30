@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="fotos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="foto">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="quem" type="xs:string"/>
+                            <xs:element minOccurs="0" name="onde" type="xs:string"/>
+                            <xs:element minOccurs="0" name="quando">
+                                <xs:complexType>
+                                    <xs:attribute name="data" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="facto" type="xs:string"/>
+                            <xs:element minOccurs="0" name="legenda" type="xs:string"/>
+                            <xs:element name="autor" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="tipo" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ficheiro" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="autor" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType mixed="false">
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string"> </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT fotos (autor*,foto*)>
+<!ELEMENT foto (quem, onde?, quando?, facto?, legenda?,autor?)>
+<!ATTLIST foto ficheiro CDATA #REQUIRED>
+<!ELEMENT quem (#PCDATA)>
+<!ELEMENT quando (#PCDATA)>
+<!ATTLIST quando data CDATA #IMPLIED>
+<!ELEMENT onde (#PCDATA)>
+<!ELEMENT facto (#PCDATA)>
+<!ELEMENT legenda (#PCDATA)>
+<!ELEMENT autor (#PCDATA)>
+
+<!ATTLIST autor tipo CDATA #IMPLIED>
