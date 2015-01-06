@@ -187,16 +187,16 @@ HYPHEN     : '-';
 /*******************************************************************************
 ** VALUES
 ***************/
-ident_card_def : ASP (LETTERS | numbers)+ ASP;
-process_number_def: ASP (LETTERS | numbers)+ ASP;
-city_council_def  : ASP (SPECIALCHAR | LETTERS | SPACE)+ ASP;
-complete_name_def : ASP (SPECIALCHAR | LETTERS | SPACE)+ ASP;
+ident_card_def : ASP (ESCAPECHARS | LETTERS | numbers)+ ASP;
+process_number_def: ASP (ESCAPECHARS | LETTERS | numbers)+ ASP;
+city_council_def  : ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SPACE)+ ASP;
+complete_name_def : ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SPACE)+ ASP;
 
-profession_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+profession_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
 
-qualifications_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+qualifications_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
 
-local_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+local_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
 
 /* dates in ISO 8601 format */
 date_def returns [int out_year, int out_month, int out_day]
@@ -215,7 +215,11 @@ CIVIL_STATE_DEF: ASP ('solteiro'|'casado'|'divorciado'|'vi'[uú]'vo') ASP;
 /*******************************************************************************
 ** CLASSES
 ***************/
-SPECIALCHAR : [À-ÖØ-öø-ÿ]+;
+ESCAPECHARS :   ('\\' (["\\/bfnrt] | UNICODE))+ ;
+fragment UNICODE : 'u' HEX HEX HEX HEX ;
+fragment HEX : [0-9a-fA-F] ;
+
+ACCENTCHAR : [À-ÖØ-öø-ÿ]+;
 SYMBOLS: [\-\.\º\ª];
 LETTERS: [a-zA-Z]+;
 NUM    : [0-9];
