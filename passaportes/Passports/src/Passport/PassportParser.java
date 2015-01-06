@@ -75,8 +75,8 @@ public class PassportParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class PassportsContext extends ParserRuleContext {
-		public Semantic inS;
-		public Semantic outS;
+		public PassportSemantic inS;
+		public PassportSemantic outS;
 		public PassportContext passport(int i) {
 			return getRuleContext(PassportContext.class,i);
 		}
@@ -90,7 +90,7 @@ public class PassportParser extends Parser {
 		public TerminalNode LIST_START() { return getToken(PassportParser.LIST_START, 0); }
 		public TerminalNode LIST_END() { return getToken(PassportParser.LIST_END, 0); }
 		public PassportsContext(ParserRuleContext parent, int invokingState) { super(parent, invokingState); }
-		public PassportsContext(ParserRuleContext parent, int invokingState, Semantic inS) {
+		public PassportsContext(ParserRuleContext parent, int invokingState, PassportSemantic inS) {
 			super(parent, invokingState);
 			this.inS = inS;
 		}
@@ -105,7 +105,7 @@ public class PassportParser extends Parser {
 		}
 	}
 
-	public final PassportsContext passports(Semantic inS) throws RecognitionException {
+	public final PassportsContext passports(PassportSemantic inS) throws RecognitionException {
 		PassportsContext _localctx = new PassportsContext(_ctx, getState(), inS);
 		enterRule(_localctx, 0, RULE_passports);
 		try {

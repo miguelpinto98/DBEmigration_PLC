@@ -47,7 +47,7 @@ JSON-like DSL to define passports:
 
 grammar Passport;
 
-passports [Semantic inS] returns [Semantic outS]
+passports [PassportSemantic inS] returns [PassportSemantic outS]
 : LIST_START (passport SEPARATOR)* passport LIST_END;
 
 passport: GROUP_START process SEPARATOR person SEPARATOR destination GROUP_END;
