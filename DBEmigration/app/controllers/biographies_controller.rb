@@ -24,15 +24,31 @@ class BiographiesController < ApplicationController
   # POST /biographies
   # POST /biographies.json
   def create
-    @biography = Biography.new(biography_params)
+    #xmlfile = params[:biography][:tempfile]
+    xmlfile = "bio_para.xml"
+    xsdfile = "public/schemas/bio.xsd"
+
+    xsd = Nokogiri::XML::Schema(File.read(xsdfile))
+    doc = Nokogiri::XML(File.open(xmlfile))
+
+    if xsd.valid?(doc)
+      arr = doc.xpath("//registo")
+
+
+      @bio = Biography.new
+      @bio.date = doc.xpath("//registo[1]/@data").text
+      @bio.event = (doc.xpath("//registo[1]/evento")).text
+      @bio.original = doc.xpath("//registo[1]/original").text
+
+      @bio.save
+
+    end
 
     respond_to do |format|
-      if @biography.save
-        format.html { redirect_to @biography, notice: 'Biography was successfully created.' }
-        format.json { render :show, status: :created, location: @biography }
+      if xsd.valid?(doc)
+        format.html { render :text => (doc.xpath("//registo[1]/evento")).text }
       else
-        format.html { render :new }
-        format.json { render json: @biography.errors, status: :unprocessable_entity }
+        format.html { render :text => "error" }
       end
     end
   end
@@ -69,6 +85,6 @@ class BiographiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def biography_params
-      params.require(:biography).permit(:event, :date)
+      params.require(:biography).permit(:event)
     end
 end
