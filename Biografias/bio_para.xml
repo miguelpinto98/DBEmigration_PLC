@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registos>
+  <registo data="1912-05-09">
+    <texto>
+      Vindo no vapor ≪Rugia≫, chegou há dias a esta vila o nosso presado amigo Sr. <nome>Antão Guimarães</nome> um excelente e bom rapaz nosso patrício, que no Pará faz a honra da classe a que pertence - e superiores do comércio.  É irmão dos nossos bons e distintos amigos Srs. <nome>Afonso Teixeira da Silva</nome> e <nome>Francisco Guimarães Lopes Pereira</nome>, considerados negociantes na importante praça paraense.
+    </texto>
+    <evento>Chegada à vila vindo de vapor</evento>
+  </registo>
+  <registo data="1915-09-23">
+    <texto>
+    Vindo do Pará deve chegar no próximo dia 26 a <local>Lisboa</local> o nosso amigo sr. <nome>Antão Guimarães</nome>, irmão de amigos srs. <nome>Afonso Teixeira da Silva</nome> e <nome>Francisco Guimarães Lopes Pereira</nome>. Vem de visita a sua adorada família e tratamento da sua saúde.
+    </texto>
+    <evento>Visita a sua adorada família e tratamento da sua saúde</evento>
+  </registo>
+  <registo data="1916-03-02">
+    <texto>
+    Tivemos o prazer de cumprimentar nesta vila o nosso bom amigo Sr. <nome>Antão Guimarães</nome>, um simpático nosso concidadão, há meses chegado do Pará.
+    </texto>
+  </registo>
+  <registo data="1916-10-12">
+    <texto>
+    Retirou-se para o Pará o nosso simpático amigo sr. <nome>Antão Guimarães</nome>, irmão dos nossos estimados <nome>Afonso Teixeira da Silva</nome> e <nome>Francisco Guimarães Lopes Pereira</nome>, que aqui esteve a tratar da sua saúde durante muitos meses.
+    </texto>
+    <evento>Partida para o Pará</evento>
+  </registo>
+  <registo data="1908-11-12">
+    <texto>
+    No dia 25 do mês passado passou o aniversário natalício deste nosso dedicado e bom amigo, que no <local>Pará</local>, com enorme actividade está à frente da importantíssima casa comercial denominada Bazar Liquidador, de <nome>Manuel Lopes Guimarães</nome>, de que ele é sócio, <nome>Antão Guimarães</nome>.
+    </texto>
+    <evento>Aniversário Natalício</evento>
+  </registo>
+  <registo data="1912-12-07">
+    <texto>
+    Retirou-se na Terça-Feira desta vila, depois de alguns meses de gozo no torrão patrício o nosso bom amigo e simpático rapaz, muito estimado no Pará, sr. <nome>Antão Guimarães</nome> e seu irmão <nome>Francisco Guimarães Lopes Pereira</nome>,cavalheiros importantes naquela cidade paraense.
+    </texto>
+    <evento>Partida para o Pará</evento>
+  </registo>
+</registos>
