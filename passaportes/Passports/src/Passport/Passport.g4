@@ -45,9 +45,10 @@ JSON-like DSL to define passports:
 
 */
 
-grammar passport;
+grammar Passport;
 
-passports: LIST_START (passport SEPARATOR)* passport LIST_END;
+passports [Semantic inS] returns [Semantic outS]
+: LIST_START (passport SEPARATOR)* passport LIST_END;
 
 passport: GROUP_START process SEPARATOR person SEPARATOR destination GROUP_END;
 
@@ -200,14 +201,14 @@ local_def: ASP (SPECIALCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ 
 /* dates in ISO 8601 format */
 date_def returns [int out_year, int out_month, int out_day]
         : ASP a=NUM b=NUM c=NUM d=NUM HYPHEN e=NUM? f=NUM HYPHEN g=NUM? h=NUM ASP{
-           $date_def.out_year  = Integer.parseInt($a.text+$b.text+$c.text+$d.text);
-           $date_def.out_month = Integer.parseInt($e.text+$f.text);
-           $date_def.out_day   = Integer.parseInt($g.text+$h.text);
+           $out_year  = Integer.parseInt($a.text+$b.text+$c.text+$d.text);
+           $out_month = Integer.parseInt($e.text+$f.text);
+           $out_day   = Integer.parseInt($g.text+$h.text);
         };
 
 numbers returns [int out_int]
-@init{ $numbers.out_int = 0; }    
-: (NUM { $numbers.out_int = $numbers.out_int*10 + Integer.parseInt($NUM.text); })+;
+@init{ $out_int = 0; }
+: (NUM { $out_int = $out_int*10 + Integer.parseInt($NUM.text); })+;
 
 CIVIL_STATE_DEF: ASP ('solteiro'|'casado'|'divorciado'|'vi'[uú]'vo') ASP;
 
