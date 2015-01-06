@@ -8,8 +8,6 @@
 
   .field
     = f.label :event
-    = f.text_area :event
-  .field
-    = f.label :date
-    = f.date_select :date
+    = f.file_field :event
+
   .actions = f.submit 'Save'
