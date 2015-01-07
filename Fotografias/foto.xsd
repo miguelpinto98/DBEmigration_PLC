@@ -11,7 +11,7 @@
                             <xs:element minOccurs="0" name="onde" type="xs:string"/>
                             <xs:element minOccurs="0" name="quando">
                                 <xs:complexType>
-                                    <xs:attribute name="data" type="xs:string"/>
+                                    <xs:attribute name="data" type="xs:date"/>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element minOccurs="0" name="facto" type="xs:string"/>
