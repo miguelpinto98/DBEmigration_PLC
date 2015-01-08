@@ -23,16 +23,27 @@ class PhotosController < ApplicationController
 
   # POST /photos
   # POST /photos.json
-  def create
-    @photo = Photo.new(photo_params)
+   def create
+    #xmlfile = params[:photo][:tempfile]
+    xmlfile = "data-set-1.xml"
+    xsdfile = "public/schemas/foto.xsd"
+
+    xsd = Nokogiri::XML::Schema(File.read(xsdfile))
+    doc = Nokogiri::XML(File.open(xmlfile))
+
+    if xsd.valid?(doc)
+
+      @photo = Photo.new
+      @photo.fact = (doc.xpath("//foto[1]/facto")).text
+      
+      @photo.save
+    end
 
     respond_to do |format|
-      if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+      if xsd.valid?(doc)
+        format.html { render :text => "Ok" }
       else
-        format.html { render :new }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.html { render :text => "Erro" }
       end
     end
   end
