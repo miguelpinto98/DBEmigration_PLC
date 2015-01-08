@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fotos>
+  <foto ficheiro="022-F-01.jpg">
+    <quem>Ana de Lourdes de Oliveira; António Oliveira Machado</quem>
+    <quando data="1961-01-15"/>
+    <facto>Os noivos cortam o bolo de casamento</facto>
+  </foto>
+  <foto ficheiro="022-F-02.jpg">
+    <quem>Ana de Lourdes de Oliveira; Antonio Oliveira Machado</quem>
+    <onde>Casa Machado, Afurada, Vila Nova de Gaia</onde>
+    <quando data="2000-09-12"/>
+    <facto>António Machado e a sua esposa, dona Ana atrás do balcão da taberna Casa Machado.</facto>
+  </foto>
+  <foto ficheiro="022-F-03.jpg">
+    <quem>António Machado; Miguel Oliveira Machado; Joana Oliveira Machado</quem>
+    <onde>Capela do Monte da Virgem, Oliveira do Douro, Vila Nova de Gaia</onde>
+    <facto>António e os seus filhos visitam o Santuário do Monte da Virgem.</facto>
+    <legenda>António e seus filhos</legenda>
+    <autor tipo="fotógrafo">Joaquim Dioniso</autor>
+  </foto>
+</fotos>
