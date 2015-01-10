@@ -21,34 +21,58 @@ class BiographiesController < ApplicationController
   def edit
   end
 
+
   # POST /biographies
   # POST /biographies.json
   def create
-    #xmlfile = params[:biography][:tempfile]
-    xmlfile = "bio_para.xml"
-    xsdfile = "public/schemas/bio.xsd"
+    if params[:biography].present?
+      xmlfile = params[:biography][:event].path
 
-    xsd = Nokogiri::XML::Schema(File.read(xsdfile))
-    doc = Nokogiri::XML(File.open(xmlfile))
+      # XSD File
+      xsdfile = 'public/schemas/bio.xsd'
+      xsd = Nokogiri::XML::Schema(File.read(xsdfile))
+      doc = Nokogiri::XML(File.open(xmlfile))
 
-    if xsd.valid?(doc)
-      arr = doc.xpath("//registo")
+      # SCH File
+      schfile = 'public/schemas/bio_1.sch'
+      sch_doc = XML::Document.file(schfile)
+      sch = Schematron::Schema.new(sch_doc)
+      sch_xml = XML::Document.file(xmlfile)
 
+      if xsd.valid? doc
+        if sch.validate(sch_xml).size == 0
+          n_registos = doc.xpath('count(//registo)').to_i
 
-      @bio = Biography.new
-      @bio.date = doc.xpath("//registo[1]/@data").text
-      @bio.event = (doc.xpath("//registo[1]/evento")).text
-      @bio.original = doc.xpath("//registo[1]/original").text
+          for i in 1..n_registos
+            bio = Biography.new
+            bio.date = doc.xpath("//registo[#{i}]/@data").text
+            bio.event = (doc.xpath("//registo[#{i}]/evento")).text
+            bio.original = doc.xpath("//registo[#{i}]/texto").text
 
-      @bio.save
+            #LOCAIS
+            local = doc.xpath("//registo[#{i}]/texto/local").text
+            if !local.empty?
+              bio.local = Local.create(desc: local)
+            end
 
+            #PESSOAS
+            n_nomes = doc.xpath("count(//registo[#{i}]/texto/nome)").to_i
+            for j in 1..n_nomes
+              name = doc.xpath("//registo[#{i}]/texto/nome[#{j}]").text
+              bio.people << Person.create(name: name)
+            end
+
+            @flag = bio.save
+          end
+        end
+      end
     end
 
     respond_to do |format|
-      if xsd.valid?(doc)
-        format.html { render :text => (doc.xpath("//registo[1]/evento")).text }
+      if @flag
+        format.html { redirect_to action: 'index', notice: 'OK' }
       else
-        format.html { render :text => "error" }
+        format.html { redirect_to action: 'new', notice: 'ERRORS' }
       end
     end
   end
