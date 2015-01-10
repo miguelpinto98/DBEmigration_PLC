@@ -21,18 +21,58 @@ class BiographiesController < ApplicationController
   def edit
   end
 
+
   # POST /biographies
   # POST /biographies.json
   def create
-    @biography = Biography.new(biography_params)
+    if params[:biography].present?
+      xmlfile = params[:biography][:event].path
+
+      # XSD File
+      xsdfile = 'public/schemas/bio.xsd'
+      xsd = Nokogiri::XML::Schema(File.read(xsdfile))
+      doc = Nokogiri::XML(File.open(xmlfile))
+
+      # SCH File
+      schfile = 'public/schemas/bio_1.sch'
+      sch_doc = XML::Document.file(schfile)
+      sch = Schematron::Schema.new(sch_doc)
+      sch_xml = XML::Document.file(xmlfile)
+
+      if xsd.valid? doc
+        if sch.validate(sch_xml).size == 0
+          n_registos = doc.xpath('count(//registo)').to_i
+
+          for i in 1..n_registos
+            bio = Biography.new
+            bio.date = doc.xpath("//registo[#{i}]/@data").text
+            bio.event = (doc.xpath("//registo[#{i}]/evento")).text
+            bio.original = doc.xpath("//registo[#{i}]/texto").text
+
+            #LOCAIS
+            local = doc.xpath("//registo[#{i}]/texto/local").text
+            if !local.empty?
+              bio.local = Local.create(desc: local)
+            end
+
+            #PESSOAS
+            n_nomes = doc.xpath("count(//registo[#{i}]/texto/nome)").to_i
+            for j in 1..n_nomes
+              name = doc.xpath("//registo[#{i}]/texto/nome[#{j}]").text
+              bio.people << Person.create(name: name)
+            end
+
+            @flag = bio.save
+          end
+        end
+      end
+    end
 
     respond_to do |format|
-      if @biography.save
-        format.html { redirect_to @biography, notice: 'Biography was successfully created.' }
-        format.json { render :show, status: :created, location: @biography }
+      if @flag
+        format.html { redirect_to action: 'index', notice: 'OK' }
       else
-        format.html { render :new }
-        format.json { render json: @biography.errors, status: :unprocessable_entity }
+        format.html { redirect_to action: 'new', notice: 'ERRORS' }
       end
     end
   end
@@ -69,6 +109,6 @@ class BiographiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def biography_params
-      params.require(:biography).permit(:event, :date)
+      params.require(:biography).permit(:event)
     end
 end
