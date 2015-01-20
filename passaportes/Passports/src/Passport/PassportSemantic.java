@@ -1,5 +1,7 @@
 package Passport;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -20,6 +22,27 @@ public class PassportSemantic {
     ///////     métodos auxiliares
     ///////
     //////////////////////////////////////////////////////////////////
+
+    public String getRuby(){
+        StringBuilder s = new StringBuilder();
+
+        String SPACE = " ";
+        String TAB1 = SPACE + SPACE;
+        String TAB2 = TAB1 + TAB1;
+        String TAB3 = TAB2 + TAB1;
+        String TAB4 = TAB2 + TAB2;
+
+        s.append("ActiveRecord::Base.transaction do");
+
+        for(PassportItem p : passports){
+            s.append(TAB1).append("mae = ????.where(nome: \"").append(p.mae).append("\")").append("\n");
+            s.append(TAB1).append("pai = ????.where(nome: \"").append(p.pai).append("\")").append("\n");
+        }
+
+        s.append("end");
+
+        return s.toString();
+    }
 
     private String getText(String text){
         if(text == null || text.isEmpty())
