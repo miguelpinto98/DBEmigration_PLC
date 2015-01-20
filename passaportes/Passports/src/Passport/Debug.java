@@ -1,13 +1,29 @@
 package Passport;
 
 public class Debug {
-    private static PassportParser.PassportContext ctx;
+    private static int line;
+    private static int pos;
+    private static boolean erro = false;
 
-    public static void set(PassportParser.PassportContext ctx){
-        Debug.ctx = ctx;
+    public static void set(int l, int p){
+        Debug.line = l;
+        Debug.pos = p;
     }
 
     public static String get(){
-        return "Perto da linha " + ctx.getStart().getLine() + ":" + ctx.getStart().getCharPositionInLine();
+        erro = true;
+        return "Perto da linha " + Debug.line + ":" + Debug.pos;
     }
+
+    public static void error(String prepend){
+        erro = true;
+        System.err.println(prepend + " (perto da linha " + Debug.line + ":" + Debug.pos + ")");
+    }
+
+    public static void error_final(String texto){
+        erro = true;
+        System.err.println("validação final: " + texto);
+    }
+
+    public static boolean hasError(){return erro;}
 }

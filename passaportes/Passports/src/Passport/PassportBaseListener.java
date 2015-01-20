@@ -329,6 +329,18 @@ public class PassportBaseListener implements PassportListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDest_profession(@NotNull PassportParser.Dest_professionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDest_profession(@NotNull PassportParser.Dest_professionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterParentFather(@NotNull PassportParser.ParentFatherContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -384,6 +396,18 @@ public class PassportBaseListener implements PassportListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProcess(@NotNull PassportParser.ProcessContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDest_professionLocal(@NotNull PassportParser.Dest_professionLocalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDest_professionLocal(@NotNull PassportParser.Dest_professionLocalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -269,6 +269,16 @@ public interface PassportListener extends ParseTreeListener {
 	 */
 	void exitProfession_def(@NotNull PassportParser.Profession_defContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PassportParser#dest_profession}.
+	 * @param ctx the parse tree
+	 */
+	void enterDest_profession(@NotNull PassportParser.Dest_professionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PassportParser#dest_profession}.
+	 * @param ctx the parse tree
+	 */
+	void exitDest_profession(@NotNull PassportParser.Dest_professionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PassportParser#parentFather}.
 	 * @param ctx the parse tree
 	 */
@@ -318,6 +328,16 @@ public interface PassportListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProcess(@NotNull PassportParser.ProcessContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PassportParser#dest_professionLocal}.
+	 * @param ctx the parse tree
+	 */
+	void enterDest_professionLocal(@NotNull PassportParser.Dest_professionLocalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PassportParser#dest_professionLocal}.
+	 * @param ctx the parse tree
+	 */
+	void exitDest_professionLocal(@NotNull PassportParser.Dest_professionLocalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PassportParser#residence}.
 	 * @param ctx the parse tree

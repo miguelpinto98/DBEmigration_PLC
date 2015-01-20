@@ -47,74 +47,200 @@ JSON-like DSL to define passports:
 
 grammar Passport;
 
-passports [PassportSemantic inS] returns [PassportSemantic outS]
-: LIST_START (passport SEPARATOR)* passport LIST_END;
+passports [PassportSemantic s] returns [PassportSemantic outS]
+        : LIST_START (passport[s] SEPARATOR)* passport[s] LIST_END {$outS = s;};
 
-passport: GROUP_START process SEPARATOR person SEPARATOR destination GROUP_END;
+passport [PassportSemantic s]
+@init{ s.passportStart(); }
+        :   GROUP_START
+                process[s] SEPARATOR
+                person[s] SEPARATOR
+                destination[s]
+            GROUP_END
+            {
+                s.passportEnd();
+                Debug.set($GROUP_START.line, $GROUP_START.pos);
+            }
+        ;
 
 /*******************************************************************************
 ** PROCESS
 ***************/
 
-process: PROCESS DEFINED_BY GROUP_START year SEPARATOR processNumber SEPARATOR cityCouncil GROUP_END;
+process [PassportSemantic s]
+        : PROCESS DEFINED_BY
+            GROUP_START
+                year[s] SEPARATOR
+                processNumber[s] SEPARATOR
+                cityCouncil[s]
+            GROUP_END
+        ;
 
-year: YEAR DEFINED_BY numbers;
+year [PassportSemantic s]
+        : YEAR DEFINED_BY numbers
+            {
+                s.year($numbers.out_int);
+                Debug.set($YEAR.line, $YEAR.pos);
+            }
+        ;
 
-processNumber: PROCESS_NUMBER DEFINED_BY process_number_def;
+processNumber [PassportSemantic s]
+        : PROCESS_NUMBER DEFINED_BY process_number_def
+            {
+                s.processNumber($process_number_def.text);
+                Debug.set($PROCESS_NUMBER.line, $PROCESS_NUMBER.pos);
+            }
+        ;
 
-cityCouncil: CITY_COUNCIL DEFINED_BY city_council_def;
+cityCouncil [PassportSemantic s]
+        : CITY_COUNCIL DEFINED_BY city_council_def
+            {
+                s.cityCouncil($city_council_def.text);
+                Debug.set($CITY_COUNCIL.line, $CITY_COUNCIL.pos);
+            }
+        ;
 
 
 /*******************************************************************************
 ** PERSON
 ***************/
 
-person: PERSON DEFINED_BY
-        GROUP_START
-            name SEPARATOR
-            identCard SEPARATOR
-            residence SEPARATOR
-            birthDate SEPARATOR
-            birthLocal SEPARATOR
-            parents SEPARATOR
-            civilState SEPARATOR
-            (spouse SEPARATOR)?
-            (children SEPARATOR)?
-            profession SEPARATOR
-            (professionLocal SEPARATOR)?
-            qualifications
-        GROUP_END;
+person [PassportSemantic s]
+        : PERSON DEFINED_BY
+            GROUP_START
+                name[s] SEPARATOR
+                identCard[s] SEPARATOR
+                residence[s] SEPARATOR
+                birthDate[s] SEPARATOR
+                birthLocal[s] SEPARATOR
+                parents[s] SEPARATOR
+                civilState[s] SEPARATOR
+                (spouse[s] SEPARATOR)?
+                (children[s] SEPARATOR)?
+                profession[s] SEPARATOR
+                (professionLocal[s] SEPARATOR)?
+                qualifications[s]
+            GROUP_END
+        ;
 
 
-name: NAME DEFINED_BY complete_name_def ;
+name [PassportSemantic s]
+        : NAME DEFINED_BY complete_name_def
+            {
+                s.name($complete_name_def.text);
+                Debug.set($NAME.line, $NAME.pos);
+            }
+        ;
 
-identCard: IDENT_CARD DEFINED_BY ident_card_def ;
+identCard [PassportSemantic s]
+        : IDENT_CARD DEFINED_BY ident_card_def
+            {
+                s.identCard($ident_card_def.text);
+                Debug.set($IDENT_CARD.line, $IDENT_CARD.pos);
+            }
+        ;
 
-residence: RESIDENCE DEFINED_BY local_def ;
+residence [PassportSemantic s]
+        : RESIDENCE DEFINED_BY local_def
+            {
+                s.residence($local_def.text);
+                Debug.set($RESIDENCE.line, $RESIDENCE.pos);
+            }
+        ;
 
-birthDate: BIRTH_DATE DEFINED_BY date_def ;
+birthDate [PassportSemantic s]
+        : BIRTH_DATE DEFINED_BY date_def
+            {
+                s.birthDate($date_def.out_year, $date_def.out_month, $date_def.out_day);
+                Debug.set($BIRTH_DATE.line, $BIRTH_DATE.pos);
+            }
+        ;
 
-birthLocal: BIRTH_LOCAL DEFINED_BY local_def ;
+birthLocal [PassportSemantic s]
+        : BIRTH_LOCAL DEFINED_BY local_def
+            {
+                s.birthLocal($local_def.text);
+                Debug.set($BIRTH_LOCAL.line, $BIRTH_LOCAL.pos);
+            }
+        ;
 
-parents: PARENTS DEFINED_BY GROUP_START (parentFather SEPARATOR)? parentMother? GROUP_END;
+parents [PassportSemantic s]
+        : PARENTS DEFINED_BY
+            GROUP_START
+                (parentFather[s] SEPARATOR)?
+                parentMother[s]?
+            GROUP_END
+        ;
 
-parentFather: PARENT_FATHER DEFINED_BY complete_name_def;
+parentFather [PassportSemantic s]
+        : PARENT_FATHER DEFINED_BY complete_name_def
+            {
+                s.parentFather($complete_name_def.text);
+                Debug.set($PARENT_FATHER.line, $PARENT_FATHER.pos);
+            }
+        ;
 
-parentMother: PARENT_MOTHER DEFINED_BY complete_name_def;
+parentMother [PassportSemantic s]
+        : PARENT_MOTHER DEFINED_BY complete_name_def
+            {
+                s.parentMother($complete_name_def.text);
+                Debug.set($PARENT_MOTHER.line, $PARENT_MOTHER.pos);
+            }
+        ;
 
-civilState: CIVIL_STATE DEFINED_BY CIVIL_STATE_DEF ;
+civilState [PassportSemantic s]
+        : CIVIL_STATE DEFINED_BY CIVIL_STATE_DEF
+            {
+                s.civilState($CIVIL_STATE_DEF.text);
+                Debug.set($CIVIL_STATE.line, $CIVIL_STATE.pos);
+            }
+        ;
 
-spouse: SPOUSE DEFINED_BY complete_name_def ;
+spouse [PassportSemantic s]
+        : SPOUSE DEFINED_BY complete_name_def
+            {
+                s.spouse($complete_name_def.text);
+                Debug.set($SPOUSE.line, $SPOUSE.pos);
+            }
+        ;
 
-children: CHILDREN DEFINED_BY LIST_START (child SEPARATOR)* child LIST_END ;
+children [PassportSemantic s]
+        : CHILDREN DEFINED_BY
+            {Debug.set($CHILDREN.line, $CHILDREN.pos);}
+            LIST_START
+                (child[s] SEPARATOR)*
+                child[s]
+            LIST_END
+        ;
 
-child: complete_name_def;
+child [PassportSemantic s]
+        : complete_name_def
+            {s.child($complete_name_def.text);}
+        ;
 
-profession: PROFESSION DEFINED_BY profession_def ;
+profession [PassportSemantic s]
+        : PROFESSION DEFINED_BY profession_def
+            {
+                s.profession($profession_def.text);
+                Debug.set($PROFESSION.line, $PROFESSION.pos);
+            }
+        ;
 
-professionLocal: PROFESSION_LOCAL DEFINED_BY local_def ;
+professionLocal [PassportSemantic s]
+        : PROFESSION_LOCAL DEFINED_BY local_def
+            {
+                s.professionLocal($local_def.text);
+                Debug.set($PROFESSION_LOCAL.line, $PROFESSION_LOCAL.pos);
+            }
+        ;
 
-qualifications: QUALIFICATIONS DEFINED_BY qualifications_def ;
+qualifications [PassportSemantic s]
+        : QUALIFICATIONS DEFINED_BY qualifications_def
+            {
+                s.qualifications($qualifications_def.text);
+                Debug.set($QUALIFICATIONS.line, $QUALIFICATIONS.pos);
+            }
+        ;
 
 
 
@@ -122,17 +248,47 @@ qualifications: QUALIFICATIONS DEFINED_BY qualifications_def ;
 ** DESTINATION
 ***************/
 
-destination: DESTINATION DEFINED_BY
+destination [PassportSemantic s]
+        : DESTINATION DEFINED_BY
             GROUP_START
-                countryAndCity SEPARATOR
-                departure SEPARATOR
-                profession SEPARATOR
-                professionLocal?
-            GROUP_END;
+                countryAndCity[s] SEPARATOR
+                departure[s] SEPARATOR
+                dest_profession[s] (SEPARATOR
+                dest_professionLocal[s])?
+            GROUP_END
+        ;
 
-countryAndCity: COUNTRY_AND_CITY DEFINED_BY local_def;
+countryAndCity [PassportSemantic s]
+        : COUNTRY_AND_CITY DEFINED_BY local_def
+            {
+                s.countryAndCity($local_def.text);
+                Debug.set($COUNTRY_AND_CITY.line, $COUNTRY_AND_CITY.pos);
+            }
+        ;
 
-departure: DEPARTURE DEFINED_BY date_def;
+departure [PassportSemantic s]
+        : DEPARTURE DEFINED_BY date_def
+            {
+                s.departure($date_def.out_year, $date_def.out_month, $date_def.out_day);
+                Debug.set($DEPARTURE.line, $DEPARTURE.pos);
+            }
+        ;
+
+dest_profession [PassportSemantic s]
+        : PROFESSION DEFINED_BY profession_def
+            {
+                s.dest_profession($profession_def.text);
+                Debug.set($PROFESSION.line, $PROFESSION.pos);
+            }
+        ;
+
+dest_professionLocal [PassportSemantic s]
+        : PROFESSION_LOCAL DEFINED_BY local_def
+            {
+                s.dest_professionLocal($local_def.text);
+                Debug.set($PROFESSION_LOCAL.line, $PROFESSION_LOCAL.pos);
+            }
+        ;
 
 
 

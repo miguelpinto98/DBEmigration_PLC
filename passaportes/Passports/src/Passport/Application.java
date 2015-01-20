@@ -43,6 +43,8 @@ public class Application {
         // validar e obter os dados
         semantic = parser.passports(new PassportSemantic()).outS;
 
+        for(String e : semantic.validarPassaportes())
+            Debug.error_final(e);
 
     }
 }
