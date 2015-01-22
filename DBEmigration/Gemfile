@@ -53,3 +53,6 @@ gem 'pry-rails', :group => :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'tzinfo-data', platforms: [:x64_mingw,:mingw, :mswin]
+
+#rubyzip is a ruby module for reading and writing zip files
+gem 'rubyzip'

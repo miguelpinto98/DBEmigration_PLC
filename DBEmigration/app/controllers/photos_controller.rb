@@ -24,27 +24,92 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
    def create
-    #xmlfile = params[:photo][:tempfile]
-    xmlfile = "data-set-1.xml"
-    xsdfile = "public/schemas/foto.xsd"
+    if params[:photo].present?
+      require 'set'
+      require 'zip'
 
-    xsd = Nokogiri::XML::Schema(File.read(xsdfile))
-    doc = Nokogiri::XML(File.open(xmlfile))
+      #Load files
+      xsdfile = "public/schemas/foto.xsd"
+      zipfile = params[:photo][:file].path
+      zipfilename = params[:photo][:file].original_filename
+      images = Hash.new
 
-    if xsd.valid?(doc)
-
-      @photo = Photo.new
-      @photo.fact = (doc.xpath("//foto[1]/facto")).text
-      
-      @photo.save
-    end
-
-    respond_to do |format|
-      if xsd.valid?(doc)
-        format.html { render :text => "Ok" }
-      else
-        format.html { render :text => "Erro" }
+      if(File.extname(zipfilename) == ".zip")
+      zip = Zip::File.open(zipfile)
+        zip.each do |entry|
+          if(File.extname(entry.name) == ".xml")
+            @xmlfile = zip.read(entry.name)
+          else
+            f_path = File.join('public/extract', entry.name)
+            FileUtils.mkdir_p(File.dirname(f_path))
+            zip.extract(entry, f_path) unless File.exist?(f_path)
+            images[entry.name] = f_path
+          end
+        end
       end
+      zip.close
+
+      xsd = Nokogiri::XML::Schema(File.read(xsdfile))
+      doc = Nokogiri::XML(@xmlfile)
+      if xsd.valid?(doc)
+        #Create photo
+        nfotos = doc.xpath("count(//foto)").to_i
+
+        for i in 1..nfotos
+          photo = Photo.new
+          #path
+          ficheiro = doc.xpath("//foto[#{i}]/@ficheiro").text
+          f = File.open(images[ficheiro])
+          photo.path = f
+          f.close
+          #date
+          quando = doc.xpath("//foto[#{i}]/quando/@data").text
+          if !quando.empty?
+            photo.date = quando
+          end
+          #fact
+          facto = (doc.xpath("//foto[#{i}]/facto")).text
+          if !facto.empty?
+            photo.fact = facto
+          end
+          #caption
+          legenda = (doc.xpath("//foto[#{i}]/legenda")).text
+          if !legenda.empty?
+            photo.caption = legenda
+          end
+          #local
+          onde = (doc.xpath("//foto[#{i}]/onde")).text
+          if !onde.empty?
+            if Local.exists?(:desc => onde)
+              photo.local = Local.where(:desc => onde).first
+            else
+              photo.local = Local.create(desc: onde)
+            end
+          end
+          #people
+          quem = (doc.xpath("//foto[#{i}]/quem")).text
+          nomes = quem.split(';')
+          nomes.each do |n|
+            if Person.exists?(:name => n)
+              photo.people = Person.where(:name => n)
+            else
+              photo.people << Person.create(name: n)
+            end
+          end
+
+          photo.save
+        end
+      end
+      FileUtils.rm_rf("public/extract")
+      respond_to do |format|
+        if xsd.valid?(doc)
+          format.html { render :text => "Ok" }
+        else
+          format.html { render :text => "Error" }
+        end
+      end
+    else
+      redirect_to new_photo_path
     end
   end
 

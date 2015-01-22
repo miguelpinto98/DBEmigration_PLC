@@ -6,6 +6,6 @@
         - @photo.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :path
-  .actions = f.submit 'Save'
+  .field = f.file_field :file
+
+  .actions = f.submit 'Inserir'
