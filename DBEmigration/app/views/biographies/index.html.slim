@@ -1,23 +1,28 @@
-h1 Listing biographies
+p#notice = notice
 
-table
-  thead
-    tr
-      th Event
-      th Date
-      th
-      th
-      th
+.panel.panel-default
+  .panel-heading
+    .h3 Listing Biographies
+  .panel-body
 
-  tbody
-    - @biographies.each do |biography|
-      tr
-        td = biography.event
-        td = biography.date
-        td = link_to 'Show', biography
-        td = link_to 'Edit', edit_biography_path(biography)
-        td = link_to 'Destroy', biography, data: {:confirm => 'Are you sure?'}, :method => :delete
+    table
+      thead
+        tr
+          th Original
+          th Event
+          th Date
+          th
 
-br
+      tbody
+        - @biographies.each do |biography|
+          tr
+            td = biography.original
+            td = biography.event
+            td = biography.date
+            td = link_to 'Show', biography
+            td = link_to 'Destroy', biography, data: {:confirm => 'Are you sure?'}, :method => :delete
 
-= link_to 'New Biography', new_biography_path
+
+    br
+
+    = link_to 'New Biography', new_biography_path

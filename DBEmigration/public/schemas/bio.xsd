@@ -9,7 +9,16 @@
                             <xs:element name="texto">
                                 <xs:complexType mixed="true">
                                     <xs:choice maxOccurs="unbounded">
-                                        <xs:element name="nome" type="xs:string"/>
+                                        <xs:element name="nome">
+                                            <xs:complexType mixed="true">
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute form="unqualified" name="ref"
+                                                  type="xs:string" use="optional"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
                                         <xs:element maxOccurs="1" minOccurs="0" name="local"
                                             type="xs:string"/>
                                     </xs:choice>

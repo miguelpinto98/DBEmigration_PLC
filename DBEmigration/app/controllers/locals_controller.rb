@@ -1,6 +1,10 @@
 class LocalsController < ApplicationController
   before_action :set_local, only: [:show, :edit, :update, :destroy]
 
+  def arroz
+     puts "asdasdda"
+  end
+
   # GET /locals
   # GET /locals.json
   def index
@@ -69,6 +73,6 @@ class LocalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def local_params
-      params.require(:local).permit(:description)
+      params.require(:local).permit(:desc)
     end
 end
