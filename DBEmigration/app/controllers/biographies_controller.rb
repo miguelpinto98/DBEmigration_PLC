@@ -41,25 +41,40 @@ class BiographiesController < ApplicationController
 
       if xsd.valid? doc
         if sch.validate(sch_xml).size == 0
-          n_registos = doc.xpath('count(//registo)').to_i
-
-          for i in 1..n_registos
+          #Ciclo Por Registo
+          doc.xpath('//registo').each do |r|
             bio = Biography.new
-            bio.date = doc.xpath("//registo[#{i}]/@data").text
-            bio.event = (doc.xpath("//registo[#{i}]/evento")).text
-            bio.original = doc.xpath("//registo[#{i}]/texto").text
+            bio.date = r.xpath("@data").text
+            bio.event = r.xpath("evento").text
+            bio.original = r.xpath("texto").text
 
             #LOCAIS
-            local = doc.xpath("//registo[#{i}]/texto/local").text
+            local = doc.xpath("texto/local").text
             if !local.empty?
-              bio.local = Local.create(desc: local)
+
+              l = Local.where(desc: local).first
+              if l.blank?
+                bio.local = Local.create(desc: local)
+              else
+                bio.local = l
+              end
             end
 
             #PESSOAS
-            n_nomes = doc.xpath("count(//registo[#{i}]/texto/nome)").to_i
-            for j in 1..n_nomes
-              name = doc.xpath("//registo[#{i}]/texto/nome[#{j}]").text
-              bio.people << Person.create(name: name)
+            r.xpath("texto/nome").each do |rn|
+              ref = rn.xpath('@ref').text
+              name = rn.text
+
+              if !ref.blank?
+                name = ref
+              end
+
+              p = Person.where(name: name).first
+              if p.blank?
+                bio.people << Person.create(name: name)
+              else
+                bio.people << p
+              end
             end
 
             @flag = bio.save
@@ -70,9 +85,11 @@ class BiographiesController < ApplicationController
 
     respond_to do |format|
       if @flag
-        format.html { redirect_to action: 'index', notice: 'OK' }
+        flash[:notice] = "Biografias Inseridas com Sucesso"
+        format.html { redirect_to action: 'index' }
       else
-        format.html { redirect_to action: 'new', notice: 'ERRORS' }
+        flash[:notice] = "ERROR"
+        format.html { redirect_to action: 'new' }
       end
     end
   end

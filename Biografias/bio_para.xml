@@ -19,13 +19,13 @@
   </registo>
   <registo data="1916-10-12">
     <texto>
-    Retirou-se para o Pará o nosso simpático amigo sr. <nome>Antão Guimarães</nome>, irmão dos nossos estimados <nome>Afonso Teixeira da Silva</nome> e <nome>Francisco Guimarães Lopes Pereira</nome>, que aqui esteve a tratar da sua saúde durante muitos meses.
+    Retirou-se para o Pará o nosso simpático amigo sr. <nome>Antão Guimarães</nome>, irmão dos nossos estimados <nome ref="Afonso Teixeira da Silva">Afonso</nome> e <nome ref="Francisco Guimarães Lopes Pereira">Francisco Guimarães Lopes</nome>, que aqui esteve a tratar da sua saúde durante muitos meses.
     </texto>
     <evento>Partida para o Pará</evento>
   </registo>
   <registo data="1908-11-12">
     <texto>
-    No dia 25 do mês passado passou o aniversário natalício deste nosso dedicado e bom amigo, que no <local>Pará</local>, com enorme actividade está à frente da importantíssima casa comercial denominada Bazar Liquidador, de <nome>Manuel Lopes Guimarães</nome>, de que ele é sócio, <nome>Antão Guimarães</nome>.
+    No dia 25 do mês passado passou o aniversário natalício deste nosso dedicado e bom amigo, que no <local>Pará</local>, com enorme actividade está à frente da importantíssima casa comercial denominada Bazar Liquidador, de <nome ref="Manuel Lopes Guimarães">M. Lopes Guimarães</nome>, de que ele é sócio, <nome>Antão Guimarães</nome>.
     </texto>
     <evento>Aniversário Natalício</evento>
   </registo>
