@@ -46,11 +46,18 @@ class PhotosController < ApplicationController
             images[entry.name] = f_path
           end
         end
+        zip.close
       end
-      zip.close
-
+    
       xsd = Nokogiri::XML::Schema(File.read(xsdfile))
       doc = Nokogiri::XML(@xmlfile)
+
+      #Erros
+      erros = []
+      xsd.validate(doc).each do |error|
+        erros.push(error.message)
+      end
+
       if xsd.valid?(doc)
         #Create photo
         nfotos = doc.xpath("count(//foto)").to_i
@@ -103,9 +110,9 @@ class PhotosController < ApplicationController
       FileUtils.rm_rf("public/extract")
       respond_to do |format|
         if xsd.valid?(doc)
-          format.html { render :text => "Ok" }
+          format.html { render :text => "Ok"}
         else
-          format.html { render :text => "Error" }
+          format.html { render :text => erros }
         end
       end
     else
