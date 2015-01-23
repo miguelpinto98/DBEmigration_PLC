@@ -35,18 +35,22 @@ class PhotosController < ApplicationController
       images = Hash.new
 
       if(File.extname(zipfilename) == ".zip")
-      zip = Zip::File.open(zipfile)
-        zip.each do |entry|
-          if(File.extname(entry.name) == ".xml")
-            @xmlfile = zip.read(entry.name)
-          else
-            f_path = File.join('public/extract', entry.name)
-            FileUtils.mkdir_p(File.dirname(f_path))
-            zip.extract(entry, f_path) unless File.exist?(f_path)
-            images[entry.name] = f_path
+        #Gera string random
+        o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+        @random_string = (0...50).map { o[rand(o.length)] }.join
+
+        Zip::File.open(zipfile) do |zip|
+          zip.each do |entry|
+            if(File.extname(entry.name) == ".xml")
+              @xmlfile = zip.read(entry.name)
+            else
+              f_path = File.join('public/'+ @random_string, entry.name)
+              FileUtils.mkdir_p(File.dirname(f_path))
+              zip.extract(entry, f_path) unless File.exist?(f_path)
+              images[entry.name] = f_path
+            end
           end
         end
-        zip.close
       end
     
       xsd = Nokogiri::XML::Schema(File.read(xsdfile))
@@ -69,21 +73,19 @@ class PhotosController < ApplicationController
           f = File.open(images[ficheiro])
           photo.path = f
           f.close
+          
           #date
           quando = doc.xpath("//foto[#{i}]/quando/@data").text
-          if !quando.empty?
-            photo.date = quando
-          end
+          photo.date = quando unless quando.empty?
+          
           #fact
           facto = (doc.xpath("//foto[#{i}]/facto")).text
-          if !facto.empty?
-            photo.fact = facto
-          end
+          photo.fact = facto unless facto.empty?
+          
           #caption
           legenda = (doc.xpath("//foto[#{i}]/legenda")).text
-          if !legenda.empty?
-            photo.caption = legenda
-          end
+          photo.caption = legenda unless legenda.empty?
+          
           #local
           onde = (doc.xpath("//foto[#{i}]/onde")).text
           if !onde.empty?
@@ -93,9 +95,10 @@ class PhotosController < ApplicationController
               photo.local = Local.create(desc: onde)
             end
           end
+
           #people
           quem = (doc.xpath("//foto[#{i}]/quem")).text
-          nomes = quem.split(';')
+          nomes = quem.split(';').map(&:strip)
           nomes.each do |n|
             if Person.exists?(:name => n)
               photo.people = Person.where(:name => n)
@@ -107,7 +110,8 @@ class PhotosController < ApplicationController
           photo.save
         end
       end
-      FileUtils.rm_rf("public/extract")
+      FileUtils.rm_rf('public/'+ @random_string)
+      
       respond_to do |format|
         if xsd.valid?(doc)
           format.html { render :text => "Ok"}
