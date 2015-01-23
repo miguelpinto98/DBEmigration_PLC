@@ -1,4 +1,4 @@
-= form_for @biography do |f|
+= form_for(@biography,:html => { :multipart => true }) do |f|
   - if @biography.errors.any?
     #error_explanation
       h2 = "#{pluralize(@biography.errors.count, "error")} prohibited this biography from being saved:"
@@ -8,8 +8,6 @@
 
   .field
     = f.label :event
-    = f.text_area :event
-  .field
-    = f.label :date
-    = f.date_select :date
+    = f.file_field :event
+
   .actions = f.submit 'Save'

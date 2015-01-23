@@ -1,27 +1,39 @@
-h1 Listing photos
+#content-header.mini
+  h1 Fotos
 
-table
-  thead
-    tr
-      th Path
-      th Date
-      th Fact
-      th Legend
-      th
-      th
-      th
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  a.current
+    | Dashboard
 
-  tbody
-    - @photos.each do |photo|
+.container-fluid
+
+  h1 Listing photos
+
+  table
+    thead
       tr
-        td = photo.path
-        td = photo.date
-        td = photo.fact
-        td = photo.legend
-        td = link_to 'Show', photo
-        td = link_to 'Edit', edit_photo_path(photo)
-        td = link_to 'Destroy', photo, data: {:confirm => 'Are you sure?'}, :method => :delete
+        th Path
+        th Date
+        th Fact
+        th Legend
+        th
+        th
+        th
 
-br
+    tbody
+      - @photos.each do |photo|
+        tr
+          td = photo.path
+          td = photo.date
+          td = photo.fact
+          td = photo.legend
+          td = link_to 'Show', photo
+          td = link_to 'Edit', edit_photo_path(photo)
+          td = link_to 'Destroy', photo, data: {:confirm => 'Are you sure?'}, :method => :delete
 
-= link_to 'New Photo', new_photo_path
+  br
+
+  = link_to 'New Photo', new_photo_path
