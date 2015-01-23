@@ -2,31 +2,50 @@ doctype html
 html
   head
     title
-      | DBEmigration
+      | BD Emigração
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-    link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" /
+  body.flat data-color="turquoise"
+    #wrapper
+      #header
+        h1
+          a href="#"  Unicorn Admin
 
-  body
+      #user-nav
 
-    nav.navbar.navbar-default
-      .collapse.navbar-collapse
-        ul.nav.navbar-nav
+      #sidebar
+        #search
+          input placeholder=("Procurar aqui Pessoas...") type="text" /
+          button.tip-right title="Search" type="submit"
+            i.fa.fa-search
+
+        ul
+          li.active
+            = link_to home_path
+              i.fa.fa-home
+              span Dashboard
           li
             = link_to foto_path
-              | Fotos
+              i.fa.fa-camera-retro
+              span Fotos
           li
             = link_to bio_path
-              | Biografias
+              i.fa.fa-book
+              span Biografias
           li
             = link_to passaporte_path
-              | Passaportes
+              i.fa.fa-plane
+              span Passaportes
 
-    #content.bs-docs-header
+      #content
 
-
-      .container
-        .row
         == yield
+
+
+      .row
+        #footer.col-xs-12
+          | 2014 - 2015 &copy;
+          br/
+          | Desenvolvimento para o Perfil de Processamento de Linguagens e Conhecimento
