@@ -62,7 +62,7 @@
 
       .modal-footer
         button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
-        = link_to 'Destroy', @biographies.first, method: :delete, id: 'deleteid', class: 'btn btn-danger btn-sm', data: { confirm: 'Tem a certeza?' }
+        = link_to 'Remover', @biographies.first, method: :delete, id: 'deleteid', class: 'btn btn-danger btn-sm', data: { confirm: 'Tem a certeza?' }
         button.btn.btn-primary.btn-sm data-dismiss="modal" type="button"  Fechar
 
 
