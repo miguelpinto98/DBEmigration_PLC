@@ -10,6 +10,7 @@ class BiographiesController < ApplicationController
   # GET /biographies/1
   # GET /biographies/1.json
   def show
+
   end
 
   # GET /biographies/new
@@ -46,10 +47,10 @@ class BiographiesController < ApplicationController
             bio = Biography.new
             bio.date = r.xpath("@data").text
             bio.event = r.xpath("evento").text
-            bio.original = r.xpath("texto").text
+            bio.original = r.xpath("texto").text.squish
 
             #LOCAIS
-            local = doc.xpath("texto/local").text
+            local = r.xpath("texto/local").text
             if !local.empty?
 
               l = Local.where(desc: local).first
@@ -88,7 +89,7 @@ class BiographiesController < ApplicationController
         flash[:notice] = "Biografias Inseridas com Sucesso"
         format.html { redirect_to action: 'index' }
       else
-        flash[:notice] = "ERROR"
+        flash[:notice] = " Ficheiro introduzido inválido ou XML inválido!"
         format.html { redirect_to action: 'new' }
       end
     end

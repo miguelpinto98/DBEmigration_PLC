@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get "/biographies", to: "biographies#index", as: :bio
   get "/passports", to: "passports#index", as: :passaporte
 
+#  get '/tff' => "biographies#tff"
+
   resources :biographies
   resources :passports
   resources :professions

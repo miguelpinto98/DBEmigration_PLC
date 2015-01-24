@@ -1,8 +1,41 @@
-- if flash[:notice]
-   .notice #{flash[:notice]}
+#content-header.mini
+  h1 Biografias
 
-h1 New biography
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  = link_to bio_path, title: 'Voltar à Página dos Registros Biográficos', class: 'tip-bottom'
+    i.fa.fa-home
+    | Biografias
+  a.current
+    | Adicionar
 
-== render 'form'
+.container-fluid
 
-= link_to 'Back', biographies_path
+
+  - if flash[:notice]
+    .row
+      .col-xs-12
+        .alert.alert-danger
+          button.close data-dismiss="alert"  ×
+          strong.notice Erro! #{flash[:notice]}
+
+  .row
+    .col-xs-12
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-align-justify
+          h5 Carregar Ficheiro XML
+
+        .widget-content.nopadding
+
+          == render 'form'
+
+  br
+
+  .row
+    .col-xs-12
+      = link_to 'Retroceder', biographies_path, class: 'btn btn-default btn-xs'
+
