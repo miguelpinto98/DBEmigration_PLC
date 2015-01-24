@@ -45,7 +45,7 @@
           ul.recent-posts
             - @bios.each do |b|
               li
-                = link_to p
+                = link_to '#', onclick: "getRegisto(#{b.id});"
                   span.user-info Criado: #{b.created_at.strftime("%Y-%m-%d %H:%M")}
                   p = b.original.truncate(80)
 
@@ -66,5 +66,27 @@
                   span.user-info Criado: #{p.created_at.strftime("%Y-%m-%d %H:%M")}
                   p Requisição de passaporte pedido em #{p.year} por #{p.person.name}
 
+.modal.fade#myModal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title Registo Biográfico
+      .modal-body
+        dl.dl-horizontal
+          dt Data
+          dd#date dg
+          dt Evento
+          dd#evento asdasdasd
+          dt Original
+          dd#original dg
+          dt Local
+          dd#local dg
+          dt Pessoas
+          dd
+            ul.list-unstyled#pessoas
 
+      .modal-footer
+        button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
+        = link_to 'Remover', @bios.first, method: :delete, id: 'deleteid', class: 'btn btn-danger btn-sm', data: { confirm: 'Tem a certeza?' }
+        button.btn.btn-primary.btn-sm data-dismiss="modal" type="button"  Fechar
 

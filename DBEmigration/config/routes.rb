@@ -2,19 +2,15 @@ Rails.application.routes.draw do
 
   get "/photos", to: "photos#index", as: :foto
   get "/biographies", to: "biographies#index", as: :bio
-  get "/passports", to: "passports#index", as: :passaporte
-
-#  get '/tff' => "biographies#tff"
+  get "/passports", to: "passports#index", as: :pass
 
   resources :biographies
   resources :passports
-  resources :professions
   resources :people
   resources :locals
   resources :photos
 
-
-get "/", to: "welcome#index", as: :home
+  get "/", to: "welcome#index", as: :home
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
