@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223134044) do
+ActiveRecord::Schema.define(version: 20150124230325) do
 
   create_table "biographies", force: true do |t|
     t.text     "event"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20141223134044) do
 
   create_table "passports", force: true do |t|
     t.string   "number"
-    t.string   "process"
     t.integer  "year"
     t.string   "municipio"
     t.date     "submitted"
@@ -77,6 +76,7 @@ ActiveRecord::Schema.define(version: 20141223134044) do
     t.integer  "profession_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bi"
   end
 
   create_table "people_photos", id: false, force: true do |t|
