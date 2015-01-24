@@ -10,6 +10,7 @@ class BiographiesController < ApplicationController
   # GET /biographies/1
   # GET /biographies/1.json
   def show
+
   end
 
   # GET /biographies/new
@@ -46,10 +47,10 @@ class BiographiesController < ApplicationController
             bio = Biography.new
             bio.date = r.xpath("@data").text
             bio.event = r.xpath("evento").text
-            bio.original = r.xpath("texto").text
+            bio.original = r.xpath("texto").text.squish
 
             #LOCAIS
-            local = doc.xpath("texto/local").text
+            local = r.xpath("texto/local").text
             if !local.empty?
 
               l = Local.where(desc: local).first
@@ -85,10 +86,10 @@ class BiographiesController < ApplicationController
 
     respond_to do |format|
       if @flag
-        flash[:notice] = "Biografias Inseridas com Sucesso"
+        flash[:notice] = "Biografias inseridas com sucesso!"
         format.html { redirect_to action: 'index' }
       else
-        flash[:notice] = "ERROR"
+        flash[:notice] = " Ficheiro introduzido inválido!"
         format.html { redirect_to action: 'new' }
       end
     end
@@ -113,7 +114,7 @@ class BiographiesController < ApplicationController
   def destroy
     @biography.destroy
     respond_to do |format|
-      format.html { redirect_to biographies_url, notice: 'Biography was successfully destroyed.' }
+      format.html { redirect_to biographies_url, notice: 'Biografia removida com sucesso!' }
       format.json { head :no_content }
     end
   end

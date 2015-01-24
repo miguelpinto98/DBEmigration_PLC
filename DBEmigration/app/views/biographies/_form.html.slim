@@ -1,13 +1,13 @@
-= form_for(@biography,:html => { :multipart => true }) do |f|
-  - if @biography.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@biography.errors.count, "error")} prohibited this biography from being saved:"
-      ul
-        - @biography.errors.full_messages.each do |message|
-          li = message
+.widget-content.nopadding
+  = form_for(@biography, :html => { :multipart => true, class: 'form-horizontal' }) do |f|
+    .form-group
+      = f.label 'Selecione o ficheiro', class: 'col-sm-3 col-md-3 col-lg-2 control-label'
+      .col-sm-9.col-md-9.col-lg-10
+        = f.file_field :event, :onchange =>"validateFiles(this);"
 
-  .field
-    = f.label :event
-    = f.file_field :event
+    .form-actions
+      button.btn.btn-default type="reset"  Limpar
+      = f.submit 'Submeter', class: 'btn btn-primary'
 
-  .actions = f.submit 'Save'
+
+
