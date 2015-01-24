@@ -1,27 +1,57 @@
-h1 Listing photos
+#content-header.mini
+  h1 Fotografias
 
-table
-  thead
-    tr
-      th Path
-      th Date
-      th Fact
-      th Legend
-      th
-      th
-      th
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  a.current
+    i.fa.fa-camera-retro
+    | Fotos
 
-  tbody
-    - @photos.each do |photo|
-      tr
-        td = photo.path
-        td = photo.date
-        td = photo.fact
-        td = photo.legend
-        td = link_to 'Show', photo
-        td = link_to 'Edit', edit_photo_path(photo)
-        td = link_to 'Destroy', photo, data: {:confirm => 'Are you sure?'}, :method => :delete
+.container-fluid
 
-br
+  - unless notice.blank?
+    .row
+      .col-xs-12
+        .alert.alert-success
+          button.close data-dismiss="alert"  ×
+          p#notice = notice
 
-= link_to 'New Photo', new_photo_path
+  .row
+    .col-xs-12
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-align-justify
+          h5 Fotografias
+          .buttons
+            = link_to new_photo_path, class: 'btn'
+              i.fa.fa-plus
+              span.text Adicionar Fotografias
+
+        .widget-content.nopadding
+          table.table.table-striped
+            thead
+              tr
+                th Foto
+                th Pessoas
+                th Facto
+                th
+                th
+
+            tbody
+              - @photos.each do |photo|
+                tr valign="middle"
+                  td
+                    div align="center"
+                      = link_to photo
+                        <img src=#{photo.path.url(:thumb)} class="img-rounded"> 
+                  td
+                    - photo.people.each do |p|
+                      ul.list-unstyled
+                        li = link_to p.name, p
+                  td = photo.fact
+                  td = link_to 'Mostrar mais', photo, class: 'btn btn-info btn-sm'
+                  td = link_to 'Remover', photo, class: 'btn btn-danger btn-sm', data: {:confirm => 'Tem a certeza?'}, :method => :delete
+  br

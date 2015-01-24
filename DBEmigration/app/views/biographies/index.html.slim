@@ -1,23 +1,65 @@
-h1 Listing biographies
+#content-header.mini
+  h1 Biografias
 
-table
-  thead
-    tr
-      th Event
-      th Date
-      th
-      th
-      th
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  a.current
+    | Dashboard
 
-  tbody
-    - @biographies.each do |biography|
-      tr
-        td = biography.event
-        td = biography.date
-        td = link_to 'Show', biography
-        td = link_to 'Edit', edit_biography_path(biography)
-        td = link_to 'Destroy', biography, data: {:confirm => 'Are you sure?'}, :method => :delete
+.container-fluid
 
-br
+  p#notice = notice
 
-= link_to 'New Biography', new_biography_path
+  .alert.alert-danger
+    button.close data-dismiss="alert"  ×
+    strong Error! The daily cronjob has failed.
+
+
+  .row
+    .col-xs-12.col-sm-6
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-th-list
+          h5 Span6
+        .widget-content
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .col-xs-12.col-sm-6
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-th-list
+          h5 Span6
+        .widget-content
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+  .panel.panel-default
+    .panel-heading
+      .h3 Listing Biographies
+    .panel-body
+
+      table
+        thead
+          tr
+            th Original
+            th Event
+            th Date
+            th
+
+        tbody
+          - @biographies.each do |biography|
+            tr
+              td = biography.original
+              td = biography.event
+              td = biography.date
+              td = link_to 'Show', biography
+              td = link_to 'Destroy', biography, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+
+      br
+
+      = link_to 'New Biography', new_biography_path
