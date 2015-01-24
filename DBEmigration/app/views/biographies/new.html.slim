@@ -2,10 +2,10 @@
   h1 Biografias
 
 #breadcrumb
-  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+  = link_to home_path, title: 'Voltar à página inicial', class: 'tip-bottom'
     i.fa.fa-home
     | Home
-  = link_to bio_path, title: 'Voltar à Página dos Registros Biográficos', class: 'tip-bottom'
+  = link_to bio_path, title: 'Voltar aos registos biográficos', class: 'tip-bottom'
     i.fa.fa-home
     | Biografias
   a.current
@@ -19,7 +19,7 @@
       .col-xs-12
         .alert.alert-danger
           button.close data-dismiss="alert"  ×
-          strong.notice Erro! #{flash[:notice]}
+          strong.notice #{flash[:notice]}
 
   .row
     .col-xs-12

@@ -86,10 +86,10 @@ class BiographiesController < ApplicationController
 
     respond_to do |format|
       if @flag
-        flash[:notice] = "Biografias Inseridas com Sucesso"
+        flash[:notice] = "Biografias inseridas com sucesso!"
         format.html { redirect_to action: 'index' }
       else
-        flash[:notice] = " Ficheiro introduzido inválido ou XML inválido!"
+        flash[:notice] = " Ficheiro introduzido inválido!"
         format.html { redirect_to action: 'new' }
       end
     end
@@ -114,7 +114,7 @@ class BiographiesController < ApplicationController
   def destroy
     @biography.destroy
     respond_to do |format|
-      format.html { redirect_to biographies_url, notice: 'Biography was successfully destroyed.' }
+      format.html { redirect_to biographies_url, notice: 'Biografia removida com sucesso!' }
       format.json { head :no_content }
     end
   end

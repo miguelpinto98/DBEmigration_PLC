@@ -2,7 +2,7 @@
   h1 Biografias
 
 #breadcrumb
-  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+  = link_to home_path, title: 'Voltar à página inicial', class: 'tip-bottom'
     i.fa.fa-home
     | Home
   a.current
@@ -10,7 +10,12 @@
 
 .container-fluid
 
-  p#notice = notice
+  - unless notice.blank?
+    .row
+      .col-xs-12
+        .alert.alert-success
+          button.close data-dismiss="alert"  ×
+          p#notice = notice
 
   .row
     .col-xs-12
@@ -55,10 +60,9 @@
           dd
             ul.list-unstyled#pessoas
 
-
       .modal-footer
         button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
-        button.btn.btn-danger.btn-sm type="button"  Apagar
+        = link_to 'Destroy', @biographies.first, method: :delete, id: 'deleteid', class: 'btn btn-danger btn-sm', data: { confirm: 'Tem a certeza?' }
         button.btn.btn-primary.btn-sm data-dismiss="modal" type="button"  Fechar
 
 

@@ -17,11 +17,14 @@ function validateFiles(inputFile) {
 }
 
 function getRegisto(idRegisto) {
+  $( "li" ).remove( "#pessoasli" );
+  $('#local').text("");
+
   $.ajax({
       type: 'GET',
       url: '/biographies/' + idRegisto,
       dataType: "JSON",
-      success: function(data){
+      success: function(data) {
         if (data.event)
           $('#evento').text(data.event);
         else
@@ -31,15 +34,16 @@ function getRegisto(idRegisto) {
         $('#original').text(data.original);
 
         if (data.local)
-          $('#local').text(data.local.desc);
+          $('#local').append("<a href=\"locals/"+data.local.id+"\">"+data.local.desc+"</a>");
         else
           $('#local').text("");
 
         for (p of data.people) {
-          $('#pessoas').append("<li><a href=\"\">"+p.name+"</a></li>");
+          $('#pessoas').append("<li id=\"pessoasli\"><a href=\"people/"+p.id+"\">"+p.name+"</a></li>");
         }
+
+        $('#deleteid').attr('href',url);
       }
     });
-
   $('#myModal').modal('toggle');
 }
