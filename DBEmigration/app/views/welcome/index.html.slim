@@ -1,5 +1,5 @@
 #content-header.mini
-  h1 Dashboard
+  h1 Registos recentemente adicionados
 
 #breadcrumb
   = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
@@ -10,6 +10,61 @@
 
 .container-fluid
 
+  .row
+    .col-xs-12.col-sm-4
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-camera-retro
+          h5 Fotos
+          .buttons
+            = link_to new_photo_path, class: 'btn'
+              i.fa.fa-plus
+        .widget-content.nopadding
+          ul.recent-posts
+            - @photos.each do |p|
+              li
+                = link_to p
+                  .user-thumb
+                    = image_tag(p.path.url(:thumb), :alt => "Foto", :width => "40", :height => "40")
+                  .article-post
+                    span.user-info Criado: #{p.created_at.strftime("%Y-%m-%d %H:%M")}
+                    p = p.fact.truncate(60)
+
+
+    .col-xs-12.col-sm-4
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-newspaper-o
+          h5 Biografias
+          .buttons
+            = link_to new_biography_path, class: 'btn'
+              i.fa.fa-plus
+        .widget-content.nopadding
+          ul.recent-posts
+            - @bios.each do |b|
+              li
+                = link_to p
+                  span.user-info Criado: #{b.created_at.strftime("%Y-%m-%d %H:%M")}
+                  p = b.original.truncate(80)
+
+    .col-xs-12.col-sm-4
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-plane
+          h5 Passaportes
+          .buttons
+            = link_to new_passport_path, class: 'btn'
+              i.fa.fa-plus
+        .widget-content.nopadding
+          ul.recent-posts
+            - @passports.each do |p|
+              li
+                = link_to p
+                  span.user-info Criado: #{p.created_at.strftime("%Y-%m-%d %H:%M")}
+                  p Requisição de passaporte pedido em #{p.year} por #{p.person.name}
 
 
 
