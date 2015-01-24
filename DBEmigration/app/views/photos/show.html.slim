@@ -1,18 +1,69 @@
 p#notice = notice
+#content-header.mini
+  h1 Fotografia
 
-p
-  strong Path:
-  = @photo.path
-p
-  strong Date:
-  = @photo.date
-p
-  strong Fact:
-  = @photo.fact
-p
-  strong Legend:
-  = @photo.legend
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  = link_to photos_path, title: 'Voltar à Página das Fotografias', class: 'tip-bottom'
+    i.fa.fa-camera-retro
+    | Fotos
+  a.current
+    = @photo.id
 
-= link_to 'Edit', edit_photo_path(@photo)
-'|
-= link_to 'Back', photos_path
+.container-fluid
+  .row
+      .col-xs-12
+        .widget-box
+          .widget-title
+            span.icon
+              i.fa.fa-align-justify
+            h5 Fotografia
+            .buttons
+              button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
+              = link_to 'Remover', @photo, class: 'btn', data: {:confirm => 'Tem a certeza?'}, :method => :delete
+              
+          .widget-content.nopadding
+            br
+            .row
+              div.col-xs-12
+                .col-xs-6
+                  img src=@photo.path class="img-thumbnail" width="240px" height="auto"
+                  br 
+                  br
+                  p 
+                    strong Fotografia inserida em: 
+                    = @photo.created_at.strftime("%d %b. %Y")  
+                  br
+                .col-xs.6
+                  h3
+                    span.label.label-primary
+                      |Descrição
+                  - unless @photo.date == nil
+                    p
+                      strong Data: 
+                      = @photo.date
+                  - unless @photo.fact == nil
+                    p
+                      strong Facto: 
+                      = @photo.fact
+
+                  - unless @photo.caption == nil
+                    p
+                      strong Legenda: 
+                      = @photo.caption
+                    
+                  - unless @photo.local == nil
+                    p 
+                      strong Local: 
+                      = @photo.local.desc 
+                  p 
+                    strong Pessoas: 
+                    ul
+                    - @photo.people.each do |p|
+                        li = link_to p.name, p 
+      .row
+        .col-xs-12
+          = link_to 'Retroceder', photos_path, class: 'btn btn-default btn-xs'
+  br

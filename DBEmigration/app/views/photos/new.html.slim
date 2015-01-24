@@ -1,5 +1,38 @@
-h1 New photo
-p Por favor insira um ficheiro zip: xml e fotografias
-== render 'form'
+#content-header.mini
+  h1 Fotografias
 
-= link_to 'Back', photos_path
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  = link_to photos_path, title: 'Voltar à Página das Fotografias', class: 'tip-bottom'
+    i.fa.fa-camera-retro
+    | Fotos
+  a.current
+    | Adicionar
+
+.container-fluid
+
+
+  - if flash[:notice]
+    .row
+      .col-xs-12
+        .alert.alert-danger
+          button.close data-dismiss="alert"  ×
+          strong.notice Erro! #{flash[:notice]}
+
+  .row
+    .col-xs-12
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-align-justify
+          h5 Carregar Ficheiro ZIP: XML e Fotos
+
+        .widget-content.nopadding
+
+          == render 'form'
+  br
+  .row
+    .col-xs-12
+      = link_to 'Retroceder', photos_path, class: 'btn btn-default btn-xs'
