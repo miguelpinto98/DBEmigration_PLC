@@ -17,6 +17,9 @@
           span.icon
             i.fa.fa-camera-retro
           h5 Fotos
+          .buttons
+            = link_to new_photo_path, class: 'btn'
+              i.fa.fa-plus
         .widget-content.nopadding
           ul.recent-posts
             - @photos.each do |p|
@@ -35,6 +38,9 @@
           span.icon
             i.fa.fa-newspaper-o
           h5 Biografias
+          .buttons
+            = link_to new_biography_path, class: 'btn'
+              i.fa.fa-plus
         .widget-content.nopadding
           ul.recent-posts
             - @bios.each do |b|
@@ -49,6 +55,9 @@
           span.icon
             i.fa.fa-plane
           h5 Passaportes
+          .buttons
+            = link_to new_passport_path, class: 'btn'
+              i.fa.fa-plus
         .widget-content.nopadding
           ul.recent-posts
             - @passports.each do |p|
