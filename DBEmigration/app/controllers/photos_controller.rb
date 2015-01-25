@@ -4,7 +4,8 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = Photo.order('created_at DESC')
+
   end
 
   # GET /photos/1
@@ -62,6 +63,7 @@ class PhotosController < ApplicationController
         erros.push(error.message)
       end
 
+
       if xsd.valid?(doc)
         #Create photo
         nfotos = doc.xpath("count(//foto)").to_i
@@ -96,32 +98,32 @@ class PhotosController < ApplicationController
             end
           end
 
-          #people
+          #people 
           quem = (doc.xpath("//foto[#{i}]/quem")).text
           nomes = quem.split(';').map(&:strip)
           nomes.each do |n|
-            if Person.exists?(:name => n)
-              photo.people = Person.where(:name => n)
-            else
+          p = Person.where(name: n).first
+            if p.blank?
               photo.people << Person.create(name: n)
+            else
+              photo.people << p
             end
           end
 
-          photo.save
+          @flag = photo.save
         end
+        FileUtils.rm_rf('public/'+ @random_string)
       end
-      FileUtils.rm_rf('public/'+ @random_string)
-      
-      respond_to do |format|
-        if xsd.valid?(doc)
-          format.html { render :text => "Ok"}
-        else
-          format.html { render :text => erros }
-        end
-      end
-    else
-      redirect_to new_photo_path
     end
+    respond_to do |format|
+        if @flag
+          flash[:notice] = "Fotografias inseridas com sucesso"
+          format.html { redirect_to action: 'index'}
+        else
+          flash[:notice] = erros
+          format.html { redirect_to action: 'new' }
+        end
+      end
   end
 
   # PATCH/PUT /photos/1
