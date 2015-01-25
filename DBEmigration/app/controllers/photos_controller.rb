@@ -117,7 +117,7 @@ class PhotosController < ApplicationController
     end
     respond_to do |format|
         if @flag
-          flash[:notice] = "Fotografias inseridas com sucesso"
+          flash[:notice] = "#{i} Fotografias inseridas com sucesso."
           format.html { redirect_to action: 'index'}
         else
           flash[:notice] = erros
@@ -145,7 +145,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      format.html { redirect_to photos_url, notice: 'Foto removida com sucesso.' }
       format.json { head :no_content }
     end
   end
