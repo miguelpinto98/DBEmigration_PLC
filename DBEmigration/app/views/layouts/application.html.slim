@@ -7,11 +7,13 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body.flat data-color="turquoise"
+  body.flat data-color="blue"
     #wrapper
       #header
         h1
-          a href="#"  Unicorn Admin
+          = link_to 'Unicorn Admin', home_path
+        = link_to  home_path, id: "menu-trigger"
+          i.fa.fa-align-justify
 
       #user-nav
 
@@ -22,7 +24,7 @@ html
             i.fa.fa-search
 
         ul
-          li.active
+          li
             = link_to home_path
               i.fa.fa-home
               span Dashboard
@@ -35,7 +37,7 @@ html
               i.fa.fa-book
               span Biografias
           li
-            = link_to passaporte_path
+            = link_to pass_path
               i.fa.fa-plane
               span Passaportes
 
