@@ -27,7 +27,7 @@ class Person < ActiveRecord::Base
   # Person.marrieds dá todos os casados
   as_enum :gender, female: 2, male: 1, undefined: 0
   as_enum :civil, single: 0, married: 1, divorced: 3, widowed: 4
-
+    
   # obter todos os filhos de uma pessoa
   def children
     Marriage.includes(:children).map{|m| m.children}.inject(:+)
