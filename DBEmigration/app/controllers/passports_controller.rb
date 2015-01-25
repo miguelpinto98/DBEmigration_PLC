@@ -26,9 +26,16 @@ class PassportsController < ApplicationController
   def create
     @passport = Passport.new(passport_params)
 
+    #obter o json
+    #chamar o java com o json
+    #obter output + stderr
+    #  se tem output, executar
+    #    se deu erro, mostrar erro
+    #  senao mostrar stderr, um erro por linha
+
     respond_to do |format|
       if @passport.save
-        format.html { redirect_to @passport, notice: 'Passport was successfully created.' }
+        format.html { redirect_to pass_path, notice: 'Passport was successfully created.' }
         format.json { render :show, status: :created, location: @passport }
       else
         format.html { render :new }
