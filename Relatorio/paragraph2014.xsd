@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://elpri.di.uminho.pt/paragraph" xmlns:p="http://elpri.di.uminho.pt/paragraph">
+
+    <xs:element name="p">
+        <xs:complexType mixed="true">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="p:emph"/>
+                <xs:group ref="p:free"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:group name="emph">
+        <xs:choice>
+            <xs:element name="b">
+                <xs:complexType mixed="true">
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element name="i">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="u" type="xs:string"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="u">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="i" type="xs:string"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="i">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element name="b">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="u" type="xs:string"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="u">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="b" type="xs:string"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="u">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element name="b">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="i" type="xs:string"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="i">
+                            <xs:complexType mixed="true">
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:element name="b" type="xs:string"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="free">
+        <xs:choice>
+            <xs:element name="xref">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="href" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ackr">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="expansion" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cite">
+                <xs:complexType>
+                    <xs:attribute name="bibref" type="xs:IDREF" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:group>
+</xs:schema>

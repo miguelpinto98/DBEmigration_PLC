@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://elpri.di.uminho.pt/table" xmlns:table="http://elpri.di.uminho.pt/table"
+    xmlns:l="http://elpri.di.uminho.pt/list" xmlns:p="http://elpri.di.uminho.pt/paragraph">
+    <xs:import namespace="http://elpri.di.uminho.pt/paragraph" schemaLocation="paragraph2014.xsd"/>
+    <xs:import namespace="http://elpri.di.uminho.pt/list" schemaLocation="list2014.xsd"/>
+    <xs:element name="table">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" name="tr">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="th" type="xs:string"/>
+                            <xs:element name="td">
+                                <xs:complexType mixed="true">
+                                    <xs:choice>
+                                        <xs:element ref="p:p"/>
+                                        <xs:group ref="l:list"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

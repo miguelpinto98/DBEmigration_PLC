@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://elpri.di.uminho.pt/report" xmlns:l="http://elpri.di.uminho.pt/list"
+    xmlns:p="http://elpri.di.uminho.pt/paragraph" xmlns:r="http://elpri.di.uminho.pt/report"
+    xmlns:img="http://elpri.di.uminho.pt/image" xmlns:table="http://elpri.di.uminho.pt/table">
+    <xs:import namespace="http://elpri.di.uminho.pt/paragraph" schemaLocation="paragraph2014.xsd"/>
+    <xs:import namespace="http://elpri.di.uminho.pt/list" schemaLocation="list2014.xsd"/>
+    <xs:import namespace="http://elpri.di.uminho.pt/image" schemaLocation="image2014.xsd"/>
+    <xs:import id="table" namespace="http://elpri.di.uminho.pt/table" schemaLocation="table2014.xsd"/>
+    <xs:element name="report">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="front-matter">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="meta">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="title" type="xs:string"/>
+                                        <xs:element minOccurs="0" name="subttitle" type="xs:string"/>
+                                        <xs:element name="authors">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="author">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="name" type="xs:string"/>
+                                                  <xs:element minOccurs="0" name="identifier"
+                                                  type="xs:string"/>
+                                                  <xs:element minOccurs="0" name="email"
+                                                  type="xs:string"/>
+                                                  <xs:element minOccurs="0" name="photo">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="path" type="xs:string"
+                                                  use="required"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="date" type="xs:date"/>
+                                        <xs:element minOccurs="0" name="affil" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="acknowledgements">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" ref="p:p"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="abstract">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" ref="p:p"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="toc"/>
+                            <xs:element minOccurs="0" name="lot"/>
+                            <xs:element minOccurs="0" name="lof"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="body">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="section">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="title" type="xs:string"/>
+                                        <xs:choice maxOccurs="unbounded">
+                                            <xs:element ref="p:p"/>
+                                            <xs:group ref="l:list"/>
+                                            <xs:element ref="table:table"/>
+                                            <xs:element ref="img:image"/>
+                                            <xs:element name="subsection">
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="title" type="xs:string"/>
+                                                  <xs:choice maxOccurs="unbounded">
+                                                  <xs:element ref="p:p"/>
+                                                  <xs:group ref="l:list"/>
+                                                  <xs:element name="subsubsection">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="title" type="xs:string"/>
+                                                  <xs:choice maxOccurs="unbounded">
+                                                  <xs:element ref="p:p"/>
+                                                  <xs:group ref="l:list"/>
+                                                  </xs:choice>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:choice>
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:choice>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="back-matter">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="bibliography">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="bibitem">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="title" type="xs:string"/>
+                                                  <xs:element name="authors">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="author"
+                                                  type="xs:string"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="date" type="xs:date"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="id" type="xs:ID" use="required"
+                                                />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="appendix-list">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="appendix">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="title" type="xs:string"/>
+                                                  <xs:choice maxOccurs="unbounded">
+                                                  <xs:element ref="p:p"/>
+                                                  <xs:group ref="l:list"/>
+                                                  <xs:element name="subsection">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="title" type="xs:string"/>
+                                                  <xs:choice maxOccurs="unbounded">
+                                                  <xs:element ref="p:p"/>
+                                                  <xs:group ref="l:list"/>
+                                                  <xs:element name="subsubsection">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="title" type="xs:string"/>
+                                                  <xs:choice maxOccurs="unbounded">
+                                                  <xs:element ref="p:p"/>
+                                                  <xs:group ref="l:list"/>
+                                                  </xs:choice>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:choice>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:choice>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

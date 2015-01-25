@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report 
+    xmlns="http://elpri.di.uminho.pt/report"
+    xmlns:p="http://elpri.di.uminho.pt/paragraph"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <front-matter>
+        <meta>
+            <title></title>
+            <subttitle></subttitle>
+            <authors>
+                <author>
+                    <name></name>
+                    <identifier></identifier>
+                    <email></email>
+                    <photo path=""/>
+                </author>
+            </authors>
+            <date></date>
+            <affil></affil>
+        </meta>
+        <acknowledgements>
+            <p:p></p:p>
+        </acknowledgements>
+        <abstract>
+            <p:p></p:p>
+        </abstract>
+        <toc></toc>
+        <lot></lot>
+        <lof></lof>
+    </front-matter>
+    <body>
+        <section>
+            <title></title>
+            <p:p></p:p>
+        </section>
+    </body>
+    <back-matter>
+        <bibliography>
+            <bibitem id="">
+                <title></title>
+                <authors>
+                    <author></author>
+                </authors>
+                <date></date>
+            </bibitem>
+        </bibliography>
+        <appendix-list>
+            <appendix>
+                <title></title>
+                <p:p></p:p>
+            </appendix>
+        </appendix-list>
+    </back-matter>
+</report>

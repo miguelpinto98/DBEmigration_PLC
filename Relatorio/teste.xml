@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report 
+    xmlns="http://elpri.di.uminho.pt/report"
+    xmlns:p="http://elpri.di.uminho.pt/paragraph"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <front-matter>
+        <meta>
+            <title></title>
+            <subttitle></subttitle>
+            <authors>
+                <author>
+                    <name></name>
+                    <identifier></identifier>
+                    <email></email>
+                    <photo path=""/>
+                </author>
+            </authors>
+            <date>2014-12-15</date>
+            <affil></affil>
+        </meta>
+        <acknowledgements>
+            <p:p>Isto é um teste.</p:p>
+        </acknowledgements>
+        <abstract>
+            <p:p>Isto é um teste no abstract.</p:p>
+        </abstract>
+        <toc></toc>
+        <lot></lot>
+        <lof></lof>
+    </front-matter>
+    <body>
+        <section>
+            <title>Primeira secção</title>
+            <p:p>Primeiro parágrafo da primeira secção.</p:p>
+        </section>
+    </body>
+    <back-matter/>
+</report>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://elpri.di.uminho.pt/list" xmlns:l="http://elpri.di.uminho.pt/list"
+    xmlns:p="http://elpri.di.uminho.pt/paragraph">
+    <xs:import namespace="http://elpri.di.uminho.pt/paragraph" schemaLocation="paragraph2014.xsd"/>
+    <xs:group name="list">
+        <xs:choice>
+            <xs:element name="ol">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="li">
+                            <xs:complexType>
+                                <xs:choice maxOccurs="unbounded">
+                                    <xs:element ref="p:p"/>
+                                    <xs:group ref="l:list"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ul">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="li">
+                            <xs:complexType>
+                                <xs:choice maxOccurs="unbounded">
+                                    <xs:element ref="p:p"/>
+                                    <xs:group ref="l:list"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="dl">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dt" type="xs:string"/>
+                        <xs:element name="dd">
+                            <xs:complexType>
+                                <xs:choice maxOccurs="unbounded">
+                                    <xs:element ref="p:p"/>
+                                    <xs:group ref="l:list"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:group>
+</xs:schema>
