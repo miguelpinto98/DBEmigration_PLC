@@ -1,6 +1,7 @@
 class Local < ActiveRecord::Base
   has_many :biographies
   has_many :photos
-  has_many :people
-  has_many :passports
+
+  # adicionar has_many para cada localização que a pessoa pode ter
+  # adicionar has_many para cada localização que o passaporte pode ter
 end
