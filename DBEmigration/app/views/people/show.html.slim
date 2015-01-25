@@ -15,7 +15,7 @@ p#notice = notice
 
 .container-fluid
   .row
-      .col-xs-12.col-sm-6
+      .col-xs-12c.ol-sm-6.col-lg-6
         .widget-box
           .widget-title
             span.icon
@@ -78,7 +78,6 @@ p#notice = notice
                   - unless @local_work == nil
                     strong Local de trabalho: 
                     = @person.local.desc
-      .col-xs-12.col-sm-4
         .widget-box
           .widget-title
             span.icon
@@ -95,7 +94,7 @@ p#notice = notice
                       span.user-info Criado: #{p.created_at.strftime("%Y-%m-%d %H:%M")}
                       p = p.fact.truncate(60)
 
-      .col-xs-12.col-sm-6
+      .col-xs-12.col-sm-6.col-lg-6
         .widget-box
           .widget-title
             span.icon
@@ -108,8 +107,7 @@ p#notice = notice
                   = link_to p
                     span.user-info Criado: #{b.created_at.strftime("%Y-%m-%d %H:%M")}
                     p = b.original.truncate(80)
-
-      .col-xs-12.col-sm-4
+                    
         .widget-box
           .widget-title
             span.icon
