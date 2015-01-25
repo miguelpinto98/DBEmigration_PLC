@@ -25,34 +25,29 @@
           span.icon
             i.fa.fa-plane
           h5 Listagem de Requerimentos de Passaportes
-          .buttons
-            = link_to new_passport_path, class: 'btn'
-              i.fa.fa-plus
-              span.text    Adicionar Passaportes
+
         .widget-content.nopadding
           .row
-            table.table.table-striped.table-hover
+            table.table.table-hover.data-table
               thead
                 tr
                   th Requerente
-                  th Ano
-                  th Municipio
-                  th Submitted
+                  th Processo
+                  th Município
+                  th Enviado
+                  th Destino
                   th
                   th
                   th
-                  th
-
               tbody
                 - @passports.each do |pass|
                   tr
-                    td = pass.person.name
-                    td = pass.year
-                    td = pass.municipio
-                    td = pass.submitted
-                    td asdasdas
-                    td = link_to 'Show', pass
-                    td = link_to 'Edit', edit_passport_path(pass)
-                    td = link_to 'Destroy', pass, data: {:confirm => 'Are you sure?'}, :method => :delete
+                    td = link_to pass.person.name, pass.person
+                    td @pass.
+                    td @pass.municipio
+                    td = @pass.submitted
+                    td @pass
+                    td = link_to 'Show', pass, class: "btn btn-default btn-sm"
+                    td = link_to 'Destroy', pass, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "btn btn-default btn-sm"
 
   br

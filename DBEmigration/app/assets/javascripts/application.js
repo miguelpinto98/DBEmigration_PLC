@@ -1,8 +1,14 @@
 //= require jquery
-//= require jquery_ujs
-//= require bootstrap-sprockets
-//= require unicorn
-//= require biographies
-
-//= require unicorn.jui
 //= require jquery-ui
+//= require jquery_ujs
+//= require dataTables/jquery.dataTables
+
+//= require bootstrap-sprockets
+//= require select2
+//= require icheck
+
+//= require unicorn
+//= require unicorn.jui
+//= require unicorn.tables
+
+//= require biographies
