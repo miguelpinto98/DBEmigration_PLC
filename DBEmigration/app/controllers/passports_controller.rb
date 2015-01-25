@@ -26,7 +26,7 @@ class PassportsController < ApplicationController
   # POST /passports
   # POST /passports.json
   def create
-    @passport = Passport.new(passport_params)
+    @passport = Passport.new
 
     #obter o json
     path = params[:passport]['p_file'].path
@@ -65,8 +65,9 @@ class PassportsController < ApplicationController
         format.html { redirect_to pass_path, notice: 'Passports were successfully created.' }
         format.json { render :show, status: :created, location: pass_path }
       else
+        flash[:notice] = @erros.join("\n")
         format.html { render :new }
-        format.json { render json: @passport.errors, status: :unprocessable_entity }
+        format.json { render json: @erros, status: :unprocessable_entity }
       end
     end
   end
