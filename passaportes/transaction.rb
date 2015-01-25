@@ -3,8 +3,6 @@ ActiveRecord::Base.transaction do
   pessoa = Person.where(name: 'nome').empty? ? Person.create!(name: 'nome') : Person.where(name: 'nome').first
 
   # e actualizar campos que estejam vazios na pessoa
-  t.integer  "residence"
-
   pessoa.nasc = Date.new(ano,mes,dia) unless pessoa.nasc?
   pessoa.habil = 'habilitacoes' unless pessoa.habil?
   pessoa.bi = 'bi' unless pessoa.bi?

@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args){
@@ -43,8 +44,13 @@ public class Application {
         // validar e obter os dados
         semantic = parser.passports(new PassportSemantic()).outS;
 
-        for(String e : semantic.validarPassaportes())
+        List<String> erros = semantic.validarPassaportes();
+        for(String e : erros)
             Debug.error_final(e);
 
+        if(!erros.isEmpty())
+            return;
+
+        System.out.println(semantic.getRuby());
     }
 }

@@ -9,52 +9,35 @@ public class PassportItem {
     String numero_processo;
     String numero_passaporte;
     String camara;
+    Integer submetido_mes;
+    Integer submetido_ano;
+    Integer submetido_dia;
 
     String nome;
     String bi;
     String residencia;
-    GregorianCalendar data_nasc;
+    Integer data_nasc_ano;
+    Integer data_nasc_mes;
+    Integer data_nasc_dia;
     String local_nasc;
-    String genero;
+    Integer genero; // female: 2, male: 1
     String mae;
     String pai;
-    String estado_civil;
+    Integer estado_civil; //single: 0, married: 1, divorced: 2, widowed: 3
     String conjugue;
     List<String> filhos;
     String profissao;
     String local_trabalho;
     String habilitacoes;
+
     String destino_pais_e_cidade;
-    GregorianCalendar destin_data_partida;
+    Integer destino_data_partida_ano;
+    Integer destino_data_partida_mes;
+    Integer destino_data_partida_dia;
     String destino_profissao;
     String destino_local_trabalho;
 
     PassportItem(){
         filhos = new ArrayList<String>();
-    }
-
-    @Override
-    public String toString() {
-        return  "Passaporte: \n"
-                + "  ano: " + ano.toString() + ",\n"
-                + "  numero_processo: " + numero_processo + ",\n"
-                + "  camara: " + camara + ",\n"
-                + "  nome: " + nome + ",\n"
-                + "  bi: " + bi + ",\n"
-                + "  residencia: " + residencia + ",\n"
-                + "  data_nasc: " + data_nasc.toString() + ",\n"
-                + "  local_nasc: " + local_nasc + ",\n"
-                + "  mae: " + mae + ",\n"
-                + "  pai: " + pai + ",\n"
-                + "  estado_civil: " + estado_civil + ",\n"
-                + "  conjugue: " + conjugue + ",\n"
-                + "  filhos: " + filhos.toString() + ",\n"
-                + "  profissao: " + profissao + ",\n"
-                + "  local_trabalho: " + local_trabalho + ",\n"
-                + "  habilitacoes: " + habilitacoes + ",\n"
-                + "  destino_pais_e_cidade: " + destino_pais_e_cidade + ",\n"
-                + "  destin_data_partida: " + destin_data_partida.toString() + ",\n"
-                + "  destino_profissao: " + destino_profissao + ",\n"
-                + "  destino_local_trabalho: " + destino_local_trabalho + ".\n";
     }
 }

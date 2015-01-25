@@ -73,7 +73,8 @@ process [PassportSemantic s]
                 year[s] SEPARATOR
                 processNumber[s] SEPARATOR
                 passportNumber[s] SEPARATOR
-                cityCouncil[s]
+                cityCouncil[s] SEPARATOR
+                submitted[s]
             GROUP_END
         ;
 
@@ -107,6 +108,14 @@ cityCouncil [PassportSemantic s]
                 s.cityCouncil($city_council_def.text);
                 Debug.set($CITY_COUNCIL.line, $CITY_COUNCIL.pos);
             }
+        ;
+
+submitted [PassportSemantic s]
+        : SUBMITTED DEFINED_BY date_def
+           {
+               s.submitted($date_def.out_year, $date_def.out_month, $date_def.out_day);
+               Debug.set($SUBMITTED.line, $SUBMITTED.pos);
+           }
         ;
 
 
@@ -321,6 +330,7 @@ YEAR : ASP 'ano' ASP;
 PROCESS_NUMBER : ASP 'numero' ASP;
 PASSPORT_NUMBER : ASP 'passaporte' ASP;
 CITY_COUNCIL : ASP 'camara' ASP;
+SUBMITTED : ASP 'submetido' ASP;
 
 // person
 PERSON : ASP 'requerente' ASP;
@@ -378,9 +388,16 @@ local_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | HYPHEN | SPACE | 
 /* dates in ISO 8601 format */
 date_def returns [int out_year, int out_month, int out_day]
         : ASP a=NUM b=NUM c=NUM d=NUM HYPHEN e=NUM? f=NUM HYPHEN g=NUM? h=NUM ASP{
-           $out_year  = Integer.parseInt($a.text+$b.text+$c.text+$d.text);
-           $out_month = Integer.parseInt($e.text+$f.text);
-           $out_day   = Integer.parseInt($g.text+$h.text);
+            $out_year  = Integer.parseInt($a.text+$b.text+$c.text+$d.text);
+            if($e.text == null)
+                $out_month = Integer.parseInt($f.text);
+            else
+                $out_month = Integer.parseInt($e.text+$f.text);
+
+            if($g.text == null)
+                $out_day   = Integer.parseInt($h.text);
+            else
+                $out_day   = Integer.parseInt($g.text+$h.text);
         };
 
 numbers returns [int out_int]
