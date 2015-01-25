@@ -19,6 +19,16 @@ public interface PassportListener extends ParseTreeListener {
 	 */
 	void exitLocal_def(@NotNull PassportParser.Local_defContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PassportParser#passport_number_def}.
+	 * @param ctx the parse tree
+	 */
+	void enterPassport_number_def(@NotNull PassportParser.Passport_number_defContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PassportParser#passport_number_def}.
+	 * @param ctx the parse tree
+	 */
+	void exitPassport_number_def(@NotNull PassportParser.Passport_number_defContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PassportParser#ident_card_def}.
 	 * @param ctx the parse tree
 	 */
@@ -98,6 +108,16 @@ public interface PassportListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCityCouncil(@NotNull PassportParser.CityCouncilContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PassportParser#passportNumber}.
+	 * @param ctx the parse tree
+	 */
+	void enterPassportNumber(@NotNull PassportParser.PassportNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PassportParser#passportNumber}.
+	 * @param ctx the parse tree
+	 */
+	void exitPassportNumber(@NotNull PassportParser.PassportNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PassportParser#complete_name_def}.
 	 * @param ctx the parse tree

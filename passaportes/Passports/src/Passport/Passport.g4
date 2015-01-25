@@ -72,6 +72,7 @@ process [PassportSemantic s]
             GROUP_START
                 year[s] SEPARATOR
                 processNumber[s] SEPARATOR
+                passportNumber[s] SEPARATOR
                 cityCouncil[s]
             GROUP_END
         ;
@@ -89,6 +90,14 @@ processNumber [PassportSemantic s]
             {
                 s.processNumber($process_number_def.text);
                 Debug.set($PROCESS_NUMBER.line, $PROCESS_NUMBER.pos);
+            }
+        ;
+
+passportNumber [PassportSemantic s]
+        : PASSPORT_NUMBER DEFINED_BY passport_number_def
+            {
+                s.passportNumber($passport_number_def.text);
+                Debug.set($PASSPORT_NUMBER.line, $PASSPORT_NUMBER.pos);
             }
         ;
 
@@ -310,6 +319,7 @@ dest_professionLocal [PassportSemantic s]
 PROCESS : ASP 'processo' ASP;
 YEAR : ASP 'ano' ASP;
 PROCESS_NUMBER : ASP 'numero' ASP;
+PASSPORT_NUMBER : ASP 'passaporte' ASP;
 CITY_COUNCIL : ASP 'camara' ASP;
 
 // person
@@ -354,15 +364,16 @@ HYPHEN     : '-';
 ** VALUES
 ***************/
 ident_card_def : ASP (ESCAPECHARS | LETTERS | numbers)+ ASP;
-process_number_def: ASP (ESCAPECHARS | LETTERS | numbers | '/' )+ ASP;
+process_number_def: ASP (ESCAPECHARS | LETTERS | numbers | SYMBOLS | HYPHEN | SPACE)+ ASP;
+passport_number_def: ASP (ESCAPECHARS | LETTERS | numbers )+ ASP;
 city_council_def  : ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SPACE)+ ASP;
 complete_name_def : ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SPACE)+ ASP;
 
-profession_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+profession_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | HYPHEN | SPACE | SEPARATOR | numbers)+ ASP;
 
-qualifications_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+qualifications_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | HYPHEN | SPACE | SEPARATOR | numbers)+ ASP;
 
-local_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | SPACE | SEPARATOR | numbers)+ ASP;
+local_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | HYPHEN | SPACE | SEPARATOR | numbers)+ ASP;
 
 /* dates in ISO 8601 format */
 date_def returns [int out_year, int out_month, int out_day]
@@ -387,7 +398,7 @@ fragment UNICODE : 'u' HEX HEX HEX HEX ;
 fragment HEX : [0-9a-fA-F] ;
 
 ACCENTCHAR : [À-ÖØ-öø-ÿ]+;
-SYMBOLS: [\-\.\º\ª];
+SYMBOLS: [\-\.\º\ª/];
 LETTERS: [a-zA-Z]+;
 NUM    : [0-9];
 

@@ -29,6 +29,18 @@ public class PassportBaseListener implements PassportListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPassport_number_def(@NotNull PassportParser.Passport_number_defContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPassport_number_def(@NotNull PassportParser.Passport_number_defContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIdent_card_def(@NotNull PassportParser.Ident_card_defContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -120,6 +132,18 @@ public class PassportBaseListener implements PassportListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCityCouncil(@NotNull PassportParser.CityCouncilContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPassportNumber(@NotNull PassportParser.PassportNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPassportNumber(@NotNull PassportParser.PassportNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

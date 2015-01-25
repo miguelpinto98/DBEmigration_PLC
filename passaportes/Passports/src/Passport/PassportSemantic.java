@@ -122,9 +122,13 @@ public class PassportSemantic {
             Debug.error("Ano de registo do passaporte é menor que 1000");
     }
 
-    // leu o numero do processo
+    // numero do processo
     public void processNumber(String text){
         passport.numero_processo=getText(text);
+    }
+    // numero do passaporte
+    public void passportNumber(String text){
+        passport.numero_passaporte=getText(text);
     }
 
     // camara municipal

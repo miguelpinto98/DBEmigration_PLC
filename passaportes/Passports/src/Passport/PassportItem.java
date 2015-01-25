@@ -7,6 +7,7 @@ import java.util.List;
 public class PassportItem {
     Integer ano;
     String numero_processo;
+    String numero_passaporte;
     String camara;
 
     String nome;
