@@ -354,7 +354,7 @@ HYPHEN     : '-';
 ** VALUES
 ***************/
 ident_card_def : ASP (ESCAPECHARS | LETTERS | numbers)+ ASP;
-process_number_def: ASP (ESCAPECHARS | LETTERS | numbers)+ ASP;
+process_number_def: ASP (ESCAPECHARS | LETTERS | numbers | '/' )+ ASP;
 city_council_def  : ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SPACE)+ ASP;
 complete_name_def : ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SPACE)+ ASP;
 
