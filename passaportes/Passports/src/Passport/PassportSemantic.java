@@ -28,7 +28,7 @@ public class PassportSemantic {
 
         String TAB = "  ";
 
-        s.append("ActiveRecord::Base.transaction do");
+        s.append("ActiveRecord::Base.transaction do\n");
 
         for(PassportItem p : passports) {
             s.append(TAB).append("pessoa = Person.where(name: '").append(p.nome).append("').empty? ? Person.create!(name: '").append(p.nome).append("') : Person.where(name: '").append(p.nome).append("').first\n")
@@ -57,8 +57,8 @@ public class PassportSemantic {
                     .append(TAB).append("end\n")
                     .append(TAB).append("\n")
                     .append(TAB).append("# (criar e) obter residencia e ligar à pessoa\n")
-                    .append(TAB).append("unless pessoa.residencia?\n")
-                    .append(TAB).append(TAB).append("pessoa.residencia = Local.where(desc: '").append(p.residencia).append("').empty? ? Local.create!(desc: '").append(p.residencia).append("') : Local.where(desc: '").append(p.residencia).append("').first\n")
+                    .append(TAB).append("unless pessoa.residence?\n")
+                    .append(TAB).append(TAB).append("pessoa.residence = Local.where(desc: '").append(p.residencia).append("').empty? ? Local.create!(desc: '").append(p.residencia).append("') : Local.where(desc: '").append(p.residencia).append("').first\n")
                     .append(TAB).append("end\n")
                     .append(TAB).append("\n")
                     .append(TAB).append("# criar e obter passaporte e ligar à pessoa\n")
@@ -113,7 +113,7 @@ public class PassportSemantic {
                     .append(TAB).append("# -adicionar a pessoa ao casamento.children\n");
 
             for(String f : p.filhos)
-                s.append(TAB).append("casamento.children << Person.where(name: '").append(f).append("').empty? ? Person.create!(name: '").append(f).append("') : Person.where(name: '").append(f).append("').first\n");
+                s.append(TAB).append("casamento.children << (Person.where(name: '").append(f).append("').empty? ? Person.create!(name: '").append(f).append("') : Person.where(name: '").append(f).append("').first)\n");
 
             s.append(TAB).append("\n")
                     .append(TAB).append("# guardar a pessoa no fim\n")
@@ -241,6 +241,7 @@ public class PassportSemantic {
 
     // género
     void gender(String text){
+        text = getText(text);
         if( text.equals("feminino") )
             passport.genero = 2;
         else if( text.equals("masculino") )
@@ -259,6 +260,7 @@ public class PassportSemantic {
 
     // estado civil
     public void civilState(String text){
+        text = getText(text);
         if( text.equals("solteiro") )
             passport.estado_civil = 0;
         else if( text.equals("casado") )
@@ -282,8 +284,7 @@ public class PassportSemantic {
 
     // profissão do requerente
     public void profession(String text){
-        text=getText(text);
-
+        passport.profissao=getText(text);
     }
 
     // local de trabalho

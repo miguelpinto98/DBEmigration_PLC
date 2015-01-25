@@ -26,8 +26,8 @@ ActiveRecord::Base.transaction do
   end
 
   # (criar e) obter residencia e ligar à pessoa
-  unless pessoa.residencia?
-    pessoa.residencia = Local.where(desc: 'residencia').empty? ? Local.create!(desc: 'residencia') : Local.where(desc: 'residencia').first
+  unless pessoa.residence?
+    pessoa.residence = Local.where(desc: 'residencia').empty? ? Local.create!(desc: 'residencia') : Local.where(desc: 'residencia').first
   end
   
   # criar e obter passaporte e ligar à pessoa
@@ -80,7 +80,7 @@ ActiveRecord::Base.transaction do
   # para cada filho
   #   criar a pessoa caso não exista
   #   adicionar a pessoa ao casamento.children
-  casamento.children << Person.where(name: 'filho').empty? ? Person.create!(name: 'filho') : Person.where(name: 'filho').first
+  casamento.children << (Person.where(name: 'filho').empty? ? Person.create!(name: 'filho') : Person.where(name: 'filho').first)
 
   # guardar a pessoa no fim
   pessoa.save!
