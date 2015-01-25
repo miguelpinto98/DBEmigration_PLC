@@ -2628,9 +2628,9 @@ public class PassportParser extends Parser {
 	}
 
 	public static class Date_defContext extends ParserRuleContext {
-		public int out_year;
-		public int out_month;
-		public int out_day;
+		public Integer out_year;
+		public Integer out_month;
+		public Integer out_day;
 		public Token a;
 		public Token b;
 		public Token c;

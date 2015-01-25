@@ -48,7 +48,7 @@ public class Application {
         for(String e : erros)
             Debug.error_final(e);
 
-        if(!erros.isEmpty())
+        if(!erros.isEmpty() || Debug.hasError())
             return;
 
         System.out.println(semantic.getRuby());

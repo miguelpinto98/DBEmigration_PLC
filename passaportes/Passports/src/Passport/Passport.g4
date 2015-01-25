@@ -386,7 +386,7 @@ qualifications_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | HYPHEN |
 local_def: ASP (ESCAPECHARS | ACCENTCHAR | LETTERS | SYMBOLS | HYPHEN | SPACE | SEPARATOR | numbers)+ ASP;
 
 /* dates in ISO 8601 format */
-date_def returns [int out_year, int out_month, int out_day]
+date_def returns [Integer out_year, Integer out_month, Integer out_day]
         : ASP a=NUM b=NUM c=NUM d=NUM HYPHEN e=NUM? f=NUM HYPHEN g=NUM? h=NUM ASP{
             $out_year  = Integer.parseInt($a.text+$b.text+$c.text+$d.text);
             if($e.text == null)
