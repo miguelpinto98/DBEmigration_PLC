@@ -152,6 +152,11 @@ public class PassportSemantic {
         passport.local_nasc=getText(text);
     }
 
+    // género
+    void gender(String text){
+        passport.genero=getText(text);
+    }
+
     // nome do pai
     public void parentFather(String text){
         passport.pai=getText(text);

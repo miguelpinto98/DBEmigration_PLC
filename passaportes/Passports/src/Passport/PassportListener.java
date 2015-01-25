@@ -159,6 +159,16 @@ public interface PassportListener extends ParseTreeListener {
 	 */
 	void exitBirthLocal(@NotNull PassportParser.BirthLocalContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PassportParser#gender}.
+	 * @param ctx the parse tree
+	 */
+	void enterGender(@NotNull PassportParser.GenderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PassportParser#gender}.
+	 * @param ctx the parse tree
+	 */
+	void exitGender(@NotNull PassportParser.GenderContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PassportParser#birthDate}.
 	 * @param ctx the parse tree
 	 */
@@ -189,16 +199,6 @@ public interface PassportListener extends ParseTreeListener {
 	 */
 	void exitProcess_number_def(@NotNull PassportParser.Process_number_defContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PassportParser#parentMother}.
-	 * @param ctx the parse tree
-	 */
-	void enterParentMother(@NotNull PassportParser.ParentMotherContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PassportParser#parentMother}.
-	 * @param ctx the parse tree
-	 */
-	void exitParentMother(@NotNull PassportParser.ParentMotherContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link PassportParser#countryAndCity}.
 	 * @param ctx the parse tree
 	 */
@@ -208,6 +208,16 @@ public interface PassportListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCountryAndCity(@NotNull PassportParser.CountryAndCityContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PassportParser#parentMother}.
+	 * @param ctx the parse tree
+	 */
+	void enterParentMother(@NotNull PassportParser.ParentMotherContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PassportParser#parentMother}.
+	 * @param ctx the parse tree
+	 */
+	void exitParentMother(@NotNull PassportParser.ParentMotherContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PassportParser#passports}.
 	 * @param ctx the parse tree

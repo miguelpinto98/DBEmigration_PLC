@@ -113,6 +113,7 @@ person [PassportSemantic s]
                 residence[s] SEPARATOR
                 birthDate[s] SEPARATOR
                 birthLocal[s] SEPARATOR
+                gender[s] SEPARATOR
                 parents[s] SEPARATOR
                 civilState[s] SEPARATOR
                 (spouse[s] SEPARATOR)?
@@ -161,6 +162,14 @@ birthLocal [PassportSemantic s]
             {
                 s.birthLocal($local_def.text);
                 Debug.set($BIRTH_LOCAL.line, $BIRTH_LOCAL.pos);
+            }
+        ;
+
+gender [PassportSemantic s]
+        : GENDER DEFINED_BY GENDER_DEF
+            {
+                s.gender($GENDER_DEF.text);
+                Debug.set($GENDER.line, $GENDER.pos);
             }
         ;
 
@@ -310,6 +319,7 @@ IDENT_CARD: ASP ('bi'|'BI') ASP ;
 RESIDENCE: ASP 'residencia' ASP ;
 BIRTH_DATE: ASP 'data nasc' ASP ;
 BIRTH_LOCAL: ASP 'local nasc' ASP ;
+GENDER: ASP 'g' [ée] 'nero' ASP;
 PARENTS: ASP 'pais' ASP ;
 CIVIL_STATE: ASP 'estado civil' ASP ;
 SPOUSE: ASP 'c' [ôo] 'njugue' ASP ;
@@ -367,6 +377,7 @@ numbers returns [int out_int]
 : (NUM { $out_int = $out_int*10 + Integer.parseInt($NUM.text); })+;
 
 CIVIL_STATE_DEF: ASP ('solteiro'|'casado'|'divorciado'|'vi'[uú]'vo') ASP;
+GENDER_DEF: ASP ('feminino'|'masculino') ASP;
 
 /*******************************************************************************
 ** CLASSES

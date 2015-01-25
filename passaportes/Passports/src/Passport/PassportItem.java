@@ -14,6 +14,7 @@ public class PassportItem {
     String residencia;
     GregorianCalendar data_nasc;
     String local_nasc;
+    String genero;
     String mae;
     String pai;
     String estado_civil;

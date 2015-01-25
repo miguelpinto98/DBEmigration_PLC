@@ -197,6 +197,18 @@ public class PassportBaseListener implements PassportListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterGender(@NotNull PassportParser.GenderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGender(@NotNull PassportParser.GenderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBirthDate(@NotNull PassportParser.BirthDateContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -233,18 +245,6 @@ public class PassportBaseListener implements PassportListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParentMother(@NotNull PassportParser.ParentMotherContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParentMother(@NotNull PassportParser.ParentMotherContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCountryAndCity(@NotNull PassportParser.CountryAndCityContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -252,6 +252,18 @@ public class PassportBaseListener implements PassportListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCountryAndCity(@NotNull PassportParser.CountryAndCityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParentMother(@NotNull PassportParser.ParentMotherContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParentMother(@NotNull PassportParser.ParentMotherContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
