@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/miguelpinto98/schematron.git
-  revision: 4ff85ce96ba030a3a64978b37e70bf5d5e7e16fd
-  specs:
-    schematron (1.1.3)
-      libxml-ruby (>= 2.7.0)
-      libxslt-ruby (>= 1.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,9 +63,6 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.1)
-    libxml-ruby (2.8.0)
-    libxslt-ruby (1.1.1)
-      libxml-ruby (>= 2.4.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -187,7 +176,6 @@ DEPENDENCIES
   rmagick
   rubyzip
   sass-rails (~> 4.0.3)
-  schematron!
   sdoc (~> 0.4.0)
   simple_enum
   slim

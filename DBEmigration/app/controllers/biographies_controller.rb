@@ -43,6 +43,7 @@ class BiographiesController < ApplicationController
       if xsd.valid? doc
         if sch.validate(sch_xml).size == 0
           #Ciclo Por Registo
+          i = r.xpath("count(//registo)")
           doc.xpath('//registo').each do |r|
             bio = Biography.new
             bio.date = r.xpath("@data").text
@@ -86,7 +87,7 @@ class BiographiesController < ApplicationController
 
     respond_to do |format|
       if @flag
-        flash[:notice] = "Biografias inseridas com sucesso!"
+        flash[:notice] = "#{i} Biografias inseridas com sucesso."
         format.html { redirect_to action: 'index' }
       else
         flash[:notice] = " Ficheiro introduzido inválido!"
@@ -114,7 +115,7 @@ class BiographiesController < ApplicationController
   def destroy
     @biography.destroy
     respond_to do |format|
-      format.html { redirect_to biographies_url, notice: 'Biografia removida com sucesso!' }
+      format.html { redirect_to biographies_url, notice: 'Biografia removida com sucesso.' }
       format.json { head :no_content }
     end
   end

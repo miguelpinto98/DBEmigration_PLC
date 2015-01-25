@@ -18,11 +18,14 @@ p#notice = notice
         .widget-box
           .widget-title
             span.icon
-              i.fa.fa-align-justify
+              i.fa.fa-camera-retro
             h5 Fotografia
             .buttons
               button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
-              = link_to 'Remover', @photo, class: 'btn', data: {:confirm => 'Tem a certeza?'}, :method => :delete
+
+              = link_to @photo, class: 'btn', data: {:confirm => 'Tem a certeza?'}, :method => :delete
+                i.fa.fa-minus-square
+                span.text    Remover
               
           .widget-content.nopadding
             br

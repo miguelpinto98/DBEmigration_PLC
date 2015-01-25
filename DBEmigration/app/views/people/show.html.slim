@@ -1,27 +1,129 @@
 p#notice = notice
+#content-header.mini
+  h1 Pessoa
 
-p
-  strong Name:
-  = @person.name
-p
-  strong Nasc:
-  = @person.nasc
-p
-  strong Habil:
-  = @person.habil
-p
-  strong Gender cd:
-  = @person.gender_cd
-p
-  strong Civil cd:
-  = @person.civil_cd
-p
-  strong Local nasc:
-  = @person.local_nasc
-p
-  strong Local work:
-  = @person.local_work
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  = link_to people_path, title: 'Voltar à Página das Pessoas', class: 'tip-bottom'
+    i.fa.fa-user
+    | Pessoas
+  a.current
+    = @person.name
 
-= link_to 'Edit', edit_person_path(@person)
-'|
-= link_to 'Back', people_path
+
+.container-fluid
+  .row
+      .col-xs-12.col-sm-6
+        .widget-box
+          .widget-title
+            span.icon
+              i.fa.fa-user
+            h5 Informação Pessoal
+            .buttons
+              button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
+
+              = link_to @person, class: 'btn', data: {:confirm => 'Tem a certeza?'}, :method => :delete
+                i.fa.fa-minus-square
+                span.text    Remover
+              
+          .widget-content.nopadding
+            br
+            .row
+              .col-xs-6
+                p
+                  - unless @person.name == nil
+                    strong Nome:  
+                    = @person.name
+                p
+                  - unless @person.nasc == nil
+                    strong Nascimento:  
+                    = @person.nasc.strftime("%Y-%m-%d") 
+                p
+                  - unless @person.habil == nil
+                    strong Habilitações: 
+                    = @person.habil
+                p
+                  - unless @person.gender_cd == nil
+                    strong Género: 
+                    - case @person.gender 
+                      - when :female 
+                        = "Feminino"
+                      - when :male
+                        = "Masculino"
+                      - else
+                        = "Não definido"
+                      end
+                p
+                  - unless @person.civil_cd == nil
+                    strong Estado civil: 
+                    - case @person.civil
+                      - when :single
+                        = "Solteiro"
+                      - when :married
+                        = "Casado"
+                      - when :divorced
+                        = "Divorciado"
+                      - when :widowed
+                        = "Viúvo"
+                      - else
+                        = "Não definido"
+                      end
+                p
+                  - unless @local_nasc == nil
+                    strong Local de nascimento: 
+                    = @person.local.desc
+                p
+                  - unless @local_work == nil
+                    strong Local de trabalho: 
+                    = @person.local.desc
+      .col-xs-12.col-sm-4
+        .widget-box
+          .widget-title
+            span.icon
+              i.fa.fa-camera-retro
+            h5 Fotografias
+          .widget-content.nopadding
+            ul.recent-posts
+              - @person.photos.each do |p|
+                li
+                  = link_to p
+                    .user-thumb
+                      = image_tag(p.path.url(:thumb), :alt => "Foto", :width => "40", :height => "40")
+                    .article-post
+                      span.user-info Criado: #{p.created_at.strftime("%Y-%m-%d %H:%M")}
+                      p = p.fact.truncate(60)
+
+      .col-xs-12.col-sm-6
+        .widget-box
+          .widget-title
+            span.icon
+              i.fa.fa-book
+            h5 Biografias
+          .widget-content.nopadding
+            ul.recent-posts
+              - @person.biographies.each do |b|
+                li
+                  = link_to p
+                    span.user-info Criado: #{b.created_at.strftime("%Y-%m-%d %H:%M")}
+                    p = b.original.truncate(80)
+
+      .col-xs-12.col-sm-4
+        .widget-box
+          .widget-title
+            span.icon
+              i.fa.fa-plane
+            h5 Passaportes
+          .widget-content.nopadding
+            ul.recent-posts
+              - @person.passports.each do |p|
+                li
+                  = link_to p
+                    span.user-info Submissão: #{p.date.strftime("%Y-%m-%d %H:%M")}
+                    span.user-info Destino: #{p.date.strftime("%Y-%m-%d %H:%M")}
+                    p = p.process.truncate(80)
+      .row
+        .col-xs-12
+          = link_to 'Retroceder', home_path, class: 'btn btn-default btn-xs'
+  br
