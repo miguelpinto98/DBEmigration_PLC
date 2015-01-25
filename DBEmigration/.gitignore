@@ -53,6 +53,7 @@ bower.json
 
 ### Ruby ###
 *.gem
+Gemfile.lock
 *.rbc
 /.config
 /coverage/

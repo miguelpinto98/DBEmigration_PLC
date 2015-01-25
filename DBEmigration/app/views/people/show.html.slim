@@ -120,9 +120,10 @@ p#notice = notice
               - @person.passports.each do |p|
                 li
                   = link_to p
-                    span.user-info Submissão: #{p.date.strftime("%Y-%m-%d %H:%M")}
-                    span.user-info Destino: #{p.date.strftime("%Y-%m-%d %H:%M")}
-                    p = p.process.truncate(80)
+                    span.user-info Submissão: #{p.submitted.strftime("%Y-%m-%d")}
+                    br
+                    span.user-info Destino: #{p.local.desc}
+                    p = p.process.truncate(45)
       .row
         .col-xs-12
           = link_to 'Retroceder', home_path, class: 'btn btn-default btn-xs'
