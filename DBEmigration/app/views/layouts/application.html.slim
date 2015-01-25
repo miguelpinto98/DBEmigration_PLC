@@ -11,7 +11,9 @@ html
     #wrapper
       #header
         h1
-          a href="#"  Unicorn Admin
+          = link_to 'Unicorn Admin', home_path
+        = link_to  home_path, id: "menu-trigger"
+          i.fa.fa-align-justify
 
       #user-nav
 
