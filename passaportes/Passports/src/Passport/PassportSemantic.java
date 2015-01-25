@@ -88,8 +88,8 @@ public class PassportSemantic {
                     .append(TAB).append("# criar o casamento entre o pai e a mae da pessoa se nao existir\n")
                     .append(TAB).append("casamento = Marriage.where(husband: pai, wife: mae).empty? ? Marriage.create!(husband: pai, wife: mae) : Marriage.where(husband: pai, wife: mae).first\n")
                     .append(TAB).append("\n")
-                    .append(TAB).append("# adicionar a pessoa ao casamento.children\n")
-                    .append(TAB).append("casamento.children << pessoa\n")
+                    .append(TAB).append("# adicionar a pessoa ao casamento.children caso ainda não esteja\n")
+                    .append(TAB).append("casamento.children << pessoa unless casamento.children.include? pessoa\n")
                     .append(TAB).append("\n");
 
             if( p.conjugue != null && !p.conjugue.isEmpty() ) {
@@ -116,7 +116,8 @@ public class PassportSemantic {
                         .append(TAB).append("# -adicionar a pessoa ao casamento.children\n");
 
                 for (String f : p.filhos)
-                    s.append(TAB).append("casamento.children << (Person.where(name: '").append(f).append("').empty? ? Person.create!(name: '").append(f).append("') : Person.where(name: '").append(f).append("').first)\n");
+                    s.append(TAB).append("filho = Person.where(name: '\").append(f).append(\"').empty? ? Person.create!(name: '\").append(f).append(\"') : Person.where(name: '\").append(f).append(\"').first\n")
+                            .append(TAB).append("casamento.children << filho unless casamento.children.include? filho \n");
             }
 
             s.append(TAB).append("\n")

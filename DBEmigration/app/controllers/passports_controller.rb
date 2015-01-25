@@ -32,8 +32,9 @@ class PassportsController < ApplicationController
     path = params[:passport]['p_file'].path
 
     #chamar o java com o json
-    java_out = ''
+    @erros = Array.new
     java_err = Array.new
+    java_out = ''
     status = POpen4::popen4( "java -jar lib/java/Passports.jar #{path}" ) do |stdout, stderr, stdin|
       java_out = stdout.read
       java_err = stderr.readlines
@@ -46,54 +47,28 @@ class PassportsController < ApplicationController
       File.open("#{path}.rb", 'w') do |f|
         f.write java_out
       end
+
       begin
         load("#{path}.rb")
       rescue Exception => e
         puts "Exception ao correr o ficheiro ruby gerado pelo java"
         puts "[message]\n#{e.message}"
         print "[minimal-backtrace]\n" + e.backtrace.select{|e|e.include?('RackMultipart')}.join("\n")
-
+        @erros << 'Ocorreu um erro ao executar a script ruby gerada. Ver o log para detalhes'
       end
-
-=begin
-      puts "rails r #{path}.rb"
-
-      status = POpen4::popen4( "rails r #{path}.rb" ) do |stdout, stderr, stdin|
-        ruby_out = stdout.read
-        ruby_err = stderr.read
-      end
-
-      puts status.exitstatus
-
-      puts 'ruby err'
-      puts ruby_err
-      puts 'ruby out'
-      puts ruby_out
-=end
     else
-      #TODO: mostrar erros do java
+      @erros = java_err
     end
-
-    
-
-    #obter output + stderr
-    #  se tem output, executar
-    #    se deu erro, mostrar erro
-    #  senao mostrar stderr, um erro por linha
 
     respond_to do |format|
-      format.html { render :text => "dummy"}
+      if @erros.empty?
+        format.html { redirect_to pass_path, notice: 'Passports were successfully created.' }
+        format.json { render :show, status: :created, location: pass_path }
+      else
+        format.html { render :new }
+        format.json { render json: @passport.errors, status: :unprocessable_entity }
+      end
     end
-
-    #respond_to do |format|
-    #  if @passport.save
-    #    format.html { redirect_to pass_path, notice: 'Passport was successfully created.' }
-    #    format.json { render :show, status: :created, location: @passport }
-    #  else
-    #    format.html { render :new }
-    #    format.json { render json: @passport.errors, status: :unprocessable_entity }
-    #  end
-    #end
   end
 
   # PATCH/PUT /passports/1
