@@ -2,8 +2,10 @@
   {
     "processo": {
       "ano" : 1234 ,
-      "numero" : "zAB1a3",
-      "camara" : "as df"
+      "numero" : "733/66-266B5",
+      "passaporte" : "zAB1a3",
+      "camara" : "as df",
+      "submetido" : "1946-6-10"
     },
     "requerente": {
       "nome" : "Alberto Miranda",
@@ -11,6 +13,7 @@
       "residencia" : "Rua da fonte, n5",
       "data nasc" : "1924-12-25",
       "local nasc" : "Santarém",
+      "genero" : "masculino",
       "pais" : {
         "pai": "Joaquim Miranda",
         "mãe": "Alexandra Pereira"

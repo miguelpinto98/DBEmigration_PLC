@@ -4,43 +4,43 @@ JSON-like DSL to define passports:
 """""""""""""""""""""""""""""""""'
 
 [
-    {
-        "processo": {
-            "ano" : 1234 ,
-            "numero" : "AB123",
-            "camara" : "asdf"
-        },
-        "requerente": {
-            "nome" : "Alberto Miranda",
-            "bi" : "123456789",
-            "residencia" : "Rua da fonte, n5",
-            "data nasc" : "1924-12-25",
-            "local nasc" : "Santarém",
-            "pais" : {
-                "pai": "Joaquim Miranda",
-                "mãe": "Alexandra Pereira"
-            },
-            "estado civil" : "casado",
-            "conjugue" : "Mafalda Freitas",
-            "filhos" : [
-                "Afonso Miranda",
-                "Tataiana Freitas",
-                "Ernesto Freitas"
-            ],
-            "profissao" : "Jornalista",
-            "local trabalho" : "Porto",
-            "habilitacoes" : "12º ano"
-        },
-        "destino" : {
-            "país e cidade" : "Paris, França",
-            "data partida" : "1952-09-11",
-            "profissao" : "Jornalista",
-            "local trabalho" : "Paris, França"
-        }
+  {
+    "processo": {
+      "ano" : 1234 ,
+      "numero" : "733/66-266B5",
+      "passaporte" : "zAB1a3",
+      "camara" : "as df",
+      "submetido" : "1946-6-10"
     },
-    {
-        ...
+    "requerente": {
+      "nome" : "Alberto Miranda",
+      "bi" : "123456789",
+      "residencia" : "Rua da fonte, n5",
+      "data nasc" : "1924-12-25",
+      "local nasc" : "Santarém",
+      "genero" : "masculino",
+      "pais" : {
+        "pai": "Joaquim Miranda",
+        "mãe": "Alexandra Pereira"
+      },
+      "estado civil" : "casado",
+      "conjugue" : "Mafalda Freitas",
+      "filhos" : [
+        "Afonso Miranda",
+        "Tataiana Freitas",
+        "Ernesto Freitas"
+      ],
+      "profissao" : "Jornalista",
+      "local trabalho" : "Porto",
+      "habilitacoes" : "12º ano"
+    },
+    "destino" : {
+      "país e cidade" : "Paris, França",
+      "data partida" : "1952-09-11",
+      "profissao" : "Jornalista",
+      "local trabalho" : "Paris, França"
     }
+  }
 ]
 
 */
