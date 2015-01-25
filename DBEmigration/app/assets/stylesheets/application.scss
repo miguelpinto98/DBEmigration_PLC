@@ -16,7 +16,10 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "unicorn";
+@import "dataTables/jquery.dataTables";
+@import "select2";
 @import "font-awesome";
-@import "biographies";
 @import "jquery-ui";
+@import "unicorn";
+@import "biographies";
+@import "passports";
