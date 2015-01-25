@@ -12,8 +12,9 @@ class Person < ActiveRecord::Base
   
   belongs_to :profession
 
-  has_one :localNasc, :foreign_key => :local_nasc
-  has_one :localWork, :foreign_key => :local_work
+  belongs_to :residence, :foreign_key => :residence, class_name: 'Local'
+  belongs_to :localNasc, :foreign_key => :local_nasc, class_name: 'Local'
+  belongs_to :localWork, :foreign_key => :local_work, class_name: 'Local'
 
   # child_entry de uma pessoa é o casamento que a originou (com classe Child)
   has_one :child_entry, class_name: 'Child', inverse_of: :person
