@@ -2,7 +2,9 @@
 <report 
     xmlns="http://elpri.di.uminho.pt/report"
     xmlns:p="http://elpri.di.uminho.pt/paragraph"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    xmlns:l="http://elpri.di.uminho.pt/list"
+    xmlns:img="http://elpri.di.uminho.pt/image"
+    xmlns:t="http://elpri.di.uminho.pt/table">
     <front-matter>
         <meta>
             <title>Processamento de Linguagens e Conhecimento</title>
