@@ -78,6 +78,22 @@ p#notice = notice
                   - unless @local_work == nil
                     strong Local de trabalho: 
                     = @person.local.desc
+                p 
+                  - unless @person.marriage == nil
+                    strong Filhos: 
+                    ul
+                      - @person.children.each do |p|
+                        li
+                          = link_to p.child.person.name, p.child.person
+                p
+                  - unless @person.father == nil
+                    strong Pai: 
+                    = link_to @person.father, @person.father.name
+                p
+                  - unless @mother == nil
+                    strong Mãe:  
+                    = link_to @person.mother, @person.mother.name
+
         .widget-box
           .widget-title
             span.icon
