@@ -24,10 +24,10 @@
     tbody
       - @locals.each do |local|
         tr
-          td = local.description
+          td = local.desc
           td = link_to 'Show', local
-          td = link_to 'Edit', edit_local_path(local)
-          td = link_to 'Destroy', local, data: {:confirm => 'Are you sure?'}, :method => :delete
+          /td = link_to 'Edit', edit_local_path(local)
+          /td = link_to 'Destroy', local, data: {:confirm => 'Are you sure?'}, :method => :delete
 
   br
 
