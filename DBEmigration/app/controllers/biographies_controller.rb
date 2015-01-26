@@ -43,7 +43,7 @@ class BiographiesController < ApplicationController
       if xsd.valid? doc
         if sch.validate(sch_xml).size == 0
           #Ciclo Por Registo
-          i = r.xpath("count(//registo)")
+          i = doc.xpath("count(//registo)")
           doc.xpath('//registo').each do |r|
             bio = Biography.new
             bio.date = r.xpath("@data").text
