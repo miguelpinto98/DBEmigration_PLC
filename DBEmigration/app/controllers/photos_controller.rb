@@ -53,7 +53,7 @@ class PhotosController < ApplicationController
           end
         end
       end
-    
+
       xsd = Nokogiri::XML::Schema(File.read(xsdfile))
       doc = Nokogiri::XML(@xmlfile)
 
@@ -72,22 +72,27 @@ class PhotosController < ApplicationController
           photo = Photo.new
           #path
           ficheiro = doc.xpath("//foto[#{i}]/@ficheiro").text
-          f = File.open(images[ficheiro])
-          photo.path = f
-          f.close
-          
+
+          if images[ficheiro] != nil
+            f = File.open(images[ficheiro])
+            photo.path = f
+            f.close
+          else
+            f = ""
+          end
+
           #date
           quando = doc.xpath("//foto[#{i}]/quando/@data").text
           photo.date = quando unless quando.empty?
-          
+
           #fact
           facto = (doc.xpath("//foto[#{i}]/facto")).text
           photo.fact = facto unless facto.empty?
-          
+
           #caption
           legenda = (doc.xpath("//foto[#{i}]/legenda")).text
           photo.caption = legenda unless legenda.empty?
-          
+
           #local
           onde = (doc.xpath("//foto[#{i}]/onde")).text
           if !onde.empty?
@@ -98,7 +103,7 @@ class PhotosController < ApplicationController
             end
           end
 
-          #people 
+          #people
           quem = (doc.xpath("//foto[#{i}]/quem")).text
           nomes = quem.split(';').map(&:strip)
           nomes.each do |n|
