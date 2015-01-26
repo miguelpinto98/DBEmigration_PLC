@@ -116,7 +116,7 @@ public class PassportSemantic {
                         .append(TAB).append("# -adicionar a pessoa ao casamento.children\n");
 
                 for (String f : p.filhos)
-                    s.append(TAB).append("filho = Person.where(name: '\").append(f).append(\"').empty? ? Person.create!(name: '\").append(f).append(\"') : Person.where(name: '\").append(f).append(\"').first\n")
+                    s.append(TAB).append("filho = Person.where(name: '").append(f).append("').empty? ? Person.create!(name: '").append(f).append("') : Person.where(name: '").append(f).append("').first\n")
                             .append(TAB).append("casamento.children << filho unless casamento.children.include? filho \n");
             }
 
