@@ -5,17 +5,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <front-matter>
         <meta>
-            <title></title>
-            <subttitle></subttitle>
+            <title>Processamento de Linguagens e Conhecimento</title>
+            <subttitle>Emigração Base de Dados de </subttitle>
             <authors>
                 <author>
-                    <name></name>
-                    <identifier></identifier>
+                    <name>Bruno Ferreira</name>
+                    <identifier>a61055</identifier>
                     <email></email>
                     <photo path=""/>
                 </author>
             </authors>
-            <date></date>
+            <date>2015-01-25</date>
             <affil></affil>
         </meta>
         <acknowledgements>
@@ -35,15 +35,6 @@
         </section>
     </body>
     <back-matter>
-        <bibliography>
-            <bibitem id="">
-                <title></title>
-                <authors>
-                    <author></author>
-                </authors>
-                <date></date>
-            </bibitem>
-        </bibliography>
         <appendix-list>
             <appendix>
                 <title></title>
