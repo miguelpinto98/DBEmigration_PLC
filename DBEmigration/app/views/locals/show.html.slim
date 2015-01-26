@@ -1,9 +1,49 @@
-p#notice = notice
+#content-header.mini
+  h1 Local
 
-p
-  strong Description:
-  = @local.description
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  = link_to local_path, title: 'Voltar à Página das Locais', class: 'tip-bottom'
+    i.fa.fa-camera-retro
+    | Locais
+  a.current
+    = @local.desc
 
-= link_to 'Edit', edit_local_path(@local)
-'|
-= link_to 'Back', locals_path
+.container-fluid
+
+  .row
+    .col-xs-12.col-sm-4
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-camera-retro
+          h5 Fotos
+        .widget-content.nopadding
+          ul.recent-posts
+            - @local.photos.each do |p|
+              li
+                = link_to p
+                  .user-thumb
+                    = image_tag(p.path.url(:thumb), :alt => "Foto", :width => "40", :height => "40")
+                  .article-post
+                    span.user-info Criado: #{p.created_at.strftime("%Y-%m-%d %H:%M")}
+                    p = p.fact.truncate(60)
+    .col-xs-12.col-sm-4
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-newspaper-o
+          h5 Biografias
+        .widget-content.nopadding
+          ul.recent-posts
+            - @local.biographies.each do |b|
+              li
+                = link_to '#', onclick: "getRegisto(#{b.id});"
+                  span.user-info Criado: #{b.created_at.strftime("%Y-%m-%d %H:%M")}
+                  p = b.original.truncate(80)
+  .row
+        .col-xs-12
+          = link_to 'Retroceder', home_path, class: 'btn btn-default btn-xs'
+  br

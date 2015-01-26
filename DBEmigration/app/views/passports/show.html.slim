@@ -38,7 +38,7 @@
                     dt Data de nascimento:
                     dd = @passport.person.nasc
                     dt Local de residência:
-                    dd = @passport.person.residence.desc
+                    dd = link_to @passport.person.residence.desc, @passport.person.residence
                     dt Estado civil:
                     - case @passport.person.civil
                       - when :single
@@ -86,7 +86,7 @@
                   dl.dl-horizontal
                     br
                     dt País/Cidade:
-                    dd = @passport.local.desc
+                    dd = link_to @passport.local.desc, @passport.local
                     dt Data prevista de saída:
                     dd = @passport.departure.strftime("%Y-%m-%d")
                     dt Profissão futura:

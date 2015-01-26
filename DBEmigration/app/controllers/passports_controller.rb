@@ -62,7 +62,7 @@ class PassportsController < ApplicationController
 
     respond_to do |format|
       if @erros.empty?
-        format.html { redirect_to pass_path, notice: 'Passports were successfully created.' }
+        format.html { redirect_to pass_path, notice: 'Passportes inseridos com sucesso.' }
         format.json { render :show, status: :created, location: pass_path }
       else
         flash[:notice] = @erros.join("\n")

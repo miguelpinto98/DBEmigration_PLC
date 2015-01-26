@@ -60,7 +60,7 @@ p#notice = notice
                   - unless @photo.local == nil
                     p 
                       strong Local: 
-                      = @photo.local.desc 
+                      = link_to @photo.local.desc, @photo.local
                   p 
                     strong Pessoas: 
                     ul
