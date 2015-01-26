@@ -69,7 +69,7 @@
                 <xs:element name="body">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="section">
+                            <xs:element name="section" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="title" type="xs:string"/>
@@ -85,6 +85,8 @@
                                                   <xs:choice maxOccurs="unbounded">
                                                   <xs:element ref="p:p"/>
                                                   <xs:group ref="l:list"/>
+                                                  <xs:element ref="table:table"/>
+                                                  <xs:element ref="img:image"/>
                                                   <xs:element name="subsubsection">
                                                   <xs:complexType>
                                                   <xs:sequence>
@@ -92,6 +94,8 @@
                                                   <xs:choice maxOccurs="unbounded">
                                                   <xs:element ref="p:p"/>
                                                   <xs:group ref="l:list"/>
+                                                  <xs:element ref="table:table"/>
+                                                  <xs:element ref="img:image"/>
                                                   </xs:choice>
                                                   </xs:sequence>
                                                   </xs:complexType>

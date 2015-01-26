@@ -292,19 +292,19 @@
                 <p:p>O arquivo fotográfico contém um conjunto de ficheiros de texto que descrevem fotografias, onde é possível encontrar emigrantes. Estas descrições estão anotadas em formato <p:i>XML</p:i>, como já foi referido anteriormente.</p:p>
                 <p:p><p:b>Exemplo de um dataset de fotos:</p:b></p:p>
                 <p:p><p:code>
-&lt;fotos&gt;
-    &lt;foto ficheiro="022-F-01.jpg"&gt;
-        &lt;quando data="1961-01-15"/&gt;
-        &lt;quem&gt;Ana de Lourdes de Oliveira; Antonio Oliveira Machado&lt;/quem&gt;
-        &lt;facto&gt; Os noivos cortam o bolo de casamento&lt;/facto&gt;
-    &lt;/foto&gt;
-&lt;foto ficheiro="022-F-02.jpg"&gt;
-    &lt;onde&gt;Casa Machado, Afurada, Vila Nova de Gaia&lt;/onde&gt;
-        &lt;quando data="2000-09-12"/&gt;
-        &lt;quem&gt;Ana de Lourdes de Oliveira; Antonio Oliveira Machado&lt;/quem&gt;
-        &lt;facto&gt;Antonio Machado e a sua esposa, dona Ana atras do balcão da taberna Casa Machado.&lt;/facto&gt;
-    &lt;/foto&gt;
-&lt;/fotos&gt;
+                    &lt;fotos&gt;
+                        &lt;foto ficheiro="022-F-01.jpg"&gt;
+                            &lt;quando data="1961-01-15"/&gt;
+                            &lt;quem&gt;Ana de Lourdes de Oliveira; Antonio Oliveira Machado&lt;/quem&gt;
+                            &lt;facto&gt; Os noivos cortam o bolo de casamento&lt;/facto&gt;
+                        &lt;/foto&gt;
+                    &lt;foto ficheiro="022-F-02.jpg"&gt;
+                        &lt;onde&gt;Casa Machado, Afurada, Vila Nova de Gaia&lt;/onde&gt;
+                            &lt;quando data="2000-09-12"/&gt;
+                            &lt;quem&gt;Ana de Lourdes de Oliveira; Antonio Oliveira Machado&lt;/quem&gt;
+                            &lt;facto&gt;Antonio Machado e a sua esposa, dona Ana atras do balcão da taberna Casa Machado.&lt;/facto&gt;
+                        &lt;/foto&gt;
+                    &lt;/fotos&gt;
                 </p:code></p:p>
                 <p:p>Foi-nos fornecido pela equipa docente, um <p:i>DTD</p:i> onde podemos ver como o <p:i>XML</p:i> está anotado e compreender a sua estrutura. Também nos ajudou, de maneira a poder construir exemplos de fotos (<p:i>datasets</p:i>) para depois inserir na aplicação, que faz parte dos requisitos do trabalho.</p:p>
                 <p:p>Através da análise do <p:i>DTD</p:i>, conseguimos verificar que apenas o elemento <p:b>“quem”</p:b> e o atributo <p:b>“ficheiro”</p:b> são obrigatórios. Depois de alguma discussão entre o grupo e o professor, chegamos à conclusão que o elemento <p:b>“autor”</p:b> não era necessário tratar neste problema, nem guardar essa informação na base de dados relacional. Esse elemento continua a estar presente nos ficheiros, mas não será tido em conta. Todos os outros elementos, achamos relevantes referir e guardar essa informação.</p:p>
