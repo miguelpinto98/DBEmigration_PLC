@@ -62,18 +62,87 @@
             informa&ccedil;&otilde;es sobre os emigrantes do Arquivo Municipal de Fafe.
          </p>
                  
-         <div class="col-md-12 text-center">
+         <div class="col-md-12">
             <div class="row">
                <p class="bg-danger">Table of contents</p>
+               <ul>
+                  <li><a href="#d0e81">Estrutura do Relat&oacute;rio</a></li>
+               </ul>
+               <ul>
+                  <li><a href="#d0e99">Introdu&ccedil;&atilde;o</a></li>
+                  <ul>
+                     <li><a href="#d0e104">Contextualiza&ccedil;&atilde;o</a></li>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e116">Caso de Estudo</a></li>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e197">Objetivos</a></li>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e209">Ferramentas</a></li>
+                  </ul>
+               </ul>
+               <ul>
+                  <li><a href="#d0e335">Desenvolvimento</a></li>
+                  <ul>
+                     <li><a href="#d0e340">Modela&ccedil;&atilde;o</a></li>
+                     <ul>
+                        <li><a href="#d0e351">Identifica&ccedil;&atilde;o de Entidades</a></li>
+                     </ul>
+                     <ul>
+                        <li><a href="#d0e405">Identifica&ccedil;&atilde;o dos relacionamentos entre entidades</a></li>
+                     </ul>
+                     <ul>
+                        <li><a href="#d0e486">Identifica&ccedil;&atilde;o e descri&ccedil;&atilde;o dos atributos das entidades e dos relacionamentos</a></li>
+                     </ul>
+                     <ul>
+                        <li><a href="#d0e778">Valida&ccedil;&atilde;o das rela&ccedil;&otilde;es recorrendo &agrave;s Regras de Normaliza&ccedil;&atilde;o</a></li>
+                     </ul>
+                     <ul>
+                        <li><a href="#d0e802">Esquema F&iacute;sico</a></li>
+                     </ul>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e815">Fotos</a></li>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e904">Biografias</a></li>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e1041">Passaportes</a></li>
+                  </ul>
+               </ul>
+               <ul>
+                  <li><a href="#d0e1155">Notas Finais</a></li>
+                  <ul>
+                     <li><a href="#d0e1160">Conclus&atilde;o</a></li>
+                  </ul>
+                  <ul>
+                     <li><a href="#d0e1175">Trabalho Futuro</a></li>
+                  </ul>
+               </ul>
             </div>
          </div>
-         <div class="col-md-12 text-center">
+         <div class="col-md-12">
             <div class="row">
                <p class="bg-danger">List of Figures</p>
+               <ul>
+                  <li><a href="#d0e810">Modelo F&iacute;sico da Aplica&ccedil;&atilde;o</a></li>
+               </ul>
+               <ul>
+                  <li><a href="#d0e867">Estrutura Schema Fotos</a></li>
+               </ul>
+               <ul>
+                  <li><a href="#d0e941">Estrutura do Schema das Biografias</a></li>
+               </ul>
+               <ul>
+                  <li><a href="#d0e1010">Estrutura do Schematron</a></li>
+               </ul>
             </div>
          </div>
          <hr>
-         <div class="col-md-12">
+         <div class="col-md-12"><a name="d0e81"></a>
                         
             <h2>Estrutura do Relat&oacute;rio</h2>
                         
@@ -93,10 +162,10 @@
             <p>Por fim &eacute; apresentada a Conclus&atilde;o onde o grupo faz uma aprecia&ccedil;&atilde;o cr&iacute;tica sobre o trabalho pr&aacute;tico, apontando os seus pontos
                fortes e poss&iacute;veis pontos a melhorar.
             </p>
-                    
+                    <a name="d0e99"></a>
                         
             <h2>Introdu&ccedil;&atilde;o</h2>
-                        
+                        <a name="d0e104"></a>
                             
             <h3>Contextualiza&ccedil;&atilde;o</h3>
                             
@@ -110,7 +179,7 @@
                armazenar e relacionar a informa&ccedil;&atilde;o relativa aos emigrantes do Arquivo Municipal de Fafe.
             </p>
                         
-                        
+                        <a name="d0e116"></a>
                             
             <h3>Caso de Estudo</h3>
                             
@@ -187,7 +256,7 @@
                                
             </ul>
                         
-                        
+                        <a name="d0e197"></a>
                             
             <h3>Objetivos</h3>
                             
@@ -199,7 +268,7 @@
                             
             <p>A aplica&ccedil;&atilde;o dever&aacute; garantir a persist&ecirc;ncia e consist&ecirc;ncia de dados com aux&iacute;lio de um sistema de base de dados relacional.</p>
                         
-                        
+                        <a name="d0e209"></a>
                             
             <h3>Ferramentas</h3>
                             
@@ -258,17 +327,17 @@
             <p>Para a base de dados, utiliz&aacute;mos <em>SQL</em>, mais precisamente <strong>SQLite</strong> (predefinido para ambientes de desenvolvimento <em>Ruby on Rails</em>).
             </p>
                         
-                    
+                    <a name="d0e335"></a>
                         
             <h2>Desenvolvimento</h2>
-                        
+                        <a name="d0e340"></a>
                             
             <h3>Modela&ccedil;&atilde;o</h3>
                             
             <p>Neste sec&ccedil;&atilde;o pretende-se documentar e descrever o processo de aplica&ccedil;&atilde;o de uma metodologia de desenho e arquitetura da base
                de dados que d&aacute; resposta &agrave;s necessidades da nossa aplica&ccedil;&atilde;o, <em>BD Emigra&ccedil;&atilde;o</em>.
             </p>
-                            
+                            <a name="d0e351"></a>
                                 
             <h4>Identifica&ccedil;&atilde;o de Entidades</h4>
                                 
@@ -314,7 +383,7 @@
                                    
             </dl>
                             
-                            
+                            <a name="d0e405"></a>
                                 
             <h4>Identifica&ccedil;&atilde;o dos relacionamentos entre entidades</h4>
                                 
@@ -396,7 +465,7 @@
                                    
             </dl>
                             
-                            
+                            <a name="d0e486"></a>
                                 
             <h4>Identifica&ccedil;&atilde;o e descri&ccedil;&atilde;o dos atributos das entidades e dos relacionamentos</h4>
                                 
@@ -716,7 +785,7 @@
                                    
             </ul>
                             
-                            
+                            <a name="d0e778"></a>
                                 
             <h4>Valida&ccedil;&atilde;o das rela&ccedil;&otilde;es recorrendo &agrave;s Regras de Normaliza&ccedil;&atilde;o</h4>
                                 
@@ -745,7 +814,7 @@
                                    
             </ul>
                             
-                            
+                            <a name="d0e802"></a>
                                 
             <h4>Esquema F&iacute;sico</h4>
                                 
@@ -753,12 +822,12 @@
                entidades, rela&ccedil;&otilde;es e atributos anteriores no modelo f&iacute;sico por via de tabelas e das transa&ccedil;&otilde;es existentes.
             </p>
                                 
-            <div class="col-center text-center"><img src="img/m_fisico.png"><br>Modelo F&iacute;sico da Aplica&ccedil;&atilde;o
+            <div class="col-center text-center"><a name="d0e810"></a><img src="img/m_fisico.png"><br>Modelo F&iacute;sico da Aplica&ccedil;&atilde;o
             </div>
                             
                         
             
-                        
+                        <a name="d0e815"></a>
                             
             <h3>Fotos</h3>
                             
@@ -795,7 +864,7 @@
             <p>Posto, isto desenvolvemos um <em>schema (XSD)</em> para poder validar cada dataset  antes de este ser inserido na base de dados. Na imagem a seguir podemos ver a sua estrutura.
             </p>
                             
-            <div class="col-center text-center"><img src="img/s_fotos.png"><br>Estrutura Schema Fotos
+            <div class="col-center text-center"><a name="d0e867"></a><img src="img/s_fotos.png"><br>Estrutura Schema Fotos
             </div>
                             
             <p>Depois de termos o <em>XML</em> com algumas fotos e o schema pronto, avan&ccedil;amos para a inser&ccedil;&atilde;o na base de dados. Inicialmente era pedido ao utilizador para
@@ -806,7 +875,7 @@
                <em>XML</em>).
             </p>
                         
-                        
+                        <a name="d0e904"></a>
                             
             <h3>Biografias</h3>
                             
@@ -850,7 +919,7 @@
                             
             <p>Para validar um ficheiro de texto anotado foi necess&aacute;rio recorrer a um schema,  que se apresenta na pr&oacute;xima imagem:</p>
                             
-            <div class="col-center text-center"><img src="img/s_bios.png"><br>Estrutura do Schema das Biografias
+            <div class="col-center text-center"><a name="d0e941"></a><img src="img/s_bios.png"><br>Estrutura do Schema das Biografias
             </div>
                             
             <p>Pela imagem percebemos que no in&iacute;cio e fim do ficheiro de texto &eacute; necess&aacute;rio introduzir o elemento <strong>&#8216;registos&#8217;</strong>. Sempre que se encontrar uma data &eacute; necess&aacute;rio introduzir o elemento <strong>&#8216;registo&#8217;</strong> antes e definir a data como um atributo. O texto que se seguir&aacute; &agrave; data estar&aacute; dentro do elemento <strong>&#8216;texto&#8217;</strong>. Todo o conte&uacute;do deste &uacute;ltimo elemento &eacute; misto, isto &eacute;, pode ser texto, elemento <strong>&#8216;nome&#8217;</strong> ou elemento <strong>&#8216;local&#8217;</strong>.
@@ -875,13 +944,13 @@
             <p>Como tal definimos um <strong>schematron</strong> que avalia em cada elemento <strong>&#8216;texto&#8217;</strong> se aparece o elemento <strong>&#8216;nome&#8217;</strong>. Caso um nome por registo n&atilde;o seja encontrado devolve um erro e o arquivo biogr&aacute;fico n&atilde;o &eacute; valido.
             </p>
                             
-            <div class="col-center text-center"><img src="img/sch_bios.png"><br>Estrutura do Schematron
+            <div class="col-center text-center"><a name="d0e1010"></a><img src="img/sch_bios.png"><br>Estrutura do Schematron
             </div>
                             
             <p>Pelo facto de utilizarmos a <em>framework</em> <em>Rails</em> da linguagem <em>Ruby</em> n&atilde;o definimos um processador <em>XSL</em>. Em vez disso, no m&eacute;todo create &eacute; lido um arquivo de notas biogr&aacute;ficas que depois &eacute; validado por um <em>Schema</em> e um <em>schematron</em> e atrav&eacute;s da <em>gem nokogori</em> faz o <em>xpath</em> para retirar os valores aos elementos e finalmente insere os dados na base de dados.
             </p>
                         
-                        
+                        <a name="d0e1041"></a>
                             
             <h3>Passaportes</h3>
                             
@@ -994,10 +1063,10 @@
                para c&oacute;digo <em>Ruby com Rails</em>.
             </p>
                         
-                    
+                    <a name="d0e1155"></a>
                         
             <h2>Notas Finais</h2>
-                        
+                        <a name="d0e1160"></a>
                             
             <h3>Conclus&atilde;o</h3>
                             
@@ -1017,11 +1086,30 @@
                est&aacute; satisfeito com o trabalho realizado.
             </p>
                         
-                        
+                        <a name="d0e1175"></a>
                             
             <h3>Trabalho Futuro</h3>
                             
-            <p>N&atilde;o definido</p>
+            <p>Em rela&ccedil;&atilde;o a algumas melhorias e a um poss&iacute;vel trabalho futuro que possamos desenvolver, destacam-se as seguintes:</p>
+                            
+            <ul>
+                                   
+               <li>
+                  <p>Melhorar as views, em termos de visualiza&ccedil;&atilde;o e valida&ccedil;&atilde;o de erros.</p>
+               </li>
+                                   
+               <li>
+                  <p>Adicionar &agrave; Dashboard, os locais e as profiss&otilde;es para ter uma perpectiva mais interessante sobre a informa&ccedil;&atilde;o.</p>
+               </li>
+                                   
+               <li>
+                  <p>E por n&oacute;s considerada, a melhoria que seria mais crucial neste projeto, era tornar as pessoas totalmente &uacute;nicas, atrav&eacute;s de
+                     compara&ccedil;&otilde;es com as suas rela&ccedil;&otilde;es entre pais e filhos, etc. Neste momento, o &uacute;nico elemento de distin&ccedil;&atilde;o entre as pessoas &eacute;
+                     o nome, pois &eacute; a &uacute;nica que coisa que conseguimos retirar dos arquivos biogr&aacute;ficos e fotogr&aacute;ficos.
+                  </p>
+               </li>
+                               
+            </ul>
                         
                     
          </div>
