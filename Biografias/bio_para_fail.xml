@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registos>
+  <registo data="1912-05-09">
+    <texto>
+      Vindo no vapor ≪Rugia≫, chegou há dias a esta vila o nosso presado amigo Sr. <nome>Antão Guimarães</nome> um excelente e bom rapaz nosso patrício, que no Pará faz a honra da classe a que pertence - e superiores do comércio.  É irmão dos nossos bons e distintos amigos Srs. <nome>Afonso Teixeira da Silva</nome> e <nome>Francisco Guimarães Lopes Pereira</nome>, considerados negociantes na importante praça paraense.
+    </texto>
+    <evento>Chegada à vila vindo de vapor</evento>
+  </registo>
+  <registo data="1915-09-23">
+    <texto>
+    Vindo do Pará deve chegar no próximo dia 26 a <local>Lisboa</local> o nosso amigo sr. <nome>Antão Guimarães</nome>, irmão de amigos srs. <nome>Afonso Teixeira da Silva</nome> e <nome>Francisco Guimarães Lopes Pereira</nome>. Vem de visita a sua adorada família e tratamento da sua saúde.
+    </texto>
+    <evento>Visita a sua adorada família e tratamento da sua saúde</evento>
+  </registo>
+  <registo data="1916-10-12">
+
+    <evento>Partida para o Pará</evento>
+  </registo>
+</registos>

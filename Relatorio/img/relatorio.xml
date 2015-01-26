@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report
+    xmlns="http://elpri.di.uminho.pt/report"
+    xmlns:p="http://elpri.di.uminho.pt/paragraph"
+    xmlns:l="http://elpri.di.uminho.pt/list"
+    xmlns:img="http://elpri.di.uminho.pt/image"
+    xmlns:t="http://elpri.di.uminho.pt/table">
+    <front-matter>
+        <meta>
+            <title>Processamento de Linguagens e Conhecimento</title>
+            <subtitle>Base de dados de Emigração</subtitle>
+            <authors>
+                <author>
+                    <name>Bruno Ferreira</name>
+                    <identifier>a61055</identifier>
+                    <email>a61055@alunos.uminho.pt</email>
+                    <photo path="img/bruno.jpeg"/>
+                </author>
+                <author>
+                    <name>Miguel Pinto</name>
+                    <identifier>pg27756</identifier>
+                    <email>pg27756@alunos.uminho.pt</email>
+                    <photo path="img/miguel.jpeg"/>
+                </author>
+                <author>
+                    <name>Serafim Pinto</name>
+                    <identifier>pg28506</identifier>
+                    <email>pg28506@alunos.uminho.pt</email>
+                    <photo path="img/serafim.jpeg"/>
+                </author>
+            </authors>
+            <date>2015-01-25</date>
+            <affil>Universidade do Minho</affil>
+        </meta>
+        <abstract>
+            <p:p>No âmbito do perfil Processamento de Linguagens e Conhecimento, do Mestrado em Engenharia Informática, este relatório pretende apresentar o Projecto da Base de Dados de Emigração, adotando os conhecimentos adquiridos nas unidades curriculares de Gramáticas na Compreensão de Software e Processamento e Representação de Informação, bem como as decisões que foram tomadas e as suas dificuldades.</p:p>
+            <p:p>Este trabalho tem como objetivo principal desenvolver uma solução sólida para uma Base de Dados, para guardar e relacionar informações sobre os emigrantes do Arquivo Municipal de Fafe.</p:p>
+        </abstract>
+        <toc/>
+        <lof/>
+    </front-matter>
+    <body>
+        <section>
+            <title>Estrutura do Relatório</title>
+            <p:p>Numa primeira fase, é apresentado o Resumo deste trabalho prático onde é descrito de forma bastante sucinta o problema e a motivação para encontrar a sua solução.</p:p>
+            <p:p>De seguida é apresentada a Introdução, onde é exposto o caso de estudo e onde é feita uma pequena contextualização do problema, bem como os objetivos a alcançar com este trabalho.</p:p>
+            <p:p>Seguidamente surge o Desenvolvimento onde são apresentados os capítulos que descrevem todo o processo para atingir a aplicação final. Com grande foco na modelação, e no trabalho que foi feito sobre cada arquivo, bem como as decisões que foram tomadas ao longo do projeto.</p:p>
+            <p:p>Por fim é apresentada a Conclusão onde o grupo faz uma apreciação crítica sobre o trabalho prático, apontando os seus pontos fortes e possíveis pontos a melhorar.</p:p>
+        </section>
+        <section>
+            <title>Introdução</title>
+            <subsection>
+                <title>Contextualização</title>
+                <p:p>Atualmente, a quantidade de informação disponível em formato papel ou em outro tipos de documentos sem estar suportada por uma base de dados, ainda é considerável. A tarefa de aceder e relacionar essa informação é demorada e trabalhosa. Surge portanto a necessidade de montar sistemas capazes de armazenar essa informação, de modo a estar mais simplificada e de certa forma filtrada para o que realmente é importante.</p:p>
+                <p:p>É sobre esta temática que incide este trabalho prático. Trata-se de desenhar e popular uma base de dados, com capacidade para armazenar e relacionar a informação relativa aos emigrantes do Arquivo Municipal de Fafe.</p:p>
+            </subsection>
+            <subsection>
+                <title>Caso de Estudo</title>
+                <p:p>O trabalho prático consiste no desenvolvimento de uma base dados, com o objetivo de esta ser populada com a informação extraída de vários tipos de documentos relativamente aos emigrantes. Fazem parte do arquivo três partes bem distintas:</p:p>
+                <l:ol>
+                    <l:li>
+                        <p:p><p:b>Fotografias</p:b> - Fotografias em formato digital acompanhadas de uma descrição. Esta descrição está anotada em <p:i>XML</p:i> para ser fácil de processar por um sistema. Um ficheiro pode descrever várias fotografias. As fotografias dizem respeito a acontecimentos envolvendo emigrantes.</p:p>
+                    </l:li>
+                    <l:li>
+                        <p:p><p:b>Biografias</p:b> - Também já em formato digital, mas sem qualquer anotação, registos biográficos sobre um ou mais emigrantes. Estes registos estão em formato livre (Língua Portuguesa). Retratam a vida dos emigrantes, através de notícias, comentários, etc.</p:p>
+                    </l:li>
+                    <l:li>
+                        <p:p><p:b>Passaportes</p:b> - Por fim, o arquivo de requerimento de passaportes ainda em papel, que contêm informações sobre os emigrantes (nome, data de nascimento, profissão, destino do emigrante, etc).</p:p>
+                    </l:li>
+                </l:ol>
+                <p:p>A concretização deste projeto pressupõe a realização de um conjunto etapas. A realçar:</p:p>
+                <l:ul>
+                    <l:li>
+                        <p:p>Analisar os dados fornecidos pela equipa docente e os objetivos a atingir. Perceber as questões fundamentais do domínio do problema assim como tomar decisões quanto ao desenho da base dados e principais requisitos a cumprir.</p:p>
+                    </l:li>
+                    <l:li>
+                        <p:p>Decidir que metodologias e ferramentas usar.</p:p>
+                    </l:li>
+                    <l:li>
+                        <p:p>Desenhar o modelo da base dados, de maneira a poder armazenar e relacionar toda a informação importante presente nos arquivos de forma a satisfazer os requisitos do problema. Construir modelos para dar suporte aos dados e aos seus relacionamentos (tendo em conta a <p:i>framework a usar</p:i> - <p:b>Ruby on Rails</p:b>).</p:p>
+                    </l:li>
+                    <l:li>
+                        <p:p>Analisar e trabalhar cada fonte de dados separadamente. Processando e inserindo a informação na base de dados.</p:p>
+                    </l:li>
+                    <l:li>
+                        <p:p>Construção de uma interface gráfica para mostrar informação de forma simples.</p:p>
+                    </l:li>
+                </l:ul>
+            </subsection>
+            <subsection>
+                <title>Objetivos</title>
+                <p:p>Como foi mencionado anteriormente, o foco deste projeto passa por desenvolver um sistema capaz de armazenara informação relevante relativa aos emigrantes. E através dos conhecimentos adquiridos nas aulas, processar e validar essa informação e inserir informaticamente na base de dados. Tendo em conta os requisitos deste projeto, podemos dizer que o principal objetivo é carregar a informação constante em ficheiros para uma base de dados de forma robusta e consistente.</p:p>
+                <p:p>A aplicação deverá garantir a persistência e consistência de dados com auxílio de um sistema de base de dados relacional.</p:p>
+            </subsection>
+            <subsection>
+                <title>Ferramentas</title>
+                <p:p>Para o desenvolvimento do nosso sistema precisamos de combinar um vasto conjunto de tecnologias que nos permitam simplificar o nosso trabalho. </p:p>
+                <p:p>De forma a planear e organizar o fluxo do projeto, utilizámos o <p:b>Trello</p:b>, que é uma ferramenta muito versátil que usámos para gerir tarefas.</p:p>
+                <p:p>Para gerir e desenvolver paralelamente o código utilizámos o <p:b>Github</p:b>, que é um serviço de <p:i>web hosting</p:i> para o sistema de controlo de versões <p:b>Git</p:b>. Com a ajuda desta tecnologia, é mais fácil para o grupo discutir o código produzido, melhora-lo e juntar ao código já existente.</p:p>
+                <p:p>Em relação ao desenvolvimento, utilizámos Ruby on Rails que é uma framework open-source para construção acelerada de websites, otimizada para aumentar a produtividade. Esta framework defende conceitos como DRY (Don’t Repeat Yourself), entre outras convenções para evitar problemas comuns e acelerar o desenvolvimento do website. Além disso, recorremos a gems para simplificar alguns processos, das quais se destacam:</p:p>
+                <l:ul>
+                    <l:li><p:p>validação de XML através de schemas (<p:b>Nokogiri</p:b> e <p:b>Schematron</p:b>);</p:p></l:li>
+                    <l:li><p:p>aceleração e simplificação do código para as views (<p:b>Slim</p:b>);</p:p></l:li>
+                    <l:li><p:p>upload e manipulação de imagens (<p:b>CarrierWave</p:b>, <p:b>rmagick</p:b> e <p:b>mini_magick</p:b>);</p:p></l:li>
+                    <l:li><p:p>execução do parser desenvolvido em <p:i>Java</p:i> (<p:b>POpen4</p:b>);</p:p></l:li>
+                    <l:li><p:p>extração de ficheiros zip (<p:b>rubyzip</p:b>).</p:p></l:li>
+                </l:ul>
+                <p:p>No que diz respeito a manipulação de documentos, e também para a escrita deste relatório utilizámos as tecnologias dadas nas aulas tais como <p:b>DTD</p:b>, <p:b>XSLT</p:b> e <p:b>XSD</p:b>.</p:p>
+                <p:p>Para a transformação do ficheiro de input <p:b>JSON</p:b> em <p:i>Ruby</p:i> usámos <p:i>ANTLR</p:i>, uma gramática de atributos e a liguagem de programação genérica <p:i>Java</p:i>. Para facilutar a integração de todos os componentes e construir o compilador, usámos o <p:i>IDE Intellij</p:i> com o plugin para <p:i>ANTLRv4</p:i>.</p:p>
+                <p:p>Para a base de dados, utilizámos <p:i>SQL</p:i>, mais precisamente <p:b>SQLite</p:b> (predefinido para ambientes de desenvolvimento <p:i>Ruby on Rails</p:i>).</p:p>
+            </subsection>
+        </section>
+        <section>
+            <title>Desenvolvimento</title>
+            <subsection>
+                <title>Modelação</title>
+                <p:p>Neste secção pretende-se documentar e descrever o processo de aplicação de uma metodologia de desenho e arquitetura da base de dados que dá resposta às necessidades da nossa aplicação, <p:i>BD Emigração</p:i>.</p:p>
+                <subsubsection>
+                    <title>Identificação de Entidades</title>
+                    <p:p>Após a análise dos requisitos pretendidos para o projeto verificamos que era imprescindível haver as seguintes entidades:</p:p>
+                    <l:dl>
+                        <l:dt>Foto</l:dt>
+                        <l:dd><p:p>Entidade que representa todas as fotos existentes na aplicação.</p:p></l:dd>
+                        <l:dt>Biografia</l:dt>
+                        <l:dd><p:p>Entidade que incluí todas as biografias de uma ou mais pessoas.</p:p></l:dd>
+                        <l:dt>Passaporte</l:dt>
+                        <l:dd><p:p>Entidade que agrega todos os requerimentos de pedidos de passaporte dos emigrantes.</p:p></l:dd>
+                        <l:dt>Pessoa</l:dt>
+                        <l:dd><p:p>Entidade que representa todos os emigrantes existentes no sistema.</p:p></l:dd>
+                        <l:dt>Local</l:dt>
+                        <l:dd><p:p>Entidade que agrega todos os locais em que uma pessoa já foi identificada.</p:p></l:dd>
+                        <l:dt>Profissão</l:dt>
+                        <l:dd><p:p>Esta entidade agrega todas as profissões quem um determinado emigrante já exerceu.</p:p></l:dd>
+                    </l:dl>
+                </subsubsection>
+                <subsubsection>
+                    <title>Identificação dos relacionamentos entre entidades</title>
+                    <p:p>Depois de identificadas as principais entidades do sistema é necessário perceber quais as relações existentes entre cada entidade.</p:p>
+                    <l:dl>
+                        <l:dt>Pessoa(N) - tem - Foto(M)</l:dt>
+                        <l:dd><p:p>Este relacionamento traduz o facto de um emigrante poder aparecer em várias fotos em momentos diferentes, e ao mesmo tempo, uma foto estar associada a várias pessoas.</p:p></l:dd>
+                        <l:dt>Pessoa(N) - tem - Biografia(M)</l:dt>
+                        <l:dd><p:p>Uma pessoa pode estar associada a um ou vários registos biográficos no sistema, da mesma forma, que um registo biográfico pode referenciar uma ou várias pessoas.</p:p></l:dd>
+                        <l:dt>Pessoa(1) - requisita - Passaporte(N)</l:dt>
+                        <l:dd><p:p>Relacionamento que dá conta que um emigrante pode ter requisitado vários passaportes de emigração.</p:p></l:dd>
+                        <l:dt>Foto(N) - pode ter -  Local(1)</l:dt>
+                        <l:dd><p:p>Uma foto pode ter identificado o local onde esta foi tirada. Cada local poder ser apresentado em várias fotos no sistema.</p:p></l:dd>
+                        <l:dt>Biografia(N) - pode ter -  Local(1)</l:dt>
+                        <l:dd><p:p>Cada registo biográfico pode apresentar, ou não, o local a que está associado. Já os locais podem estar identificados em várias fotos.</p:p></l:dd>
+                        <l:dt>Passaporte(N) - com destino a -  Local(1)</l:dt>
+                        <l:dd><p:p></p:p></l:dd>
+                        <l:dt>Passaporte(N) - com local de trabalho em  -  Local(1)</l:dt>
+                        <l:dd><p:p>Em cada requisição de passaporte o emigrante identifica o local para onde se irá deslocar e em algumas situações o local de trabalho. Já o local pode estar associado a vários passaportes.</p:p></l:dd>
+                        <l:dt>Pessoa(N) - nasceu em - Local(1)</l:dt>
+                        <l:dd><p:p>Como na relação anterior um local identifica o local de nascimento de uma pessoa. Já o local pode estar associado a várias pessoas.</p:p></l:dd>
+                        <l:dt>Pessoa(1) - está num - Casamento(N)</l:dt>
+                        <l:dd><p:p>Uma pessoa está associado a um ou vários casamentos. Assim os casamentos estão associados a “duas” pessoas do sistema.</p:p></l:dd>
+                        <l:dt>Casamento(1) - tem - Filho(N)</l:dt>
+                        <l:dd><p:p>Como partimos do princípio que só existem filhos se uma pessoa estiver num casamento, serve esta relação para representar quantos pessoas(filhos) existem num casamento.</p:p></l:dd>
+                    </l:dl>
+                </subsubsection>
+                <subsubsection>
+                    <title>Identificação e descrição dos atributos das entidades e dos relacionamentos</title>
+                    <l:ul>
+                        <l:li><p:p>Pessoa</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Name (Nome)</p:p></l:li>
+                                <l:li><p:p>BI (Bilhete de identidade)</p:p></l:li>
+                                <l:li><p:p>Nasc (Data de nascimento)</p:p></l:li>
+                                <l:li><p:p>Habil (Habilitações)</p:p></l:li>
+                                <l:li><p:p>Gender (Género)</p:p></l:li>
+                                <l:li><p:p>Civil (Estado civil)</p:p></l:li>
+                                <l:li><p:p>Local_nasc (Local de nascimento)</p:p></l:li>
+                                <l:li><p:p>Local_work (Local de trabalho)</p:p></l:li>
+                                <l:li><p:p>Profession (Profissão atual)</p:p></l:li>
+                                <l:li><p:p>Residence (Local de residência)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Foto</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Path (Localização do ficheiro)</p:p></l:li>
+                                <l:li><p:p>Date (Data do momento em que a foto foi tirada)</p:p></l:li>
+                                <l:li><p:p>Fact (Facto que apresenta o motivo em que a fotografia foi tirada)</p:p></l:li>
+                                <l:li><p:p>Caption (Explica o enquadramento em que foi retirada a foto)</p:p></l:li>
+                                <l:li><p:p>Local (onde a foto foi tirada)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Biografia</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Event (Evento, caso exista, associado ao registo biográfico)</p:p></l:li>
+                                <l:li><p:p>Original (texto original do registo sem anotações)</p:p></l:li>
+                                <l:li><p:p>Date (data do acontecimento)</p:p></l:li>
+                                <l:li><p:p>Local (caso exista)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Passaporte</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Process (Número do processo)</p:p></l:li>
+                                <l:li><p:p>Number (Número do passaporte)</p:p></l:li>
+                                <l:li><p:p>Year (Ano da requisição)</p:p></l:li>
+                                <l:li><p:p>Municipio (Câmara Municipal, onde requisição foi efetuada)</p:p></l:li>
+                                <l:li><p:p>Submitted (Data de envio da requisição)</p:p></l:li>
+                                <l:li><p:p>Profession (Profissão, no país de destino)</p:p></l:li>
+                                <l:li><p:p>Local (Destino, país/cidade)</p:p></l:li>
+                                <l:li><p:p>Person (Pessoa que requeriu o passaporte)</p:p></l:li>
+                                <l:li><p:p>Work_local (Local de trabalho)</p:p></l:li>
+                                <l:li><p:p>Departure (Data prevista de saída)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Local</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Desc (Identifica o nome de um local)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Profissão</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Desc (Identifica o nome de uma profissão)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Casamento (Pessoa - Pessoa)</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Wife (identifica uma pessoa mulher)</p:p></l:li>
+                                <l:li><p:p>Husband (identifica uma pessoa homem)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Filho (Casamento - Pessoa)</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Marriage (Casamento associado)</p:p></l:li>
+                                <l:li><p:p>Person (uma pessoa, fruto deste casamento)</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Biografias_Pessoas (N-M)</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Biography</p:p></l:li>
+                                <l:li><p:p>Person</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                    <l:ul>
+                        <l:li><p:p>Foto_Pessoas (N-M)</p:p></l:li>
+                        <l:li>
+                            <l:ul>
+                                <l:li><p:p>Photo</p:p></l:li>
+                                <l:li><p:p>Person</p:p></l:li>
+                            </l:ul>
+                        </l:li>
+                    </l:ul>
+                </subsubsection>
+                <subsubsection>
+                    <title>Validação das relações recorrendo às Regras de Normalização</title>
+                    <p:p>Os principais objetivos da normalização de um esquema são:</p:p>
+                    <l:ul>
+                        <l:li><p:p>Certificar que na arquitetura da Base de Dados, o esquema tem o menor número possível de atributos necessários para suportar os requisitos de armazenamento de dados do caso de estudo.</p:p></l:li>
+                        <l:li><p:p>Garantir o mínimo de redundância nos dados de forma a maximizar a consistência. Alguma redundância, no entanto, é necessária para permitir a existência de relacionamentos entre as tabelas. O processo de normalização de um dado conjunto de relações obedece a um conjunto de Formas Normais, cada uma definida com o objetivo de reduzir um tipo de redundância.</p:p></l:li>
+                        <l:li><p:p>Normalmente o processo de verificação de normalização de tabelas ficasse pela 3a Forma Normal, pois uma Base de Dados nesta forma não possuirá problemas com redundância de dados.</p:p></l:li>
+                    </l:ul>
+                </subsubsection>
+                <subsubsection>
+                    <title>Esquema Físico</title>
+                    <p:p>Após a conclusão da identificação das relações conseguiu-se fazer o modelo físico da base de dados. Apresenta-se assim, as entidades, relações e atributos anteriores no modelo físico por via de tabelas e das transações existentes.</p:p>
+                    <img:image path="img/m_fisico.png">Modelo Físico da Aplicação</img:image>
+                </subsubsection>
+            </subsection>
+
+            <subsection>
+                <title>Fotos</title>
+                <p:p>O arquivo fotográfico contém um conjunto de ficheiros de texto que descrevem fotografias, onde é possível encontrar emigrantes. Estas descrições estão anotadas em formato <p:i>XML</p:i>, como já foi referido anteriormente.</p:p>
+                <p:p><p:b>Exemplo de um dataset de fotos:</p:b></p:p>
+                <p:p><p:code>
+                    &lt;fotos&gt;
+                        &lt;foto ficheiro="022-F-01.jpg"&gt;
+                            &lt;quando data="1961-01-15"/&gt;
+                            &lt;quem&gt;Ana de Lourdes de Oliveira; Antonio Oliveira Machado&lt;/quem&gt;
+                            &lt;facto&gt; Os noivos cortam o bolo de casamento&lt;/facto&gt;
+                        &lt;/foto&gt;
+                    &lt;foto ficheiro="022-F-02.jpg"&gt;
+                        &lt;onde&gt;Casa Machado, Afurada, Vila Nova de Gaia&lt;/onde&gt;
+                            &lt;quando data="2000-09-12"/&gt;
+                            &lt;quem&gt;Ana de Lourdes de Oliveira; Antonio Oliveira Machado&lt;/quem&gt;
+                            &lt;facto&gt;Antonio Machado e a sua esposa, dona Ana atras do balcão da taberna Casa Machado.&lt;/facto&gt;
+                        &lt;/foto&gt;
+                    &lt;/fotos&gt;
+                </p:code></p:p>
+                <p:p>Foi-nos fornecido pela equipa docente, um <p:i>DTD</p:i> onde podemos ver como o <p:i>XML</p:i> está anotado e compreender a sua estrutura. Também nos ajudou, de maneira a poder construir exemplos de fotos (<p:i>datasets</p:i>) para depois inserir na aplicação, que faz parte dos requisitos do trabalho.</p:p>
+                <p:p>Através da análise do <p:i>DTD</p:i>, conseguimos verificar que apenas o elemento <p:b>“quem”</p:b> e o atributo <p:b>“ficheiro”</p:b> são obrigatórios. Depois de alguma discussão entre o grupo e o professor, chegamos à conclusão que o elemento <p:b>“autor”</p:b> não era necessário tratar neste problema, nem guardar essa informação na base de dados relacional. Esse elemento continua a estar presente nos ficheiros, mas não será tido em conta. Todos os outros elementos, achamos relevantes referir e guardar essa informação.</p:p>
+                <p:p>Posto, isto desenvolvemos um <p:i>schema (XSD)</p:i> para poder validar cada dataset  antes de este ser inserido na base de dados. Na imagem a seguir podemos ver a sua estrutura.</p:p>
+                <img:image path="img/s_fotos.png">Estrutura Schema Fotos</img:image>
+                <p:p>Depois de termos o <p:i>XML</p:i> com algumas fotos e o schema pronto, avançamos para a inserção na base de dados. Inicialmente era pedido ao utilizador para submeter apenas o ficheiro <p:i>XML</p:i>, e através do nome dos ficheiros a aplicação carregava-as. Mas tivemos problemas com isso, e então optamos por fazer upload de um ficheiro <p:i>ZIP</p:i>, que contém um ficheiro <p:i>XML</p:i> (<p:i>dataset</p:i>) e as imagens de cada foto. Para fazer a inserção e manipulação de imagens usamos uma gem desginada carrierwave. E para validar o ficheiro <p:i>XML</p:i>, usamos a gem já acima referida, <p:i>Nokogiri</p:i>. Desta forma, com a submissão do ficheiro <p:i>ZIP</p:i>, o <p:i>dataset</p:i> é validado e depois recorrendo a expressões xpath, extraimos o conteúdo de cada foto e inserimos na base de dados, tudo isto é feito de forma automática. No final, o utilizador é informado com uma mensagem de sucesso ou erro (erros de validação do <p:i>XML</p:i>).</p:p>
+            </subsection>
+            <subsection>
+                <title>Biografias</title>
+                <p:p>O arquivo de biografias é constituído por um conjunto de registos biográficos num formato de texto livre retirados da impressa local da época.</p:p>
+                <p:p>Como o formato do arquivo de texto é livre foi necessário criar um dialeto <p:i>XML</p:i> que permita anotar as notas biográficas de modo a marcar a data, o/os sujeito/os da notícia, local e o evento associado (sempre que possível).</p:p>
+                <p:p>Inicialmente pensamos em criar um formato <p:i>XML</p:i>, mais estruturado e dividido, da seguinte forma:</p:p>
+                <p:p><p:code>
+                    &lt;registo data="1912-05-09"&gt;
+                            &lt;sujeitos&gt;
+                            &lt;nome ref="Sr."&gt;Antão Guimarães&lt;/nome&gt;
+                            &lt;nome&gt;Afonso Teixeira da Silva&lt;/nome&gt;
+                            &lt;nome&gt;Francisco Guimarães Lopes Pereira&lt;/nome&gt;
+                        &lt;/sujeitos&gt;
+                        &lt;evento&gt;Chegada à vila do nosso amigo&lt;/evento&gt;
+                        &lt;original&gt;Vindo no vapor ≪Rugia≫, chegou há dias a esta vila o nosso presado amigo sr. Antão Guimarães um excelente e bom rapaz nosso patrício, que no Pará faz…….&lt;/original&gt;
+                    &lt;/registo&gt;
+                </p:code></p:p>
+                <p:p>E depois surgiu a idéia de as anotações no ficheiro de texto surgirem no formato definido a seguir, isto é, vai-se anotando o texto sempre que se achar uma correspondência com os critérios definidos anteriormente.</p:p>
+                <p:p><p:code>
+                    &lt;registo data="1912-05-09"&gt;
+                        &lt;texto&gt;
+                        Vindo no vapor ... presado amigo sr. &lt;nome&gt;Antão Guimarães&lt;/nome&gt; um excelente e bom rapaz nosso patrício, ... do comércio.  É irmão dos nossos bons e distintos amigos srs. &lt;nome&gt;Afonso Teixeira da Silva&lt;/nome&gt; e &lt;nome&gt;Francisco Guimarães Lopes Pereira&lt;/nome&gt;, considerados ...
+                        &lt;/texto&gt;
+                        &lt;evento&gt;Chegada à vila do nosso amigo&lt;/evento&gt;
+                    &lt;/registo&gt;
+                </p:code></p:p>
+                <p:p>Esta última opção enquadrasse com que era pretendido neste ponto para o projeto, daí ser o utilizado.</p:p>
+                <p:p>Para validar um ficheiro de texto anotado foi necessário recorrer a um schema,  que se apresenta na próxima imagem:</p:p>
+                <img:image path="img/s_bios.png">Estrutura do Schema das Biografias</img:image>
+                <p:p>Pela imagem percebemos que no início e fim do ficheiro de texto é necessário introduzir o elemento <p:b>‘registos’</p:b>. Sempre que se encontrar uma data é necessário introduzir o elemento <p:b>‘registo’</p:b> antes e definir a data como um atributo. O texto que se seguirá à data estará dentro do elemento <p:b>‘texto’</p:b>. Todo o conteúdo deste último elemento é misto, isto é, pode ser texto, elemento <p:b>‘nome’</p:b> ou elemento <p:b>‘local’</p:b>.</p:p>
+                <p:p>Como, por vezes, era difícil perceber qual o evento associado a um registo biográfico entendemos que seria melhor colocar essa marca fora do <p:b>‘texto’</p:b>.</p:p>
+                <p:p>O elemento <p:b>‘local’</p:b> e ‘evento’ estão definidos como opcionais pois não são necessários estar em todos os registos biográficos do ficheiro.</p:p>
+                <p:p>Já o elemento <p:b>‘nome’</p:b> tem necessariamente de aparecer uma vez por registo biográfico para que este arquivo seja válido. De notar que quando a pessoa que estiver a anotar o texto perceber que o sujeito (nome) da notícia tem um nome diferente de um utilizado anteriormente pode utilizar o atributo <p:b>‘ref’</p:b> do elemento <p:b>‘nome’></p:b> para uniformizar o nome da pessoa por registo.</p:p>
+                <p:p>Acontece que como o conteúdo do elemento <p:b>‘texto’</p:b> é misto o <p:i>schema</p:i> não consegue avaliar se um nome aparece em cada registo. Para contornar esta situação, e por sugestão do Professor José Carlos Ramalho, decidiu-se recorrer ao <p:b>schematron</p:b>, uma tecnologia que permite avaliar semântica dinâmica num ficheiro XML.</p:p>
+                <p:p>Como tal definimos um <p:b>schematron</p:b> que avalia em cada elemento <p:b>‘texto’</p:b> se aparece o elemento <p:b>‘nome’</p:b>. Caso um nome por registo não seja encontrado devolve um erro e o arquivo biográfico não é valido.</p:p>
+                <img:image path="img/sch_bios.png">Estrutura do Schematron</img:image>
+                <p:p>Pelo facto de utilizarmos a <p:i>framework</p:i> <p:i>Rails</p:i> da linguagem <p:i>Ruby</p:i> não definimos um processador <p:i>XSL</p:i>. Em vez disso, no método create é lido um arquivo de notas biográficas que depois é validado por um <p:i>Schema</p:i> e um <p:i>schematron</p:i> e através da <p:i>gem nokogori</p:i> faz o <p:i>xpath</p:i> para retirar os valores aos elementos e finalmente insere os dados na base de dados.</p:p>
+            </subsection>
+            <subsection>
+                <title>Passaportes</title>
+                <p:p>Para os passaportes foi-nos pedido que construíssemos um compilador que convertia os dados escritos de acordo com uma <p:i>DSL (domain specific language)</p:i> por nós definida para instruções de introdução dos dados na base de dados. Para aplicar os conhecimentos adquiridos nas aulas, usámos uma Gramática de Atributos, <p:i>ANTLR</p:i> e <p:i>Java</p:i> para criar o compilador.</p:p>
+                <p:p>A primeira decisão tomada foi gerar código <p:i>Ruby</p:i> e não <p:i>SQL</p:i>, pois não temos conhecimento total sobre a forma como o <p:i>Rails</p:i> manipula a base de dados e não queríamos criar problemas ao inserir dados sem respeitar alguma regra menos conhecida que o Rails aplique internamente quando insere os dados.</p:p>
+                <p:p>Depois disto decidimos usar <p:i>JSON</p:i> para descrever os passaportes. As razões para essa escolha foram o facto de ser uma linguagem conhecida e bem definida (está extensivamente descrita no website que lhe é dedicado); a facilidade de reutilização dos nossos data-sets noutras aplicações, visto que a grande maioria das linguagens de programação genéricas têm um módulo para parsing de ficheiros <p:i>JSON</p:i>; e ser uma linguagem para a qual é simples construir uma gramática. O nosso <p:i>JSON</p:i> é mais restritivo que o original, pois apenas permite determinados elementos numa determinada sequência, portanto um input válido para o nosso compilador é <p:i>JSON</p:i> válido, mas nem todo o <p:i>JSON</p:i> válido é um ficheiro válido na linguagem que especificámos.</p:p>
+                <p:p>Para evitar ter a especificação semântica (em java) a poluir a gramática, criámos uma classe específica para as ações semânticas. Sempre que é reconhecido um elemento significativo, é chamado um método da classe que contém todas as ações semânticas necessárias para o inserir e mostrar alguma mensagem de erro que deva ser mostrada. Devido a esta decisão tivemos também de criar um ponto de entrada do nosso compilador, onde inicializamos o ambiente do <p:i>ANTLR</p:i>, iniciamos o parsing do ficheiro e, no fim e caso não ocorram erros, produzimos o código ruby.</p:p>
+                <p:p>O compilador aceita o ficheiro de input de duas formas: passando o caminho do ficheiro como argumento ou fornecendo o ficheiro pelo standard input.</p:p>
+                <p:p>Caso todas as validações feitas pelo compilador tenham sucesso, é gerado código <p:i>Ruby/Rails</p:i> para inserir ou atualizar os dados na base de dados. Todo o código gerado pelo compilador está inserido numa transação, para que mesmo no caso de uma alteração à base de dados falhar, exista uma recuperação do estado anterior e os dados não fiquem corrompidos.</p:p>
+                <p:p>Um exemplo relevante de parte do JSON de entrada:</p:p>
+                <p:p><p:code>
+                    "requerente": {
+                    "nome" : "Alberto Miranda",
+                    "bi" : "123456789",
+                    (...)
+                    "pais" : {
+                    "pai": "Joaquim Miranda",
+                    "mãe": "Alexandra Pereira"
+                    },
+                    (...)
+                    },
+                </p:code></p:p>
+                <p:p>E o correspondente código ruby:</p:p>
+                <p:p><p:code>
+                    ActiveRecord::Base.transaction do
+                        pessoa = Person.where(name: 'Alberto Miranda').empty? ? Person.create!(name: 'Alberto Miranda') : Person.where(name: 'Alberto Miranda').first
+
+                        # actualizar campos que estejam vazios na pessoa
+                        # (...)
+                        pessoa.bi = '123456789' unless pessoa.bi?
+
+                        # (criar e) obter o pai da pessoa
+                        pai = Person.where(name: 'Joaquim Miranda').empty? ? Person.create!(name: 'Joaquim Miranda') : Person.where(name: 'Joaquim Miranda').first
+
+                        # (criar e) obter a mãe da pessoa
+                        mae = Person.where(name: 'Alexandra Pereira').empty? ? Person.create!(name: 'Alexandra Pereira') : Person.where(name: 'Alexandra Pereira').first
+
+                        # criar o casamento entre o pai e a mae da pessoa se não existir
+                        casamento = Marriage.where(husband: pai, wife: mae).empty? ? Marriage.create!(husband: pai, wife: mae) : Marriage.where(husband: pai, wife: mae).first
+
+                        # adicionar a pessoa aos filhos resultantes do casamento caso ainda não esteja
+                        casamento.children  &lt;&lt; pessoa unless casamento.children.include? pessoa
+
+                        # (...)
+
+                        # guardar a pessoa no fim
+                        pessoa.save!
+                        #--------------------------
+                        # (mais pessoas...)
+                    end
+                </p:code></p:p>
+                <p:p>Neste exemplo:</p:p>
+                <l:ol>
+                    <l:li><p:p>Cria-se (caso não exista) a pessoa com o nome especificado;</p:p></l:li>
+                    <l:li><p:p>Atualiza-se o número do Bilhete de Identidade da pessoa caso não esteja definido;</p:p></l:li>
+                    <l:li><p:p>Cria-se o pai e a mãe caso não existam;</p:p></l:li>
+                    <l:li><p:p>Cria-se o casamento entre o pai e a mãe caso ainda não exista;</p:p></l:li>
+                    <l:li><p:p>Adiciona-se a pessoa à lista de filhos provenientes desse casamento;</p:p></l:li>
+                    <l:li><p:p>No fim guarda-se a pessoa na base de dados.</p:p></l:li>
+                </l:ol>
+                <p:p>Este exemplo é uma versão reduzida do que realmente é feito, apenas para demonstrar a forma como a gramática é convertida para código <p:i>Ruby com Rails</p:i>.</p:p>
+            </subsection>
+        </section>
+        <section>
+            <title>Notas Finais</title>
+            <subsection>
+                <title>Conclusão</title>
+                <p:p>Em conclusão, vemos este projeto como mais um forma de pôr em prática os conhecimentos adquiridos e as ferramentas disponibilizadas no perfil de Processamento de Linguagens e Conhecimento durante o 1º Semestre. Como o enunciado deste trabalho prático implica um domínio de todos os conceitos abordados nas aulas, este ajudou a consolidar os conhecimentos e a combater algumas dificuldades que tínhamos anteriormente.</p:p>
+                <p:p>Apesar da abordagem deste enunciado ser centrada inicialmente no formato dos ficheiros, se estes seguirem as normas especificadas não põem em causa os dados armazenados na base de dados. Assim é, obviamente, necessário utilizar validações para a base de dados não ficar inconsistente.</p:p>
+                <p:p>Depois de uma avaliação ponderada, o grupo considerou que os requisitos pedidos foram cumpridos. O grupo acredita que este projeto, para além de ser viável, é também um excelente oportunidade de criar algo com alguma importância e por isso o grupo está satisfeito com o trabalho realizado.</p:p>
+            </subsection>
+            <subsection>
+                <title>Trabalho Futuro</title>
+                <p:p>Não definido</p:p>
+            </subsection>
+        </section>
+    </body>
+    <back-matter>
+        <appendix-list>
+            <appendix>
+                <title></title>
+                <p:p></p:p>
+            </appendix>
+        </appendix-list>
+    </back-matter>
+</report>
