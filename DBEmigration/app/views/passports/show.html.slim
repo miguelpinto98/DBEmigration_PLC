@@ -38,9 +38,20 @@
                     dt Data de nascimento:
                     dd = @passport.person.nasc
                     dt Local de residência:
-                    dd @passport.person. residencia
+                    dd = @passport.person.residence.desc
                     dt Estado civil:
-                    dd @passaport.person. civil
+                    - case @passport.person.civil
+                      - when :single
+                        dd = "Solteiro"
+                      - when :married
+                        dd = "Casado"
+                      - when :divorced
+                        dd = "Divorciado"
+                      - when :widowed
+                        dd = "Viúvo"
+                      - else
+                        dd = "Não definido"
+                      end
                     dt Profissão atual:
                     dd = @passport.person.profession.desc
 
@@ -53,16 +64,17 @@
                 .widget-content.nopadding
                   dl.dl-horizontal
                     br
-                    dt Processo:
-                    dd
+                    - unless @passport.process == nil
+                      dt Processo:
+                      dd = @passport.process
                     dt Passaporte:
-                    dd
+                    dd = @passport.number
                     dt Câmara Municipal:
-                    dd
+                    dd = @passport.municipio
                     dt Ano:
-                    dd
+                    dd = @passport.year
                     dt Processo enviado:
-                    dd
+                    dd = @passport.submitted.strftime("%Y-%m-%d")
 
             .col-xs-12.col-sm-4
               .widget-box
@@ -74,13 +86,13 @@
                   dl.dl-horizontal
                     br
                     dt País/Cidade:
-                    dd
+                    dd = @passport.local.desc
                     dt Data prevista de saída:
-                    dd
+                    dd = @passport.departure.strftime("%Y-%m-%d")
                     dt Profissão futura:
-                    dd
+                    dd = @passport.profession.desc
                     dt Local trabalho:
-                    dd
+                    dd = @passport.localWork.desc
 
 
   .row

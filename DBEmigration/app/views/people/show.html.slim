@@ -27,28 +27,28 @@ p#notice = notice
               = link_to @person, class: 'btn', data: {:confirm => 'Tem a certeza?'}, :method => :delete
                 i.fa.fa-minus-square
                 span.text    Remover
-              
+
           .widget-content.nopadding
             br
             .row
               .col-xs-6
                 p
                   - unless @person.name == nil
-                    strong Nome:  
+                    strong Nome:
                     = @person.name
                 p
                   - unless @person.nasc == nil
-                    strong Nascimento:  
-                    = @person.nasc.strftime("%Y-%m-%d") 
+                    strong Nascimento:
+                    = @person.nasc.strftime("%Y-%m-%d")
                 p
                   - unless @person.habil == nil
-                    strong Habilitações: 
+                    strong Habilitações:
                     = @person.habil
                 p
                   - unless @person.gender_cd == nil
-                    strong Género: 
-                    - case @person.gender 
-                      - when :female 
+                    strong Género:
+                    - case @person.gender
+                      - when :female
                         = "Feminino"
                       - when :male
                         = "Masculino"
@@ -57,7 +57,7 @@ p#notice = notice
                       end
                 p
                   - unless @person.civil_cd == nil
-                    strong Estado civil: 
+                    strong Estado civil:
                     - case @person.civil
                       - when :single
                         = "Solteiro"
@@ -72,27 +72,27 @@ p#notice = notice
                       end
                 p
                   - unless @local_nasc == nil
-                    strong Local de nascimento: 
+                    strong Local de nascimento:
                     = @person.local.desc
                 p
                   - unless @local_work == nil
-                    strong Local de trabalho: 
+                    strong Local de trabalho:
                     = @person.local.desc
-                p 
+                p
                   - unless @person.marriage == nil
-                    strong Filhos: 
+                    strong Filhos:
                     ul
                       - @person.children.each do |p|
                         li
-                          = link_to p.child.person.name, p.child.person
+                          | kkkkk
                 p
                   - unless @person.father == nil
-                    strong Pai: 
-                    = link_to @person.father, @person.father.name
+                    strong Pai:
+                    = link_to @person.father.name, @person.father
                 p
-                  - unless @mother == nil
-                    strong Mãe:  
-                    = link_to @person.mother, @person.mother.name
+                  - unless @person.mother == nil
+                    strong Mãe:
+                    = link_to @person.mother.name, @person.mother
 
         .widget-box
           .widget-title
@@ -123,7 +123,7 @@ p#notice = notice
                   = link_to p
                     span.user-info Criado: #{b.created_at.strftime("%Y-%m-%d %H:%M")}
                     p = b.original.truncate(80)
-                    
+
         .widget-box
           .widget-title
             span.icon

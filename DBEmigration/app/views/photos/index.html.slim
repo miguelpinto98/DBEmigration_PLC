@@ -31,27 +31,28 @@
               span.text    Adicionar Fotografias
 
         .widget-content.nopadding
-          table.table.table-striped
-            thead
-              tr
-                th Foto
-                th Pessoas
-                th Facto
-                th
-                th
+          .row
+            table.table.table-hover.data-table
+              thead
+                tr
+                  th Foto
+                  th Pessoas
+                  th Facto
+                  th
+                  th
 
-            tbody
-              - @photos.each do |photo|
-                tr valign="middle"
-                  td
-                    div align="center"
-                      = link_to photo
-                        <img src=#{photo.path.url(:thumb)} class="img-rounded"> 
-                  td
-                    - photo.people.each do |p|
-                      ul.list-unstyled
-                        li = link_to p.name, p
-                  td = photo.fact
-                  td = link_to 'Mostrar mais', photo, class: 'btn btn-info btn-sm'
-                  td = link_to 'Remover', photo, class: 'btn btn-danger btn-sm', data: {:confirm => 'Tem a certeza?'}, :method => :delete
+              tbody
+                - @photos.each do |photo|
+                  tr valign="middle"
+                    td
+                      div align="center"
+                        = link_to photo
+                          <img src=#{photo.path.url(:thumb)} class="img-rounded">
+                    td
+                      - photo.people.each do |p|
+                        ul.list-unstyled
+                          li = link_to p.name, p
+                    td = photo.fact
+                    td = link_to 'Mostrar mais', photo, class: 'btn btn-info btn-sm'
+                    td = link_to 'Remover', photo, class: 'btn btn-danger btn-sm', data: {:confirm => 'Tem a certeza?'}, :method => :delete
   br
