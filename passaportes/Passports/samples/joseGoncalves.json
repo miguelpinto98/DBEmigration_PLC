@@ -1,0 +1,39 @@
+[
+  {
+    "processo": {
+      "ano" : 1948 ,
+      "numero" : "32352",
+      "passaporte" : "a222",
+      "camara" : "Camara de Fafe",
+      "submetido" : "1948-6-10"
+    },
+    "requerente": {
+      "nome" : "José Gonçalves",
+      "bi" : "123456589",
+      "residencia" : "Serafão, Lugar de Lordelo",
+      "data nasc" : "1928-12-26",
+      "local nasc" : "Guimarães",
+      "genero" : "masculino",
+      "pais" : {
+        "pai": "Francisco Constantino",
+        "mãe": "Rosalina Fernandes"
+      },
+      "estado civil" : "casado",
+      "conjugue" : "Filomena Fernandes Henrique Igreja",
+      "filhos" : [
+        "Manuel Baltazar",
+        "Maria Emilia",
+        "Francisco Constantino"
+      ],
+      "profissao" : "Carpinteiro",
+      "local trabalho" : "Fafe",
+      "habilitacoes" : "4º ano"
+    },
+    "destino" : {
+      "país e cidade" : "Lyon, França",
+      "data partida" : "1950-09-11",
+      "profissao" : "Carpinteiro",
+      "local trabalho" : "Lyon, França"
+    }
+  }
+]

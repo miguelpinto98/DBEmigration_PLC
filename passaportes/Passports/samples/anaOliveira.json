@@ -1,0 +1,73 @@
+[
+  {
+    "processo": {
+      "ano" : 1956 ,
+      "numero" : "22352",
+      "passaporte" : "11",
+      "camara" : "Camara de Fafe",
+      "submetido" : "1956-7-1"
+    },
+    "requerente": {
+      "nome" : "Ana de Lourdes de Oliveira",
+      "bi" : "113456589",
+      "residencia" : "Revelhe, Fafe",
+      "data nasc" : "1921-12-26",
+      "local nasc" : "Braga",
+      "genero" : "feminino",
+      "pais" : {
+        "pai": "José Oliveria",
+        "mãe": "Rosa Fernandes"
+      },
+      "estado civil" : "casado",
+      "conjugue" : "Serafim Teixeira",
+      "filhos" : [
+        "Hugo Alexandre Teixeira"
+      ],
+      "profissao" : "Emprega de mesa",
+      "local trabalho" : "Revelhe, Fafe",
+      "habilitacoes" : "4º ano"
+    },
+    "destino" : {
+      "país e cidade" : "Paris, França",
+      "data partida" : "1957-09-11",
+      "profissao" : "Empregada de limpeza",
+      "local trabalho" : "Paros, França"
+    }
+  },
+  {
+    "processo": {
+      "ano" : 1952 ,
+      "numero" : "22352",
+      "passaporte" : "11",
+      "camara" : "Camara de Fafe",
+      "submetido" : "1952-7-1"
+    },
+    "requerente": {
+      "nome" : "Ana de Lourdes de Oliveira",
+      "bi" : "113456589",
+      "residencia" : "Revelhe, Fafe",
+      "data nasc" : "1921-12-26",
+      "local nasc" : "Braga",
+      "genero" : "feminino",
+      "pais" : {
+        "pai": "José Oliveria",
+        "mãe": "Rosa Fernandes"
+      },
+      "estado civil" : "casado",
+      "conjugue" : "António Oliveira Machado",
+      "filhos" : [
+        "Joana Oliveira Machado"
+      ],
+      "profissao" : "Doméstica",
+      "local trabalho" : "Revelhe, Fafe",
+      "habilitacoes" : "4º ano"
+    },
+    "destino" : {
+      "país e cidade" : "Rio de Janeiro, Brasil",
+      "data partida" : "1953-09-11",
+      "profissao" : "Empregada de mesa",
+      "local trabalho" : "Rio de Janeiro, Brasil"
+    }
+  }
+  
+]
