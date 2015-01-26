@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fotos>
+  <foto ficheiro="022-F-01.jpg">
+    <quem>Ana de Lourdes de Oliveira;António Oliveira Machado</quem>
+    <quando data="1961-01-15"/>
+    <facto>Os noivos cortam o bolo de casamento</facto>
+  </foto>
+  <foto ficheiro="022-F-02.jpg">
+    <quem>Ana de Lourdes de Oliveira;António Oliveira Machado</quem>
+    <onde>Casa Machado, Afurada, Vila Nova de Gaia</onde>
+    <quando data="2000-09-12"/>
+    <facto>António Machado e a sua esposa, dona Ana atrás do balcão da taberna Casa Machado.</facto>
+  </foto>
+  <foto ficheiro="022-F-03.jpg">
+    <quem>António Oliveira Machado;Miguel Oliveira Machado;Joana Oliveira Machado</quem>
+    <onde>Capela do Monte da Virgem, Oliveira do Douro, Vila Nova de Gaia</onde>
+    <facto>António e os seus filhos visitam o Santuário do Monte da Virgem.</facto>
+    <legenda>António e seus filhos</legenda>
+    <autor tipo="fotógrafo">Joaquim Dioniso</autor>
+  </foto>
+  <foto ficheiro="022-F-04.jpg">
+    <quem>Filomena Fernandes Henriques Igreja; José Gonçalves</quem>
+    <onde>Agrela, Fafe</onde>
+    <quando data="1950-01-15"></quando>
+    <facto>Sentados a beira do rio</facto>
+    <legenda>Perto do Rio do Sal</legenda>
+  </foto>
+  <foto ficheiro="022-F-04.jpg">
+    <quem>Filomena Fernandes Henriques Igreja; José Gonçalves</quem>
+    <onde>Agrela, Fafe</onde>
+    <quando data="1950-01-15"></quando>
+    <facto>Sentados a beira do rio</facto>
+    <legenda>Perto do Rio do Sal</legenda>
+  </foto>
+  <foto ficheiro="022-F-05.jpg">
+    <quem>Filomena Fernandes Henriques Igreja; Manuel Baltazar</quem>
+    <onde>Agrela, Fafe</onde>
+    <quando data="1961-01-15"></quando>
+    <facto>Sentados na praia a ver o mar</facto>
+    <legenda>A ver o mar</legenda>
+  </foto>
+  <foto ficheiro="022-F-06.jpg">
+    <quem>Maria Emilia; Francisco Constantino; Manuel Baltazar</quem>
+    <onde>Travassós, Fafe</onde>
+    <quando data="1952-01-15"></quando>
+    <facto>Dia da comunhão</facto>
+    <legenda>Os três irmãos</legenda>
+  </foto>
+  <foto ficheiro="022-F-07.jpg">
+    <quem>Francisco Constantino; José Gonçalves</quem>
+    <onde>Travassós, Fafe</onde>
+    <quando data="1952-06-15"></quando>
+    <facto>Lanche em familia</facto>
+    <legenda>O pai e o francisco</legenda>
+  </foto>
+  <foto ficheiro="022-F-08.jpg">
+    <quem>Francisco Gonçalves; José Gonçalves; Rosalina Fernandes; Filomena Fernandes Henriques Igreja</quem>
+    <onde>Arões S. Romão</onde>
+    <quando data="1948-06-15"></quando>
+    <facto>José, os seus pais e a esposa em familia</facto>
+    <legenda>Em familia na casa do Sr.Francisco</legenda>
+  </foto>
+  <foto ficheiro="022-F-09.jpg">
+    <quem>Francisco Gonçalves</quem>
+    <onde>Arões S. Romão</onde>
+    <quando data="1948-11-15"></quando>
+    <facto>Sr. Francisco no dia do casamento do filho</facto>
+  </foto>
+  <foto ficheiro="10.jpg">
+    <quem>José Gonçalves</quem>
+    <onde>Travassós</onde>
+    <quando data="1946-09-21"></quando>
+    <facto>José no seu primeiro dia de tropa</facto>
+  </foto>
+  <foto ficheiro="11.jpg">
+    <quem>Rosalina Fernandes; Francisco Gonçalves</quem>
+    <onde>Travassós</onde>
+    <quando data="1932-01-21"></quando>
+    <facto>Retrato do Sr Francisco e da Dona Rosalina</facto>
+    <legenda>Retrato do casal</legenda>
+  </foto>
+  <foto ficheiro="13.jpg">
+    <quem>Filomena Fernandes Henriques Igreja</quem>
+    <onde>Silvares, Fafe</onde>
+    <quando data="1956-04-08"></quando>
+    <facto>Filomena a lavar a roupa na casa da sogra</facto>
+    <legenda>Filomena Igreja a lavar a roupa.</legenda>
+  </foto>
+  <foto ficheiro="13.jpg">
+    <quem>Francisco Gonçalves; Manuel Baltazar</quem>
+    <onde>Serzedo, Fafe</onde>
+    <quando data="1953-02-21"></quando>
+    <facto>Francisco Gonçalves em sua casa e o seu primeiro neto...</facto>
+    <legenda>O avô com o seu net ao colo</legenda>
+  </foto>
+  <foto ficheiro="14.jpg">
+    <quem>Rosalina Fernandes</quem>
+    <onde>Pedraido, Fafe</onde>
+    <quando data="1962-03-11"></quando>
+    <facto>Rosalina a descansar em casa, depois de uma semana de trabalho.</facto>
+    <legenda>Rosalina no sofá!</legenda>
+  </foto>
+  <foto ficheiro="15.jpg">
+    <quem>Maria Emilia; Filomena Fernandes Henriques Igreja</quem>
+    <onde>Praça de Estorões, Fafe</onde>
+    <quando data="1967-01-24"></quando>
+    <facto>Filomena tenta ensinar a Maria a andar pela primeira vez de bicicleta.</facto>
+    <legenda>Mãe ajuda filha a anda de bicicleta</legenda>
+  </foto>
+  <foto ficheiro="a16.jpg">
+    <quem>Laurentino Nogueira; Alzira Nogueira; Maria Nogueira</quem>
+    <onde>Rio do Vale, Fafe</onde>
+    <quando data="1964-09-21"></quando>
+    <facto>Laurentino leva as suas filhas a dar um passeio de barco.. Numa manhã de domingo.</facto>
+    <legenda>Laurentino e suas filhas</legenda>
+  </foto>
+  <foto ficheiro="a17.jpg">
+    <quem>Laurentino Nogueira</quem>
+    <onde>Praia de Matosinhos, Porto</onde>
+    <quando data="1951-06-14"></quando>
+    <facto>Sr Nogueira na praia.</facto>
+  </foto>
+  <foto ficheiro="a18.jpg">
+    <quem>Dolores Teixeira de Sousa; Laurentino Nogueira</quem>
+    <onde>Forte São João, Porto</onde>
+    <quando data="1992-04-08"></quando>
+    <facto>Dona Dolores e o seu marido visitam o forte em s joão</facto>
+  </foto>
+  <foto ficheiro="a19.jpg">
+    <quem>Justino Nogueira; Alzira Nogueira</quem>
+    <onde>Póvoa do Varzim</onde>
+    <quando data="1988-09-21"></quando>
+    <facto>Justino e a sua neta quando foram à pesca.</facto>
+    <legenda>Alzira e o seu avô</legenda>
+  </foto>
+  <foto ficheiro="a20.jpg">
+    <quem>Felismina Ramos; Justino Nogueira</quem>
+    <onde>Caxinas, Vila do Conde</onde>
+    <quando data="1900-06-01"></quando>
+    <facto>Justino e a sua namorada Felismina a beira do barco.</facto>
+    <legenda>Justino e Felismina</legenda>
+  </foto>
+</fotos>

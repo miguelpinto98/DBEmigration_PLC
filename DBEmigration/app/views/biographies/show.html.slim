@@ -1,12 +1,25 @@
 p#notice = notice
 
-p
-  strong Event:
-  = @biography.event
+- unless @biography.event == ""
+  p
+    strong Event:
+    = @biography.event
 p
   strong Date:
   = @biography.date
+p
+  strong Original:
+  = @biography.original
 
-= link_to 'Edit', edit_biography_path(@biography)
-'|
+- unless @biography.local == nil
+  p
+    strong Local:
+    = @biography.local.desc
+p
+  strong Pessoas:
+  ul
+    - for item in @biography.people do
+      li.name = item.name
+
+
 = link_to 'Back', biographies_path
