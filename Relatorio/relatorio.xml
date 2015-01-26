@@ -421,7 +421,12 @@
             </subsection>
             <subsection>
                 <title>Trabalho Futuro</title>
-                <p:p>Não definido</p:p>
+                <p:p>Em relação a algumas melhorias e a um possível trabalho futuro que possamos desenvolver, destacam-se as seguintes:</p:p>
+                <l:ul>
+                    <l:li><p:p>Melhorar as views, em termos de visualização e validação de erros.</p:p></l:li>
+                    <l:li><p:p>Adicionar à Dashboard, os locais e as profissões para ter uma perpectiva mais interessante sobre a informação.</p:p></l:li>
+                    <l:li><p:p>E por nós considerada, a melhoria que seria mais crucial neste projeto, era tornar as pessoas totalmente únicas, através de comparações com as suas relações entre pais e filhos, etc. Neste momento, o único elemento de distinção entre as pessoas é o nome, pois é a única que coisa que conseguimos retirar dos arquivos biográficos e fotográficos.</p:p></l:li>
+                </l:ul>
             </subsection>
         </section>
     </body>
