@@ -17,7 +17,7 @@
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="title" type="xs:string"/>
-                                        <xs:element minOccurs="0" name="subttitle" type="xs:string"/>
+                                        <xs:element minOccurs="0" name="subtitle" type="xs:string"/>
                                         <xs:element name="authors">
                                             <xs:complexType>
                                                 <xs:sequence>

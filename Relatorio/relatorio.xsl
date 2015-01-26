@@ -42,16 +42,37 @@
     </xsl:template>
     
     <xsl:template match="r:front-matter">
-        <div class="col-xs-12">
+        <div class="col-xs-12 text-center">
             <xsl:apply-templates select="r:meta"/>
         </div>
     </xsl:template>
             
-    <xsl:template match="meta">
-        <xsl:apply-templates select="r:title" />
-        <xsl:apply-templates select="r:subtitle" />
-        <xsl:apply-templates select="title" />
-        <xsl:apply-templates select="title" />
+    <xsl:template match="r:meta">
+        <h2>
+            <xsl:value-of select="r:title"/>
+        </h2>
+        <h3>
+            <xsl:value-of select="r:subtitle"/>
+        </h3>
+        <xsl:apply-templates select="r:authors" />
+    </xsl:template>
+    
+    <xsl:template match="r:authors">
+        <div class="col-xs-3" />
+        <xsl:apply-templates select="//r:author" />
+        <div class="col-xs-3" />
+    </xsl:template>
+    
+    <xsl:template match="r:author">
+        <div class="col-xs-2">
+            
+            
+            
+            <name>Bruno Ferreira</name>
+            <identifier>a61055</identifier>
+            <email></email>
+            <photo path=""/>
+        </div>
     </xsl:template>
         
     <xsl:template match="//body">
