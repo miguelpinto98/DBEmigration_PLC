@@ -59,16 +59,36 @@
     </xsl:template>
 
     <xsl:template match="r:toc">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12">
             <div class="row">
                 <p class="bg-danger">Table of contents</p>
-                
+                <xsl:apply-templates mode="toc" select="//r:section"/>
             </div>
         </div>
     </xsl:template>
+    
+    <xsl:template mode="toc" match="r:section">
+        <ul>
+            <li><a href="#{generate-id()}"><xsl:value-of select="r:title"/></a></li>
+            <xsl:apply-templates mode="toc_sub" select="r:subsection"/>
+        </ul>
+    </xsl:template>
+    
+    <xsl:template mode="toc_sub" match="r:subsection">
+        <ul>
+            <li><a href="#{generate-id()}"><xsl:value-of select="r:title"/></a></li>
+            <xsl:apply-templates mode="toc_subsub" select="r:subsubsection"/>
+        </ul>
+    </xsl:template>
+    
+    <xsl:template mode="toc_subsub" match="r:subsubsection">
+        <ul>
+            <li><a href="#{generate-id()}"><xsl:value-of select="r:title"/></a></li>
+        </ul>
+    </xsl:template>
 
     <xsl:template match="r:lot">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12">
             <div class="row">
                 <p class="bg-danger">List of Tables</p>
             </div>
@@ -76,11 +96,18 @@
     </xsl:template>
 
     <xsl:template match="r:lof">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12">
             <div class="row">
                 <p class="bg-danger">List of Figures</p>
+                <xsl:apply-templates mode="lof" select="//img:image"/>
             </div>
         </div>
+    </xsl:template>
+    
+    <xsl:template mode="lof" match="img:image">
+        <ul>
+            <li><a href="#{generate-id()}"><xsl:value-of select="."/></a></li>
+        </ul>
     </xsl:template>
 
     <xsl:template match="r:meta">
@@ -149,6 +176,7 @@
     </xsl:template>
 
     <xsl:template match="r:section">
+        <a name="{generate-id()}"/>
         <xsl:apply-templates/>
     </xsl:template>
 
@@ -159,6 +187,7 @@
     </xsl:template>
 
     <xsl:template match="r:subsection">
+        <a name="{generate-id()}"/>
         <xsl:apply-templates/>
     </xsl:template>
 
@@ -169,6 +198,7 @@
     </xsl:template>
 
     <xsl:template match="r:subsubsection">
+        <a name="{generate-id()}"/>
         <xsl:apply-templates/>
     </xsl:template>
 
@@ -243,6 +273,7 @@
     **********************************-->
     <xsl:template match="img:image">
         <div class="col-center text-center">
+            <a name="{generate-id()}"/>
             <img src="{@path}"/>
             <br/>
             <xsl:value-of select="."/>
@@ -312,5 +343,6 @@
             <xsl:apply-templates/>
         </td>
     </xsl:template>
+    
 
 </xsl:stylesheet>
