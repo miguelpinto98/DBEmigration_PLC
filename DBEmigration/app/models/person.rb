@@ -31,6 +31,6 @@ class Person < ActiveRecord::Base
 
   # obter todos os filhos de uma pessoa
   def children
-    (is_husband_in_marriages + is_wife_in_marriages).map{|m| m.children}.inject(:+)
+    (is_husband_in_marriages + is_wife_in_marriages).map{|m| m.children}.inject(:+) || Array.new
   end
 end

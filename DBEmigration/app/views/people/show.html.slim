@@ -79,7 +79,7 @@ p#notice = notice
                     strong Local de trabalho:
                     = @person.local.desc
                 p
-                  - unless @person.marriage == nil
+                  - unless @person.children.empty?
                     strong Filhos:
                     ul
                       - @person.children.each do |p|
