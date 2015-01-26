@@ -84,7 +84,7 @@ p#notice = notice
                     ul
                       - @person.children.each do |p|
                         li
-                          | kkkkk
+                          = link_to p.name, p
                 p
                   - unless @person.father == nil
                     strong Pai:

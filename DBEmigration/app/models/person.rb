@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
   has_many :wives, through: :is_husband_in_marriages
 
   has_many :passports
-  
+
   belongs_to :profession
 
   belongs_to :residence, :foreign_key => :residence, class_name: 'Local'
@@ -31,6 +31,6 @@ class Person < ActiveRecord::Base
 
   # obter todos os filhos de uma pessoa
   def children
-    Marriage.includes(:children).map{|m| m.children}.inject(:+)
+    (is_husband_in_marriages + is_wife_in_marriages).map{|m| m.children}.inject(:+)
   end
 end
