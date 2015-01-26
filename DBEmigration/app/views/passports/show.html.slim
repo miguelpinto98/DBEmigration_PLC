@@ -1,18 +1,104 @@
-p#notice = notice
+#content-header.mini
+  h1 Passaporte
 
-p
-  strong Number:
-  = @passport.number
-p
-  strong Year:
-  = @passport.year
-p
-  strong Municipio:
-  = @passport.municipio
-p
-  strong Submitted:
-  = @passport.submitted
+#breadcrumb
+  = link_to home_path, title: 'Voltar à página inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  = link_to home_path, title: 'Voltar aos passaportes', class: 'tip-bottom'
+    i.fa.fa-home
+    | Passaportes
+  a.current
+    | Mostrar
 
-= link_to 'Edit', edit_passport_path(@passport)
-'|
-= link_to 'Back', passports_path
+.container-fluid
+
+  .row
+    .col-xs-12
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-circle-thin
+          h5 Informação de Requisição de Passaporte
+        .widget-content
+          .row
+            .col-xs-12.col-sm-4
+              .widget-box
+                .widget-title
+                  span.icon
+                    i.fa.fa-user
+                  h5 Requerente
+                .widget-content.nopadding
+                  dl.dl-horizontal
+                    br
+                    dt BI:
+                    dd = @passport.person.id
+                    dt Nome:
+                    dd = @passport.person.name
+                    dt Data de nascimento:
+                    dd = @passport.person.nasc
+                    dt Local de residência:
+                    dd = link_to @passport.person.residence.desc, @passport.person.residence
+                    dt Estado civil:
+                    - case @passport.person.civil
+                      - when :single
+                        dd = "Solteiro"
+                      - when :married
+                        dd = "Casado"
+                      - when :divorced
+                        dd = "Divorciado"
+                      - when :widowed
+                        dd = "Viúvo"
+                      - else
+                        dd = "Não definido"
+                      end
+                    dt Profissão atual:
+                    dd = @passport.person.profession.desc
+
+            .col-xs-12.col-sm-4
+              .widget-box
+                .widget-title
+                  span.icon
+                    i.fa.fa-file-text-o
+                  h5 Processo
+                .widget-content.nopadding
+                  dl.dl-horizontal
+                    br
+                    - unless @passport.process == nil
+                      dt Processo:
+                      dd = @passport.process
+                    dt Passaporte:
+                    dd = @passport.number
+                    dt Câmara Municipal:
+                    dd = @passport.municipio
+                    dt Ano:
+                    dd = @passport.year
+                    dt Processo enviado:
+                    dd = @passport.submitted.strftime("%Y-%m-%d")
+
+            .col-xs-12.col-sm-4
+              .widget-box
+                .widget-title
+                  span.icon
+                    i.fa.fa-suitcase
+                  h5 Destino
+                .widget-content.nopadding
+                  dl.dl-horizontal
+                    br
+                    dt País/Cidade:
+                    dd = link_to @passport.local.desc, @passport.local
+                    dt Data prevista de saída:
+                    dd = @passport.departure.strftime("%Y-%m-%d")
+                    dt Profissão futura:
+                    dd = @passport.profession.desc
+                    dt Local trabalho:
+                    dd = @passport.localWork.desc
+
+
+  .row
+    .col-xs-12
+      = link_to 'Voltar', passports_path, class: "btn btn-default btn-sm"
+      = link_to 'Remover', @passport, method: :delete, id: 'deleteid', class: 'btn btn-danger btn-sm', id: "removebutton", data: { confirm: 'Tem a certeza?' }
+      = link_to 'Editar', edit_passport_path(@passport), class: "btn btn-default btn-sm", disabled: "disabled", id: "editbutton"
+
+  br

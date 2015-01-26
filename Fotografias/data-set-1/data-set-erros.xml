@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fotos>
+    <foto ficheiro="15.jpg">
+        <quem>Maria Emilia; Filomena Fernandes Henriques Igreja</quem>
+        <quando data="1967-01-24"></quando>
+        <onde>Praça de Estorões, Fafe</onde>
+        <facto>Filomena tenta ensinar a Maria a andar pela primeira vez de bicicleta.</facto>
+        <legenda>Mãe ajuda filha a anda de bicicleta</legenda>
+    </foto>
+    <foto ficheiro="a16.jpg">
+        <quem>Laurentino Nogueira; Alzira Nogueira; Maria Nogueira</quem>
+        <onde>Rio do Vale, Fafe</onde>
+        <quando></quando>
+        <facto>Laurentino leva as suas filhas a dar um passeio de barco.. Numa manhã de domingo.</facto>
+        <legenda>Laurentino e suas filhas</legenda>
+    </foto>
+    <foto ficheiro="a17.jpg">
+        <quem>Laurentino Nogueira</quem>
+        <onde>Praia de Matosinhos, Porto</onde>
+        <quando data="1951-06-14"></quando>
+        <facto>Sr Nogueira na praia.</facto>
+    </foto>
+    <foto>
+        <quem>Dolores Teixeira de Sousa; Laurentino Nogueira</quem>
+        <onde>Forte São João, Porto</onde>
+        <quando data="1992-04-08"></quando>
+        <facto>Dona Dolores e o seu marido visitam o forte em s joão</facto>
+    </foto>
+    <foto ficheiro="a19.jpg">
+        <quem>Justino Nogueira; Alzira Nogueira</quem>
+        <onde>Póvoa do Varzim</onde>
+        <quando data="1988-09-21"></quando>
+        <facto>Justino e a sua neta quando foram à pesca.</facto>
+        <legenda>Alzira e o seu avô</legenda>
+    </foto>
+    <foto ficheiro="a20.jpg">
+        <onde>Caxinas, Vila do Conde</onde>
+        <quando data="1900-06-01"></quando>
+        <facto>Justino e a sua namorada Felismina a beira do barco.</facto>
+        <legenda>Justino e Felismina</legenda>
+    </foto>
+</fotos>
+
+

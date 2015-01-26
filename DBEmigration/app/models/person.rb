@@ -9,11 +9,12 @@ class Person < ActiveRecord::Base
   has_many :wives, through: :is_husband_in_marriages
 
   has_many :passports
-  
+
   belongs_to :profession
 
-  has_one :localNasc, :foreign_key => :local_nasc
-  has_one :localWork, :foreign_key => :local_work
+  belongs_to :residence, :foreign_key => :residence, class_name: 'Local'
+  belongs_to :localNasc, :foreign_key => :local_nasc, class_name: 'Local'
+  belongs_to :localWork, :foreign_key => :local_work, class_name: 'Local'
 
   # child_entry de uma pessoa é o casamento que a originou (com classe Child)
   has_one :child_entry, class_name: 'Child', inverse_of: :person
@@ -26,10 +27,10 @@ class Person < ActiveRecord::Base
   # https://github.com/lwe/simple_enum
   # Person.marrieds dá todos os casados
   as_enum :gender, female: 2, male: 1, undefined: 0
-  as_enum :civil, single: 0, married: 1, divorced: 3, widowed: 4
+  as_enum :civil, single: 0, married: 1, divorced: 2, widowed: 3
 
   # obter todos os filhos de uma pessoa
   def children
-    Marriage.includes(:children).map{|m| m.children}.inject(:+)
+    (is_husband_in_marriages + is_wife_in_marriages).map{|m| m.children}.inject(:+) || Array.new
   end
 end

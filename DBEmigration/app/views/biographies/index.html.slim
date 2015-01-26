@@ -1,23 +1,75 @@
-h1 Listing biographies
+#content-header.mini
+  h1 Biografias
 
-table
-  thead
-    tr
-      th Event
-      th Date
-      th
-      th
-      th
+#breadcrumb
+  = link_to home_path, title: 'Voltar à página inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  a.current
+    i.fa.fa-book
+    | Biografias
 
-  tbody
-    - @biographies.each do |biography|
-      tr
-        td = biography.event
-        td = biography.date
-        td = link_to 'Show', biography
-        td = link_to 'Edit', edit_biography_path(biography)
-        td = link_to 'Destroy', biography, data: {:confirm => 'Are you sure?'}, :method => :delete
+.container-fluid
 
-br
+  - unless notice.blank?
+    .row
+      .col-xs-12
+        .alert.alert-success
+          button.close data-dismiss="alert"  ×
+          p#notice = notice
 
-= link_to 'New Biography', new_biography_path
+  .row
+    .col-xs-12
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-newspaper-o
+          h5 Listagem de Registos Biográficos
+          .buttons
+            = link_to new_biography_path, class: 'btn'
+              i.fa.fa-plus
+              span.text    Adicionar Biografias
+        .widget-content
+          .row
+            - @biographies.each do |biography|
+              .col-xs-12.col-sm-6
+                .widget-box
+                  #titlelimit.widget-title
+                    span.icon
+                      = biography.date
+                    h5 = biography.event
+                  .widget-content
+                    = biography.original.truncate(150)
+                    = link_to '  mostrar mais', '#', onclick: "getRegisto(#{biography.id});"
+
+.modal.fade#myModal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title Registo Biográfico
+      .modal-body
+        dl.dl-horizontal
+          dt Data
+          dd#date dg
+          dt Evento
+          dd#evento asdasdasd
+          dt Original
+          dd#original dg
+          dt Local
+          dd#local dg
+          dt Pessoas
+          dd
+            ul.list-unstyled#pessoas
+
+      .modal-footer
+        button.btn.btn-default.btn-sm type="button" disabled="disabled" Editar
+        = link_to 'Remover', @biographies.first, method: :delete, id: 'deleteid', class: 'btn btn-danger btn-sm', data: { confirm: 'Tem a certeza?' }
+        button.btn.btn-primary.btn-sm data-dismiss="modal" type="button"  Fechar
+
+
+
+
+
+
+
+

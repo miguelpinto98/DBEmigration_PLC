@@ -1,0 +1,38 @@
+[
+  {
+    "processo": {
+      "ano" : 1954 ,
+      "numero" : "1134452",
+      "passaporte" : "989",
+      "camara" : "Camara de Fafe",
+      "submetido" : "1954-6-01"
+    },
+    "requerente": {
+      "nome" : "Laurentino Nogueira",
+      "bi" : "11417928",
+      "residencia" : "Lugar de Redondo, Ribeiro, Fafe",
+      "data nasc" : "1922-10-10",
+      "local nasc" : "Porto",
+      "genero" : "masculino",
+      "pais" : {
+        "pai": "Justino Nogueira",
+        "mãe": "Felismina Ramos"
+      },
+      "estado civil" : "casado",
+      "conjugue" : "Dolores Teixeira de Sousa",
+      "filhos" : [
+        "Alzira Nogueira",
+        "Maria Nogueira"
+      ],
+      "profissao" : "Pescador",
+      "local trabalho" : "Fafe",
+      "habilitacoes" : "sabe ler e escrever"
+    },
+    "destino" : {
+      "país e cidade" : "Barcelona, Espanha",
+      "data partida" : "1955-09-11",
+      "profissao" : "Construtor civil",
+      "local trabalho" : "Del Mar Barcelona, Espanha"
+    }
+  }
+]

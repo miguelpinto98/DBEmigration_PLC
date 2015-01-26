@@ -1,27 +1,58 @@
-h1 Listing passports
+#content-header.mini
+  h1 Passaportes
 
-table
-  thead
-    tr
-      th Number
-      th Year
-      th Municipio
-      th Submitted
-      th
-      th
-      th
+#breadcrumb
+  = link_to home_path, title: 'Voltar à Página Inicial', class: 'tip-bottom'
+    i.fa.fa-home
+    | Home
+  a.current
+    | Dashboard
 
-  tbody
-    - @passports.each do |passport|
-      tr
-        td = passport.number
-        td = passport.year
-        td = passport.municipio
-        td = passport.submitted
-        td = link_to 'Show', passport
-        td = link_to 'Edit', edit_passport_path(passport)
-        td = link_to 'Destroy', passport, data: {:confirm => 'Are you sure?'}, :method => :delete
+.container-fluid
 
-br
+  - unless notice.blank?
+    .row
+      .col-xs-12
+        .alert.alert-success
+          button.close data-dismiss="alert"  ×
+          p#notice = notice
 
-= link_to 'New Passport', new_passport_path
+
+  .row
+    .col-xs-12
+      .widget-box
+        .widget-title
+          span.icon
+            i.fa.fa-plane
+          h5 Listagem de Requerimentos de Passaportes
+          .buttons
+            = link_to new_passport_path, class: 'btn'
+              i.fa.fa-plus
+              span.text    Adicionar Passaportes
+
+        .widget-content.nopadding
+          .row
+            table.table.table-hover.data-table
+              thead
+                tr
+                  th Requerente
+                  th Processo
+                  th Município
+                  th Enviado
+                  th Destino
+                  th
+                  th
+                  th
+              tbody
+                - @passports.each do |pass|
+                  tr
+                    td = link_to pass.person.name, pass.person
+                    td = pass.process
+                    td = pass.municipio
+                    td = pass.submitted.strftime("%Y-%m-%d")
+                    td = pass.local.desc
+                    td
+                    td = link_to 'Show', pass, class: "btn btn-default btn-sm"
+                    td = link_to 'Destroy', pass, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "btn btn-default btn-sm"
+
+  br
